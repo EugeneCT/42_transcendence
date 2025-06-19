@@ -7,14 +7,23 @@ export class Paddle {
         this.upKey = upKey;
         this.downKey = downKey;
         this.color = color;
-        if (side === 'left') {
+        this.side = side;
+        if (this.side === 'left') {
             this.x = LEFT_GOAL_X - PADDLE_WIDTH;
         }
         else {
             this.x = RIGHT_GOAL_X;
         }
         this.y = (BOARD_HEIGHT - PADDLE_HEIGHT) / 2;
-        this.side = side;
+    }
+    resetPosition() {
+        if (this.side === 'left') {
+            this.x = LEFT_GOAL_X - PADDLE_WIDTH;
+        }
+        else {
+            this.x = RIGHT_GOAL_X;
+        }
+        this.y = (BOARD_HEIGHT - PADDLE_HEIGHT) / 2;
     }
     draw() {
         this.ctx.fillStyle = this.color;

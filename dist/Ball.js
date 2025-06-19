@@ -1,15 +1,24 @@
-import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS, BALL_START_SPEED } from './settings.js';
+import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS, BALL_START_SPEED, PADDLE_WIDTH } from './settings.js';
+const getRandomFloat = (min, max) => {
+    return Math.random() * (max - min) + min;
+};
 export class Ball {
     // ball starts in the center with a random direction
     constructor(ctx) {
         this.ctx = ctx;
         this.centerX = BOARD_WIDTH / 2;
         this.centerY = BOARD_HEIGHT / 2;
-        this.speed = BALL_START_SPEED;
         this.color = 'white';
         let angleRadians = getRandomFloat(0, 2 * Math.PI);
-        this.speedX = this.speed * Math.cos(angleRadians);
-        this.speedY = this.speed * Math.sin(angleRadians);
+        this.speedX = BALL_START_SPEED * Math.cos(angleRadians);
+        this.speedY = BALL_START_SPEED * Math.sin(angleRadians);
+    }
+    resetPosition() {
+        this.centerX = BOARD_WIDTH / 2;
+        this.centerY = BOARD_HEIGHT / 2;
+        let angleRadians = getRandomFloat(0, 2 * Math.PI);
+        this.speedX = BALL_START_SPEED * Math.cos(angleRadians);
+        this.speedY = BALL_START_SPEED * Math.sin(angleRadians);
     }
     draw() {
         this.ctx.beginPath();
@@ -17,46 +26,51 @@ export class Ball {
         this.ctx.fillStyle = this.color;
         this.ctx.fill();
     }
-    checkCollision(players) {
-        // top
-        if (this.centerY - BALL_RADIUS <= 0) {
+    bounce(players) {
+        const nextX = this.centerX + this.speedX;
+        const nextY = this.centerY + this.speedY;
+        // top & bottom
+        if (nextY - BALL_RADIUS <= 0 || nextY + BALL_RADIUS >= BOARD_HEIGHT) {
             this.speedY *= -1;
+            this.increaseSpeed();
         }
-        // bottom
-        if (this.centerY + BALL_RADIUS >= BOARD_HEIGHT) {
-            this.speedY *= -1;
-        }
+        const checkPaddleCollision = (side) => {
+            return [...players].some(player => player.side === side && player.checkCollisionWithBall(nextY));
+        };
         // left
-        // testing buffer of 10 to give more time for ball to bounce off paddle
-        if (this.centerX - BALL_RADIUS <= LEFT_GOAL_X + 5) {
-            players.forEach(player => {
-                if (player.side === 'left' && player.checkCollisionWithBall(this.centerY)) {
-                    this.speedX *= -1;
-                    return;
-                }
-            });
-            if (this.centerX < BALL_RADIUS) {
-                return 'right-win';
-            }
+        if (this.speedX < 0
+            && nextX - BALL_RADIUS <= LEFT_GOAL_X
+            && nextX - BALL_RADIUS >= LEFT_GOAL_X - PADDLE_WIDTH
+            && checkPaddleCollision('left')) {
+            this.speedX *= -1;
+            this.increaseSpeed();
         }
         // right
-        if (this.centerX + BALL_RADIUS >= RIGHT_GOAL_X - 5) {
-            players.forEach(player => {
-                if (player.side === 'right' && player.checkCollisionWithBall(this.centerY)) {
-                    this.speedX *= -1;
-                    return;
-                }
-            });
-            if (this.centerX > BOARD_WIDTH - BALL_RADIUS) {
-                return 'left-win';
-            }
+        if (this.speedX > 0
+            && nextX + BALL_RADIUS >= RIGHT_GOAL_X
+            && nextX + BALL_RADIUS <= RIGHT_GOAL_X + PADDLE_WIDTH
+            && checkPaddleCollision('right')) {
+            this.speedX *= -1;
+            this.increaseSpeed();
+        }
+    }
+    checkVictory() {
+        if (this.centerX + BALL_RADIUS < 0) {
+            return 'right-win';
+        }
+        else if (this.centerX - BALL_RADIUS > BOARD_WIDTH) {
+            return 'left-win';
+        }
+        else {
+            return undefined;
         }
     }
     move() {
         this.centerX += this.speedX;
         this.centerY += this.speedY;
     }
-}
-function getRandomFloat(min, max) {
-    return Math.random() * (max - min) + min;
+    increaseSpeed() {
+        this.speedX *= 1.01;
+        this.speedY *= 1.01;
+    }
 }

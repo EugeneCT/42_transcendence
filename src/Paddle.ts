@@ -3,7 +3,6 @@ import { BOARD_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_MOVE_SPEED, LEFT_GOAL
 export class Paddle {
 	private x: number;
 	private y: number;
-	side: 'left' | 'right';
 
 	// this.x and this.y is the top left corner of the rectangle.
 	// goalLine is the right edge of the left paddle, and the left edge of the right paddle
@@ -12,15 +11,23 @@ export class Paddle {
 		private upKey: string,
 		private downKey: string,
 		private color: string,
-		side: 'left' | 'right') {
-			if (side === 'left') {
+		public side: 'left' | 'right') {
+			if (this.side === 'left') {
 				this.x = LEFT_GOAL_X - PADDLE_WIDTH;
 			} else {
 				this.x = RIGHT_GOAL_X;
 			}
 			this.y = (BOARD_HEIGHT - PADDLE_HEIGHT)/2;
-			this.side = side;
 		}
+	
+	resetPosition() {
+		if (this.side === 'left') {
+			this.x = LEFT_GOAL_X - PADDLE_WIDTH;
+		} else {
+			this.x = RIGHT_GOAL_X;
+		}
+		this.y = (BOARD_HEIGHT - PADDLE_HEIGHT)/2;
+	}
 
 	draw() {
 		this.ctx.fillStyle = this.color;
