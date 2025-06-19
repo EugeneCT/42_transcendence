@@ -1,20 +1,16 @@
+import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X } from './settings.js';
 export class GameBoard {
-    constructor(width, height, leftGoal, rightGoal, ctx) {
+    constructor(ctx) {
+        this.ctx = ctx;
         this.leftScore = 0;
         this.rightScore = 0;
-        this.width = width;
-        this.height = height;
-        this.leftGoal = leftGoal;
-        this.rightGoal = rightGoal;
-        this.ctx = ctx;
     }
     drawVerticalDashLine(x) {
         this.ctx.lineWidth = 1;
         this.ctx.strokeStyle = 'grey';
         this.ctx.beginPath();
-        // this.ctx.setLineDash([10, 10]);
-        this.ctx.moveTo(x, -5);
-        this.ctx.lineTo(x, this.height);
+        this.ctx.moveTo(x, 0);
+        this.ctx.lineTo(x, BOARD_HEIGHT);
         this.ctx.stroke();
     }
     drawMiddleDashLine() {
@@ -22,8 +18,8 @@ export class GameBoard {
         this.ctx.strokeStyle = 'grey';
         this.ctx.beginPath();
         this.ctx.setLineDash([30, 30]);
-        this.ctx.moveTo(this.width / 2, -15);
-        this.ctx.lineTo(this.width / 2, this.height);
+        this.ctx.moveTo(BOARD_WIDTH / 2, -15);
+        this.ctx.lineTo(BOARD_WIDTH / 2, BOARD_HEIGHT);
         this.ctx.stroke();
         this.ctx.setLineDash([]);
     }
@@ -36,13 +32,13 @@ export class GameBoard {
     drawBlankCanvas() {
         // background
         this.ctx.fillStyle = 'MidnightBlue';
-        this.ctx.fillRect(0, 0, this.width, this.height);
+        this.ctx.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
         // lines
-        this.drawVerticalDashLine(this.leftGoal);
-        this.drawVerticalDashLine(this.rightGoal);
+        this.drawVerticalDashLine(LEFT_GOAL_X);
+        this.drawVerticalDashLine(RIGHT_GOAL_X);
         this.drawMiddleDashLine();
         // scores
-        this.drawScore(this.leftScore, this.width / 4);
-        this.drawScore(this.rightScore, this.width / 4 * 3);
+        this.drawScore(this.leftScore, BOARD_WIDTH / 4);
+        this.drawScore(this.rightScore, BOARD_WIDTH / 4 * 3);
     }
 }

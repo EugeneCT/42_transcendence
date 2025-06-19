@@ -1,35 +1,35 @@
+import { BOARD_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_MOVE_SPEED, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS } from './settings.js';
 export class Paddle {
     // this.x and this.y is the top left corner of the rectangle.
     // goalLine is the right edge of the left paddle, and the left edge of the right paddle
-    constructor(goalLine, canvasHeight, upKey, downKey, color, ctx, side) {
-        this.height = 100;
-        this.width = 20;
-        this.x = 0;
-        this.moveSpeed = 10;
-        this.toMove = 'none';
-        if (side === 'left') {
-            this.x = goalLine - this.width;
-        }
-        else if (side === 'right') {
-            this.x = goalLine;
-        }
-        this.y = (canvasHeight - this.height) / 2;
-        this.canvasHeight = canvasHeight;
+    constructor(ctx, upKey, downKey, color, side) {
+        this.ctx = ctx;
         this.upKey = upKey;
         this.downKey = downKey;
         this.color = color;
-        this.ctx = ctx;
+        if (side === 'left') {
+            this.x = LEFT_GOAL_X - PADDLE_WIDTH;
+        }
+        else {
+            this.x = RIGHT_GOAL_X;
+        }
+        this.y = (BOARD_HEIGHT - PADDLE_HEIGHT) / 2;
+        this.side = side;
     }
     draw() {
         this.ctx.fillStyle = this.color;
-        this.ctx.fillRect(this.x, this.y, this.width, this.height);
+        this.ctx.fillRect(this.x, this.y, PADDLE_WIDTH, PADDLE_HEIGHT);
     }
-    move() {
-        if (this.toMove === 'up' && this.y - this.moveSpeed >= 0) {
-            this.y -= this.moveSpeed;
+    move(keys) {
+        if (keys.has(this.upKey) && this.y - PADDLE_MOVE_SPEED >= 0) {
+            this.y -= PADDLE_MOVE_SPEED;
         }
-        else if (this.toMove === 'down' && this.y + this.height + this.moveSpeed <= this.canvasHeight) {
-            this.y += this.moveSpeed;
+        else if (keys.has(this.downKey) && this.y + PADDLE_HEIGHT + PADDLE_MOVE_SPEED <= BOARD_HEIGHT) {
+            this.y += PADDLE_MOVE_SPEED;
         }
+    }
+    checkCollisionWithBall(ballCenterY) {
+        return (ballCenterY >= this.y - BALL_RADIUS
+            && ballCenterY <= this.y + PADDLE_HEIGHT + BALL_RADIUS);
     }
 }

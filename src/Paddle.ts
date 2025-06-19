@@ -1,42 +1,42 @@
+import { BOARD_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_MOVE_SPEED, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS } from './settings.js';
+
 export class Paddle {
-	private height: number = 100;
-	private width: number = 20;
-	private x: number = 0;
+	private x: number;
 	private y: number;
-	private moveSpeed: number = 10;
-	private canvasHeight: number;
-	private upKey: string;
-	private downKey: string;
-	private color: string;
-	private ctx: CanvasRenderingContext2D;
-	toMove: 'up' | 'down' | 'none' = 'none';
+	side: 'left' | 'right';
 
 	// this.x and this.y is the top left corner of the rectangle.
 	// goalLine is the right edge of the left paddle, and the left edge of the right paddle
-	constructor(goalLine: number, canvasHeight: number, upKey: string, downKey: string, color: string, ctx: CanvasRenderingContext2D, side: 'left' | 'right') {
-		if (side === 'left') {
-			this.x = goalLine - this.width;
-		} else if (side === 'right') {
-			this.x = goalLine;
+	constructor(
+		private ctx: CanvasRenderingContext2D,
+		private upKey: string,
+		private downKey: string,
+		private color: string,
+		side: 'left' | 'right') {
+			if (side === 'left') {
+				this.x = LEFT_GOAL_X - PADDLE_WIDTH;
+			} else {
+				this.x = RIGHT_GOAL_X;
+			}
+			this.y = (BOARD_HEIGHT - PADDLE_HEIGHT)/2;
+			this.side = side;
 		}
-		this.y = (canvasHeight - this.height)/2;
-		this.canvasHeight = canvasHeight;
-		this.upKey = upKey;
-		this.downKey = downKey;
-		this.color = color;
-		this.ctx = ctx;
-	}
 
 	draw() {
 		this.ctx.fillStyle = this.color;
-		this.ctx.fillRect(this.x, this.y, this.width, this.height);
+		this.ctx.fillRect(this.x, this.y, PADDLE_WIDTH, PADDLE_HEIGHT);
 	}
 
-	move() {
-		if (this.toMove === 'up' && this.y - this.moveSpeed >= 0) {
-			this.y -= this.moveSpeed;
-		} else if (this.toMove === 'down' && this.y + this.height + this.moveSpeed <= this.canvasHeight) {
-			this.y += this.moveSpeed;
+	move(keys: Set<string>) {
+		if (keys.has(this.upKey) && this.y - PADDLE_MOVE_SPEED >= 0) {
+			this.y -= PADDLE_MOVE_SPEED;
+		} else if (keys.has(this.downKey) && this.y + PADDLE_HEIGHT + PADDLE_MOVE_SPEED <= BOARD_HEIGHT) {
+			this.y += PADDLE_MOVE_SPEED;
 		}
+	}
+
+	checkCollisionWithBall(ballCenterY: number) {
+		return (ballCenterY >= this.y - BALL_RADIUS
+			&& ballCenterY <= this.y + PADDLE_HEIGHT + BALL_RADIUS);
 	}
 }

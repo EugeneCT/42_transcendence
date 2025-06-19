@@ -1,56 +1,32 @@
 import { Paddle } from './Paddle.js';
 import { Ball } from './Ball.js';
 import { GameBoard } from './GameBoard.js';
+import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X } from './settings.js';
+
 
 const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;
-canvas.width = 800;
-canvas.height = 600;
+canvas.width = BOARD_WIDTH;
+canvas.height = BOARD_HEIGHT;
 
 const ctx = canvas.getContext('2d')!;
 
-// define the left and right goals. Game over if ball passes this line.
-const leftGoal = 50;
-const rightGoal = canvas.width - 50;
+let board = new GameBoard(ctx);
+let player1 = new Paddle(ctx, 'w', 's', 'red', 'left');
+let player2 = new Paddle(ctx, 'ArrowUp', 'ArrowDown', 'yellow', 'right');
 
-let board = new GameBoard(canvas.width, canvas.height, leftGoal, rightGoal, ctx);
-board.drawBlankCanvas()
+let players = new Set<Paddle>;
+players.add(player1);
+players.add(player2);
 
-let player1 = new Paddle(leftGoal, canvas.height, 'w', 's', 'red', ctx, 'left');
-let player2 = new Paddle(rightGoal, canvas.height, 'ArrowUp', 'ArrowDown', 'yellow', ctx, 'right');
-let ball = new Ball(canvas.width/2, canvas.height/2, ctx);
+let ball = new Ball(ctx);
 
+
+let keys = new Set<string>;
 document.addEventListener('keydown', (event: KeyboardEvent) => {
-	switch (event.key) {
-		case 'w':
-			player1.toMove = 'up';
-			break;
-		case 's':
-			player1.toMove = 'down';
-			break;
-		case 'ArrowUp':
-			player2.toMove = 'up';
-			break;
-		case 'ArrowDown':
-			player2.toMove = 'down';
-			break;
-	}
+	keys.add(event.key);
 });
-
 document.addEventListener('keyup', (event: KeyboardEvent) => {
-	switch (event.key) {
-		case 'w':
-			player1.toMove = 'none';
-			break;
-		case 's':
-			player1.toMove = 'none';
-			break;
-		case 'ArrowUp':
-			player2.toMove = 'none';
-			break;
-		case 'ArrowDown':
-			player2.toMove = 'none';
-			break;
-	}
+	keys.delete(event.key);
 });
 
 
@@ -58,14 +34,21 @@ let isGameRunning = true;
 function gameLoop() {
 	if (!isGameRunning) return;
 	
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.clearRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 	board.drawBlankCanvas();
-	player1.draw();
-	player2.draw();
+	players.forEach(player => player.draw());
 	ball.draw();
 	
-	player1.move();
-	player2.move();
+	players.forEach(player => player.move(keys));
+	let result = ball.checkCollision(players);
+	if (result === 'left-win') {
+		board.leftScore++;
+		isGameRunning = false;
+	} else if (result === 'right-win') {
+		board.rightScore++;
+		isGameRunning = false;
+	}
+	ball.move();
 
 	requestAnimationFrame(gameLoop);
 }
@@ -73,41 +56,11 @@ function gameLoop() {
 gameLoop();
 
 
-
 /*
-1) draw blank screen
-2) move paddle and ball
-3) draw paddles and ball
-4) detect collision
+ISSUES:
+- ball getting stuck on paddle => ball.checkCollision() does not take into account ball speed
+	- define (xMin, xMax) zone where ball will bounce?
+- reset board after a point is scored
+
+- make ball speed increase over time?
 */
-
-
-// const keysPressed = new Set<string>();
-
-// document.addEventListener('keydown', (event: KeyboardEvent) => {
-//   keysPressed.add(event.key);
-// });
-
-// document.addEventListener('keyup', (event: KeyboardEvent) => {
-//   keysPressed.delete(event.key);
-// });
-
-// function updatePlayerMovement() {
-//   // player 1
-//   if (keysPressed.has('w')) {
-//     player1.toMove = 'up';
-//   } else if (keysPressed.has('s')) {
-//     player1.toMove = 'down';
-//   } else {
-//     player1.toMove = 'none';
-//   }
-
-//   // player 2
-//   if (keysPressed.has('ArrowUp')) {
-//     player2.toMove = 'up';
-//   } else if (keysPressed.has('ArrowDown')) {
-//     player2.toMove = 'down';
-//   } else {
-//     player2.toMove = 'none';
-//   }
-// }
