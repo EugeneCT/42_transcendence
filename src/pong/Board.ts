@@ -1,6 +1,6 @@
 import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X } from './settings.js'
 
-export class GameBoard {
+export class Board {
 	leftScore: number = 0;
 	rightScore: number = 0;
 

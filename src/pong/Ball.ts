@@ -1,25 +1,23 @@
 import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS, BALL_START_SPEED, PADDLE_WIDTH } from './settings.js';
 import { Paddle } from './Paddle.js';
 
-const getRandomFloat = (min: number, max: number) => {
-	return Math.random() * (max - min) + min;
-};
-
 export class Ball {
-	private centerX: number = BOARD_WIDTH/2;
-	private centerY: number = BOARD_HEIGHT/2;
-	private speedX: number;
-	private speedY: number;
+	public centerX: number = 0;
+	public centerY: number = 0;
+	private speedX: number = 0;
+	private speedY: number = 0;
 	private color: string = 'white';
 
-	// ball starts in the center with a random direction
 	constructor(private ctx: CanvasRenderingContext2D) {
-		let angleRadians = getRandomFloat(0, 2 * Math.PI);
-		this.speedX = BALL_START_SPEED * Math.cos(angleRadians);
-		this.speedY = BALL_START_SPEED * Math.sin(angleRadians);
+		this.resetPosition();
 	}
-
+	
+	// ball starts in the center with a random direction
 	resetPosition() {
+		const getRandomFloat = (min: number, max: number) => {
+			return Math.random() * (max - min) + min;
+		};
+
 		this.centerX = BOARD_WIDTH/2;
 		this.centerY = BOARD_HEIGHT/2;
 		let angleRadians = getRandomFloat(0, 2 * Math.PI);
@@ -34,15 +32,9 @@ export class Ball {
 		this.ctx.fill();
 	}
 
-	bounce(players: Set<Paddle>) {
+	move(players: Set<Paddle>) {
 		const nextX = this.centerX + this.speedX;
 		const nextY = this.centerY + this.speedY;
-
-		// top & bottom
-		if (nextY - BALL_RADIUS <= 0 || nextY + BALL_RADIUS >= BOARD_HEIGHT) {
-			this.speedY *= -1;
-			this.increaseSpeed();
-		}
 
 		const checkPaddleCollision = (side: 'left' | 'right') => {
 			return [...players].some(
@@ -50,7 +42,13 @@ export class Ball {
 			);
 		};
 
-		// left
+		// bounce top & bottom
+		if (nextY - BALL_RADIUS <= 0 || nextY + BALL_RADIUS >= BOARD_HEIGHT) {
+			this.speedY *= -1;
+			this.increaseSpeed();
+		}
+
+		// bounce left
 		if (this.speedX < 0 
 			&& nextX - BALL_RADIUS <= LEFT_GOAL_X
 			&& nextX - BALL_RADIUS >= LEFT_GOAL_X - PADDLE_WIDTH
@@ -60,7 +58,7 @@ export class Ball {
 			this.increaseSpeed();
 		}
 		
-		// right
+		// bounce right
 		if (this.speedX > 0 
 			&& nextX + BALL_RADIUS >= RIGHT_GOAL_X
 			&& nextX + BALL_RADIUS <= RIGHT_GOAL_X + PADDLE_WIDTH
@@ -69,6 +67,15 @@ export class Ball {
 			this.speedX *= -1;
 			this.increaseSpeed();
 		}
+
+		// move
+		this.centerX += this.speedX;
+		this.centerY += this.speedY;
+	}
+
+	private increaseSpeed() {
+		this.speedX *= 1.01;
+		this.speedY *= 1.01;
 	}
 
 	checkVictory(): 'left-win' | 'right-win' | undefined {
@@ -79,15 +86,5 @@ export class Ball {
 		} else {
 			return undefined;
 		}
-	}
-
-	move() {
-		this.centerX += this.speedX;
-		this.centerY += this.speedY;
-	}
-
-	increaseSpeed() {
-		this.speedX *= 1.01;
-		this.speedY *= 1.01;
 	}
 }

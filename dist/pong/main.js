@@ -1,16 +1,18 @@
-import { Paddle } from './Paddle.js';
+import { Player, AI } from './Paddle.js';
 import { Ball } from './Ball.js';
-import { GameBoard } from './GameBoard.js';
+import { Board } from './Board.js';
 import { BOARD_WIDTH, BOARD_HEIGHT } from './settings.js';
 const canvas = document.getElementById('gameCanvas');
 canvas.width = BOARD_WIDTH;
 canvas.height = BOARD_HEIGHT;
 const ctx = canvas.getContext('2d');
-let board = new GameBoard(ctx);
-let players = new Set;
-players.add(new Paddle(ctx, 'w', 's', 'red', 'left'));
-players.add(new Paddle(ctx, 'ArrowUp', 'ArrowDown', 'yellow', 'right'));
-// players.add(new Paddle(ctx, 'i', 'k', 'green', 'left');
+let board = new Board(ctx);
+// Paddles can be either of class Player or AI
+let paddles = new Set;
+paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
+paddles.add(new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown'));
+paddles.add(new AI(ctx, 'green', 'left'));
+paddles.add(new AI(ctx, 'orange', 'right'));
 let ball = new Ball(ctx);
 let keys = new Set;
 document.addEventListener('keydown', (event) => {
@@ -22,11 +24,17 @@ document.addEventListener('keyup', (event) => {
 function gameLoop() {
     ctx.clearRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
     board.drawBlankCanvas();
-    players.forEach(player => player.draw());
+    paddles.forEach(paddle => paddle.draw());
     ball.draw();
-    players.forEach(player => player.move(keys));
-    ball.bounce(players);
-    ball.move();
+    paddles.forEach(paddle => {
+        if (paddle instanceof Player) {
+            paddle.move(keys);
+        }
+        else if (paddle instanceof AI) {
+            paddle.move(ball.centerX, ball.centerY);
+        }
+    });
+    ball.move(paddles);
     let result = ball.checkVictory();
     if (result !== undefined) {
         if (result === 'left-win') {
@@ -35,7 +43,7 @@ function gameLoop() {
         else if (result === 'right-win') {
             board.rightScore++;
         }
-        players.forEach(player => player.resetPosition());
+        paddles.forEach(paddle => paddle.resetPosition());
         ball.resetPosition();
     }
     requestAnimationFrame(gameLoop);
@@ -45,7 +53,4 @@ gameLoop();
 ISSUES:
 - ball getting stuck on paddle => ball.checkCollision() does not take into account ball speed
     - define (xMin, xMax) zone where ball will bounce?
-- reset board after a point is scored
-
-- make ball speed increase over time?
 */ 

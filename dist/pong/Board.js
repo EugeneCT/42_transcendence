@@ -1,5 +1,5 @@
 import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X } from './settings.js';
-export class GameBoard {
+export class Board {
     constructor(ctx) {
         this.ctx = ctx;
         this.leftScore = 0;
