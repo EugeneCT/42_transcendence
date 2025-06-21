@@ -10,7 +10,6 @@ let snakes = new Set;
 snakes.add(new Snake(ctx, 2, 3, 'N', 'w', 's', 'a', 'd', 'blue'));
 let keys = new Set;
 document.addEventListener('keydown', (event) => {
-    console.log(event.key);
     keys.add(event.key);
 });
 document.addEventListener('keyup', (event) => {
@@ -24,3 +23,10 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 gameLoop();
+/*
+TODO:
+- create fruit
+- create timer delay
+- create continuous movement
+- head marker?
+*/ 

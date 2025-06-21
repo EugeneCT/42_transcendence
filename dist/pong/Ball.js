@@ -1,4 +1,4 @@
-import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS, BALL_START_SPEED, PADDLE_WIDTH } from './settings.js';
+import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS, BALL_START_SPEED, BALL_MAX_SPEED, PADDLE_WIDTH } from './settings.js';
 export class Ball {
     constructor(ctx) {
         this.ctx = ctx;
@@ -16,8 +16,9 @@ export class Ball {
         };
         this.centerX = BOARD_WIDTH / 2;
         this.centerY = BOARD_HEIGHT / 2;
-        let angleRadians = getRandomFloat(0, 2 * Math.PI);
-        this.speedX = BALL_START_SPEED * Math.cos(angleRadians);
+        let angleRadians = getRandomFloat(-Math.PI / 4, Math.PI / 4);
+        let direction = getRandomFloat(-1, 1) <= 0 ? -1 : 1;
+        this.speedX = BALL_START_SPEED * Math.cos(angleRadians) * direction;
         this.speedY = BALL_START_SPEED * Math.sin(angleRadians);
     }
     draw() {
@@ -58,8 +59,8 @@ export class Ball {
         this.centerY += this.speedY;
     }
     increaseSpeed() {
-        this.speedX *= 1.01;
-        this.speedY *= 1.01;
+        this.speedX = Math.min(BALL_MAX_SPEED, this.speedX * 1.01);
+        this.speedY = Math.min(BALL_MAX_SPEED, this.speedY * 1.01);
     }
     checkVictory() {
         if (this.centerX + BALL_RADIUS < 0) {

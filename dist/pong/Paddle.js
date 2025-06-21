@@ -56,10 +56,45 @@ export class Player extends Paddle {
 export class AI extends Paddle {
     constructor(ctx, color, side) {
         super(ctx, color, side);
+        this.lastUpdateTime = 0;
+        this.projectedY = 0;
     }
-    // TODO
-    move(ballCenterX, ballCenterY) {
-        if (ballCenterY < BOARD_HEIGHT / 2) {
+    calculateProjectedY(ballCenterX, ballCenterY, ballSpeedX, ballSpeedY) {
+        let projectedX = 0;
+        if ((ballSpeedX > 0 && this.side === 'right') || (ballSpeedX < 0 && this.side === 'left')) {
+            // ball is going towards the paddle
+            projectedX = (ballSpeedX > 0) ? RIGHT_GOAL_X : LEFT_GOAL_X;
+        }
+        else {
+            // assume ball will bounce off the opposite paddle
+            projectedX = (ballSpeedX > 0) ? RIGHT_GOAL_X + (RIGHT_GOAL_X - LEFT_GOAL_X) : LEFT_GOAL_X - (RIGHT_GOAL_X - LEFT_GOAL_X);
+        }
+        let timeToGoal = (projectedX - ballCenterX) / ballSpeedX;
+        let rawProjectedY = timeToGoal * ballSpeedY + ballCenterY;
+        // correct for ball bouncing off top / bottom
+        while (!(0 <= rawProjectedY && rawProjectedY < BOARD_HEIGHT)) {
+            if (rawProjectedY >= BOARD_HEIGHT) {
+                // bounce off bottom, reflect up
+                rawProjectedY = 2 * ballCenterY - rawProjectedY + 2 * (BOARD_HEIGHT - ballCenterY);
+            }
+            else {
+                // bounce off top, reflect down
+                rawProjectedY = 2 * ballCenterY - rawProjectedY - 2 * (ballCenterY);
+            }
+        }
+        return rawProjectedY;
+    }
+    move(ballCenterX, ballCenterY, ballSpeedX, ballSpeedY) {
+        let currentTime = Date.now();
+        if (this.lastUpdateTime === 0 || currentTime > this.lastUpdateTime + 1000) {
+            this.projectedY = this.calculateProjectedY(ballCenterX, ballCenterY, ballSpeedX, ballSpeedY);
+            this.lastUpdateTime = currentTime;
+            console.log(this.side + " : " + this.lastUpdateTime / 1000);
+        }
+        if (this.projectedY > this.y && this.projectedY < this.y + PADDLE_HEIGHT) {
+            // do nothing
+        }
+        else if (this.y >= this.projectedY) {
             this.moveUp();
         }
         else {

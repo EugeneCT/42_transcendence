@@ -9,3 +9,4 @@ export const LEFT_GOAL_X = GOAL_BUFFER;
 export const RIGHT_GOAL_X = BOARD_WIDTH - GOAL_BUFFER;
 export const BALL_RADIUS = 10;
 export const BALL_START_SPEED = 10;
+export const BALL_MAX_SPEED = 20;

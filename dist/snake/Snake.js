@@ -39,7 +39,6 @@ export class Snake {
             this.body[0].tileX--;
         }
         else if (keys.has(this.rightKey)) {
-            console.log('right');
             this.body[0].tileX++;
         }
     }

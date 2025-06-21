@@ -31,7 +31,7 @@ function gameLoop() {
             paddle.move(keys);
         }
         else if (paddle instanceof AI) {
-            paddle.move(ball.centerX, ball.centerY);
+            paddle.move(ball.centerX, ball.centerY, ball.speedX, ball.speedY);
         }
     });
     ball.move(paddles);
