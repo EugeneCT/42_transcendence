@@ -17,7 +17,14 @@ This folder contains the frontend of the ft_transcendence project, built with **
 Make sure you have **Node.js v20+** installed.
 
 You can check with:
-
-```bash
 node -v
 npm -v
+
+📦 Install dependencies
+
+▶️ Start the dev server
+npm run dev
+Open your browser and visit:
+
+Open your browser and visit:
+http://localhost:5173
