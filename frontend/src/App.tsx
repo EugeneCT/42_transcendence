@@ -2,15 +2,14 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './index.css'
-import './index.css'
+import Header from './components/header';
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
-      {/* HEADER */}
-      <header className="text-4xl text-red-500 font-bold p-6 text-center">
-        ft_transcendance
-      </header>
+      <div>
+        <Header />
+      </div>
 
       {/* MAIN SECTION */}
       <main className="flex flex-col items-center justify-center px-6 py-12 space-y-8">
