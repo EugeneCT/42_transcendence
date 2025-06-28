@@ -1,6 +1,7 @@
 import { TILE_SIZE } from './settings.js';
 export class Snake {
     constructor(ctx, tileX, tileY, direction, upKey, downKey, leftKey, rightKey, color) {
+        this.ctx = ctx;
         this.tileX = tileX;
         this.tileY = tileY;
         this.direction = direction;
@@ -12,8 +13,24 @@ export class Snake {
         this.body = new Array;
         this.size = 0;
         this.addNewBody(ctx, tileX, tileY, 'head');
-        this.addNewBody(ctx, tileX, tileY + 1, 'tail');
-        this.addNewBody(ctx, tileX, tileY + 2, 'tail');
+        switch (direction) {
+            case 'N':
+                this.addNewBody(ctx, tileX, tileY + 1, 'tail');
+                this.addNewBody(ctx, tileX, tileY + 2, 'tail');
+                break;
+            case 'S':
+                this.addNewBody(ctx, tileX, tileY - 1, 'tail');
+                this.addNewBody(ctx, tileX, tileY - 2, 'tail');
+                break;
+            case 'E':
+                this.addNewBody(ctx, tileX - 1, tileY, 'tail');
+                this.addNewBody(ctx, tileX - 2, tileY, 'tail');
+                break;
+            case 'W':
+                this.addNewBody(ctx, tileX + 1, tileY, 'tail');
+                this.addNewBody(ctx, tileX + 2, tileY, 'tail');
+                break;
+        }
     }
     addNewBody(ctx, tileX, tileY, type) {
         this.body.push(new Body(ctx, tileX, tileY, type));
@@ -23,23 +40,38 @@ export class Snake {
         this.body.forEach(body => body.draw(this.color));
     }
     move(keys) {
+        // change direction if key is pressed
+        if (keys.has(this.upKey)) {
+            this.direction = 'N';
+        }
+        else if (keys.has(this.downKey)) {
+            this.direction = 'S';
+        }
+        else if (keys.has(this.rightKey)) {
+            this.direction = 'E';
+        }
+        else if (keys.has(this.leftKey)) {
+            this.direction = 'W';
+        }
         // move the body parts from back to front
         for (let i = this.size - 1; i > 0; i--) {
             this.body[i].tileX = this.body[i - 1].tileX;
             this.body[i].tileY = this.body[i - 1].tileY;
         }
         // move head
-        if (keys.has(this.upKey)) {
-            this.body[0].tileY--;
-        }
-        else if (keys.has(this.downKey)) {
-            this.body[0].tileY++;
-        }
-        else if (keys.has(this.leftKey)) {
-            this.body[0].tileX--;
-        }
-        else if (keys.has(this.rightKey)) {
-            this.body[0].tileX++;
+        switch (this.direction) {
+            case 'N':
+                this.body[0].tileY--;
+                break;
+            case 'S':
+                this.body[0].tileY++;
+                break;
+            case 'E':
+                this.body[0].tileX++;
+                break;
+            case 'W':
+                this.body[0].tileX--;
+                break;
         }
     }
 }

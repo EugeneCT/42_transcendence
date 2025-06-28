@@ -58,6 +58,11 @@ export class AI extends Paddle {
         super(ctx, color, side);
         this.lastUpdateTime = 0;
         this.projectedY = 0;
+        this.refreshTimeMs = 1000;
+    }
+    resetPosition() {
+        this.lastUpdateTime = 0;
+        super.resetPosition();
     }
     calculateProjectedY(ballCenterX, ballCenterY, ballSpeedX, ballSpeedY) {
         let projectedX = 0;
@@ -86,10 +91,9 @@ export class AI extends Paddle {
     }
     move(ballCenterX, ballCenterY, ballSpeedX, ballSpeedY) {
         let currentTime = Date.now();
-        if (this.lastUpdateTime === 0 || currentTime > this.lastUpdateTime + 1000) {
+        if (this.lastUpdateTime === 0 || currentTime >= this.lastUpdateTime + this.refreshTimeMs) {
             this.projectedY = this.calculateProjectedY(ballCenterX, ballCenterY, ballSpeedX, ballSpeedY);
             this.lastUpdateTime = currentTime;
-            console.log(this.side + " : " + this.lastUpdateTime / 1000);
         }
         if (this.projectedY > this.y && this.projectedY < this.y + PADDLE_HEIGHT) {
             // do nothing

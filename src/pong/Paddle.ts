@@ -69,6 +69,7 @@ export class Player extends Paddle {
 export class AI extends Paddle {
 	private lastUpdateTime: number = 0;
 	private projectedY: number = 0;
+	private refreshTimeMs: number = 1000;
 
 	constructor(
 		ctx: CanvasRenderingContext2D,
@@ -76,8 +77,14 @@ export class AI extends Paddle {
 		side: 'left' | 'right') {
 			super(ctx, color, side)
 		}
+	
+	resetPosition() {
+		this.lastUpdateTime = 0;
+		super.resetPosition();
+	}
 
-	calculateProjectedY(ballCenterX: number, ballCenterY: number, ballSpeedX: number, ballSpeedY: number) {
+
+	private calculateProjectedY(ballCenterX: number, ballCenterY: number, ballSpeedX: number, ballSpeedY: number) {
 		let projectedX = 0;
 		if ((ballSpeedX > 0 && this.side === 'right') || (ballSpeedX < 0 && this.side === 'left')) {
 			// ball is going towards the paddle
@@ -105,10 +112,9 @@ export class AI extends Paddle {
 	
 	move(ballCenterX: number, ballCenterY: number, ballSpeedX: number, ballSpeedY: number) {		
 		let currentTime = Date.now();
-		if (this.lastUpdateTime === 0 || currentTime > this.lastUpdateTime + 1000) {
+		if (this.lastUpdateTime === 0 || currentTime >= this.lastUpdateTime + this.refreshTimeMs) {
 			this.projectedY = this.calculateProjectedY(ballCenterX, ballCenterY, ballSpeedX, ballSpeedY);
 			this.lastUpdateTime = currentTime;
-			console.log(this.side + " : " + this.lastUpdateTime/1000);
 		}
 
 		if (this.projectedY > this.y && this.projectedY < this.y + PADDLE_HEIGHT) {
