@@ -2,25 +2,57 @@ import { Player, AI } from './Paddle.js';
 import { Ball } from './Ball.js';
 import { Board } from './Board.js';
 import { BOARD_WIDTH, BOARD_HEIGHT } from './settings.js';
+
 const canvas = document.getElementById('gameCanvas');
 canvas.width = BOARD_WIDTH;
 canvas.height = BOARD_HEIGHT;
 const ctx = canvas.getContext('2d');
+const socket = io();
+
+let playerNumber = null;
+let keys = new Set();
 let board = new Board(ctx);
-// Paddles can be either of class Player or AI
-let paddles = new Set;
-paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
-paddles.add(new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown'));
-paddles.add(new AI(ctx, 'green', 'left'));
-paddles.add(new AI(ctx, 'orange', 'right'));
 let ball = new Ball(ctx);
-let keys = new Set;
+let leftPaddle;
+let rightPaddle;
+let gameStarted = false;
+let animationId = null;
+let lastSyncTime = 0;
+
+
+// Paddles can be either of class Player or AI
+// let paddles = new Set;
+// paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
+// paddles.add(new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown'));
+// paddles.add(new AI(ctx, 'green', 'left'));
+// paddles.add(new AI(ctx, 'orange', 'right'));
+
+console.log('Game initialized');
+
 document.addEventListener('keydown', (event) => {
     keys.add(event.key);
 });
 document.addEventListener('keyup', (event) => {
     keys.delete(event.key);
 });
+
+socket.on('playerNumber', (num) => {
+    console.log(`Player ${num} connected`);
+    playerNumber = num;
+    
+    if (num === 1) {
+        leftPaddle = new Player(ctx, 'red', 'left', 'w', 's');
+        // rightPaddle = new AI(ctx, 'orange', 'right');
+    } else if (num === 2) {
+        // leftPaddle = new AI(ctx, 'green', 'left');
+        rightPaddle = new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown');
+    }
+    
+    console.log('Paddles created:', !!leftPaddle, !!rightPaddle);
+    // startGame();
+    gameLoop();
+});
+
 function gameLoop() {
     ctx.clearRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
     board.drawBlankCanvas();
@@ -48,9 +80,9 @@ function gameLoop() {
     }
     requestAnimationFrame(gameLoop);
 }
-gameLoop();
-/*
-ISSUES:
-- ball getting stuck on paddle => ball.checkCollision() does not take into account ball speed
-    - define (xMin, xMax) zone where ball will bounce?
-*/ 
+// gameLoop();
+// /*
+// ISSUES:
+// - ball getting stuck on paddle => ball.checkCollision() does not take into account ball speed
+//     - define (xMin, xMax) zone where ball will bounce?
+// */ 

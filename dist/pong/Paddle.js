@@ -8,6 +8,12 @@ export class Paddle {
         this.y = 0;
         this.resetPosition();
     }
+    getY() {
+        return this.y;
+    }
+    setY(value) {
+        this.y = value;
+    }
     // this.x and this.y is the top left corner of the rectangle.
     // goalLine is the right edge of the left paddle, and the left edge of the right paddle
     resetPosition() {

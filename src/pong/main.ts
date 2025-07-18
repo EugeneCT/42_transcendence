@@ -1,64 +1,122 @@
+import { io, Socket } from "socket.io-client";
+
+
 import { Paddle, Player, AI } from './Paddle.js';
 import { Ball } from './Ball.js';
 import { Board } from './Board.js';
 import { BOARD_WIDTH, BOARD_HEIGHT } from './settings.js';
+
+
 
 const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;
 canvas.width = BOARD_WIDTH;
 canvas.height = BOARD_HEIGHT;
 
 const ctx = canvas.getContext('2d')!;
+const socket: Socket = io();
+
+let playerNumber: number | null = null;
+let keys = new Set<string>();
 
 let board = new Board(ctx);
-
-// Paddles can be either of class Player or AI
-let paddles = new Set<Paddle>;
-paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
-paddles.add(new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown'));
-paddles.add(new AI(ctx, 'green', 'left'));
-paddles.add(new AI(ctx, 'orange', 'right'));
-
 let ball = new Ball(ctx);
 
-let keys = new Set<string>;
-document.addEventListener('keydown', (event: KeyboardEvent) => {
-	keys.add(event.key);
+let leftPaddle: Paddle;
+let rightPaddle: Paddle;
+
+document.addEventListener('keydown', (event: KeyboardEvent) => keys.add(event.key));
+document.addEventListener('keyup', (event: KeyboardEvent) => keys.delete(event.key));
+
+socket.on('playerNumber', (num: number) => {
+	playerNumber = num;
+
+	if (num === 1) {
+		leftPaddle = new Player(ctx, 'red', 'left', 'w', 's');
+		rightPaddle = new AI(ctx, 'orange', 'right'); // optional AI
+	} else if (num === 2) {
+		leftPaddle = new AI(ctx, 'green', 'left'); // optional AI
+		rightPaddle = new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown');
+	}
+
+	gameLoop();
 });
-document.addEventListener('keyup', (event: KeyboardEvent) => {
-	keys.delete(event.key);
+
+socket.on('startGame', () => {
+	console.log("Both players connected, starting game.");
+});
+
+socket.on('syncPaddle', (data: { side: 'left' | 'right'; y: number }) => {
+	if (data.side === 'left' && leftPaddle instanceof AI === false) {
+		leftPaddle.resetPosition;
+	}
+	if (data.side === 'right' && rightPaddle instanceof AI === false) {
+		rightPaddle.resetPosition;
+	}
+});
+
+// socket.on('syncPaddle', (data: { side: 'left' | 'right'; y: number }) => {
+// 	if (data.side === 'left' && leftPaddle instanceof AI === false) {
+// 		leftPaddle.y = data.y;
+// 	}
+// 	if (data.side === 'right' && rightPaddle instanceof AI === false) {
+// 		rightPaddle.y = data.y;
+// 	}
+// });
+
+socket.on('syncBall', (data: { x: number; y: number; dx: number; dy: number }) => {
+	ball.centerX = data.x;
+	ball.centerY = data.y;
+	ball.speedX = data.dx;
+	ball.speedY = data.dy;
+});
+
+socket.on('playerDisconnected', () => {
+	alert("Opponent disconnected.");
 });
 
 function gameLoop() {
 	ctx.clearRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 	board.drawBlankCanvas();
-	paddles.forEach(paddle => paddle.draw());
+
+	// Paddle movement
+	if (leftPaddle instanceof Player) {
+		leftPaddle.move(keys);
+		socket.emit('syncPaddle', { side: 'left', y: leftPaddle.getY });
+	}
+	if (rightPaddle instanceof Player) {
+		rightPaddle.move(keys);
+		socket.emit('syncPaddle', { side: 'right', y: rightPaddle.getY });
+	}
+
+	leftPaddle.draw();
+	rightPaddle.draw();
 	ball.draw();
-	
-	paddles.forEach(paddle => {
-		if (paddle instanceof Player) {
-			paddle.move(keys);
-		} else if (paddle instanceof AI) {
-			paddle.move(ball.centerX, ball.centerY, ball.speedX, ball.speedY);
-		}
-	});
-	ball.move(paddles);
+
+	// Ball logic: Only Player 1 controls ball
+	if (playerNumber === 1) {
+		// ball.move([leftPaddle, rightPaddle]);
+		ball.move(new Set([leftPaddle, rightPaddle])); // ✅ Set<Paddle>
+
+		socket.emit('syncBall', {
+			x: ball.centerX,
+			y: ball.centerY,
+			dx: ball.speedX,
+			dy: ball.speedY,
+		});
+	}
 
 	let result = ball.checkVictory();
 	if (result !== undefined) {
-		if (result === 'left-win') {
-			board.leftScore++;
-		} else if (result === 'right-win') {
-			board.rightScore++;
-		}
-		paddles.forEach(paddle => paddle.resetPosition());
+		if (result === 'left-win') board.leftScore++;
+		else if (result === 'right-win') board.rightScore++;
+
+		leftPaddle.resetPosition();
+		rightPaddle.resetPosition();
 		ball.resetPosition();
 	}
 
 	requestAnimationFrame(gameLoop);
 }
-
-gameLoop();
-
 
 /*
 ISSUES:

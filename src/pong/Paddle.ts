@@ -10,7 +10,14 @@ export abstract class Paddle {
 		public side: 'left' | 'right') {
 			this.resetPosition();
 		}
-		
+	  getY(): number {
+    return this.y;
+  }
+
+  setY(value: number): void {
+    this.y = value;
+  }
+
 	// this.x and this.y is the top left corner of the rectangle.
 	// goalLine is the right edge of the left paddle, and the left edge of the right paddle
 	resetPosition() {
@@ -20,6 +27,7 @@ export abstract class Paddle {
 			this.x = RIGHT_GOAL_X;
 		}
 		this.y = (BOARD_HEIGHT - PADDLE_HEIGHT)/2;
+
 	}
 
 	draw() {
