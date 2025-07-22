@@ -3,7 +3,8 @@ import { Snake } from './Snake.js';
 import { Fruit } from './Fruit.js';
 import { BOARD_WIDTH, BOARD_HEIGHT, REFRESH_TIME_MS } from './settings.js';
 
-const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;
+// const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;
+const canvas = document.getElementById('snakeCanvas') as HTMLCanvasElement;
 canvas.width = BOARD_WIDTH;
 canvas.height = BOARD_HEIGHT;
 

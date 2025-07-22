@@ -1,12 +1,281 @@
-<!DOCTYPE html>
+<!--
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>TEST TS</title>
+		<title>🔥 ft_transcendance</title>
+    <link href="./dist/output.css" rel="stylesheet" />
+
+		<style>
+			html {
+  font-size: 18px;
+}
+body {
+  color:black;
+  font-family: "Questrial", sans-serif;
+  background-color: #ffec63;
+  background-image: linear-gradient(
+      45deg,
+      #ffd966 25%,
+      transparent 25%,
+      transparent 75%,
+      #ffd966 75%,
+      #ffd966
+    ),
+    linear-gradient(
+      -45deg,
+      #ffd966 25%,
+      transparent 25%,
+      transparent 75%,
+      #ffd966 75%,
+      #ffd966
+    );
+  background-size: 60px 60px;
+  background-position: 0 0;
+  animation: slide 4s infinite linear;
+}
+
+@keyframes slide {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -120px 60px;
+  }
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.6rem 3rem;
+  border: 3px solid black;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.message {
+  font-size:1.1rem;
+  margin-bottom: 1.6rem;
+  margin-top: 0;
+}
+.btn {
+  color:inherit;
+    font-family:inherit;
+  font-size: inherit;
+  background: white;
+  padding: 0.3rem 3.4rem;
+  border: 3px solid black;
+  margin-right: 2.6rem;
+  box-shadow: 0 0 0 black;
+  transition: all 0.2s;
+}
+
+.btn:last-child {
+  margin: 0;
+}
+
+.btn:hover {
+  box-shadow: 0.4rem 0.4rem 0 black;
+  transform: translate(-0.4rem, -0.4rem);
+}
+
+.btn:active {
+  box-shadow: 0 0 0 black;
+  transform: translate(0, 0);
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.game-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    overflow-y: auto;
+
+}
+
+.game-modal-content {
+    position: relative;
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border: 3px solid black;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: red;
+}
+	</style>
 	</head>
 	<body>
-		<canvas id="gameCanvas"></canvas>
-		<!-- <script type="module" src="./dist/pong/main.js"></script> -->
-		<script type="module" src="./dist/snake/main.js"></script>
+		<div class="modal">
+			<p class="message"> 🔥 ft_transcendance</p>
+			<div class="options">
+				<button class="btn" id="snakeButton">Snake 🐍</button>
+				<button class="btn" id="pongButton">Pong 🏓</button>
+			</div>
+		</div>
+
+		<div id="pongModal" class="game-modal">
+			<div class="game-modal-content">
+				<button id="closePongModal" class="close-btn">&times;</button>
+				<h2>PONG GAME 🏓</h2>
+				<canvas id="gameCanvas" width="800" height="600"></canvas>
+			</div>
+		</div>
+
+		<div id="snakeModal" class="game-modal">
+			<div class="game-modal-content">
+				<button id="closeSnakeModal" class="close-btn">&times;</button>
+				<h2>SNAKE GAME 🐍</h2>
+				<canvas id="snakeCanvas" width="400" height="400"></canvas>
+			</div>
+		</div>
+
+	<script src="./dist/modal.js"></script>
+
 	</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🔥 ft_transcendance</title>
+  <link href="./dist/output.css" rel="stylesheet" />
+  <style>
+    @keyframes slide {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: -150px 150px;
+      }
+    }
+  </style>
+</head>
+<body class="text-black font-[arial] text-[18px] bg-[yellow] bg-[length:150px_150px] bg-[position:0_0] bg-repeat animate-[slide_2s_linear_infinite] [background-image:url('/snakepong.png')]">
+
+  <!-- Launch Modal -->
+  <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 inline-flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-20 py-6 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)]">
+
+    <p class="text-lg mb-6 mt-0">🔥 Choose your game</p>
+    <div class="flex gap-6 justify-between w-full">
+      <button id="snakeButton"
+        class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0">
+        Snake 🐍
+      </button>
+      <button id="pongButton"
+        class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0">
+        Pong 🏓
+      </button>
+    </div>
+  </div>
+
+  <div class="h-[100vh]"></div>
+
+
+  <!-- cards -->
+  <div class="flex flex-wrap justify-center gap-8 mt-29">
+    <!-- Card 1 -->
+    <div class="w-64 p-4 border-[10px] border-black rounded bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="dev1.png" alt="Dev 1" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+      <h3 class="text-xl font-bold mb-2">Wesley Koh</h3>
+      <h4 class="text-xl font-bold mb-2">backend developer</h3>
+
+        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+          GitHub
+        </a>
+        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+          42 profile
+        </a>
+        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+          Linkedin
+        </a>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="w-64 p-4 border-[10px] border-black rounded bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="dev2.png" alt="Dev 2" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+      <h3 class="text-xl font-bold mb-2">Daryl Ong</h3>
+      <a href="https://github.com/dev2" target="_blank" class="inline-block text-blue-600 hover:underline">
+        🐙 GitHub
+      </a>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="w-64 p-4 border-[10px] border-black rounded bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="dev3.png" alt="Dev 3" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+      <h3 class="text-xl font-bold mb-2">Developer 3</h3>
+      <a href="https://github.com/dev3" target="_blank" class="inline-block text-blue-600 hover:underline">
+        🐙 GitHub
+      </a>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="w-64 p-4 border-[10px] border-black rounded bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="dev4.png" alt="Dev 4" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+      <h3 class="text-xl font-bold mb-2">Developer 4</h3>
+      <a href="https://github.com/dev4" target="_blank" class="inline-block text-blue-600 hover:underline">
+        🐙 GitHub
+      </a>
+    </div>
+  </div>
+
+
+
+  <!-- Pong Modal -->
+  <div id="pongModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
+    <div
+      class="relative bg-white mx-auto mt-20 p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center">
+      <button id="closePongModal"
+        class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600">&times;</button>
+      <h2 class="text-xl mb-4">PONG GAME 🏓</h2>
+      <canvas id="gameCanvas" width="800" height="600" class="mx-auto"></canvas>
+    </div>
+  </div>
+
+  <!-- Snake Modal -->
+  <div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
+    <div
+      class="relative bg-white mx-auto mt-20 p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center">
+      <button id="closeSnakeModal"
+        class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600">&times;</button>
+      <h2 class="text-xl mb-4">SNAKE GAME 🐍</h2>
+      <canvas id="snakeCanvas" width="400" height="400" class="mx-auto"></canvas>
+    </div>
+  </div>
+
+  <script src="./dist/modal.js"></script>
+</body>
 </html>
