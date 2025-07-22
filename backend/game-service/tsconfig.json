@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",             // Modern JS target, supports async/await
+    "module": "ESNext",             // Needed for top-level await and ESM imports
+    "moduleResolution": "node",    // How modules are resolved
+    "esModuleInterop": true,        // Support for commonjs imports
+    "strict": true,                 // Enable strict type-checking options
+    "skipLibCheck": true,           // Skip type checking of dependencies
+    "outDir": "dist",               // Output folder for compiled JS
+    "rootDir": "src"                // Root folder of your TS source files
+  },
+  "include": ["src"]                // Include all TS files under src
+}
