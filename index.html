@@ -208,8 +208,8 @@ body {
   <!-- cards -->
   <div class="flex flex-wrap justify-center gap-8 mt-29">
     <!-- Card 1 -->
-    <div class="w-64 p-4 border-[10px] border-black rounded bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="dev1.png" alt="Dev 1" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="wes.jpeg" alt="Dev 1" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Wesley Koh</h3>
       <h4 class="text-xl font-bold mb-2">backend developer</h3>
 
@@ -225,27 +225,43 @@ body {
     </div>
 
     <!-- Card 2 -->
-    <div class="w-64 p-4 border-[10px] border-black rounded bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="dev2.png" alt="Dev 2" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
-      <h3 class="text-xl font-bold mb-2">Daryl Ong</h3>
-      <a href="https://github.com/dev2" target="_blank" class="inline-block text-blue-600 hover:underline">
-        🐙 GitHub
-      </a>
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="jack.jpeg" alt="Dev 2" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+      <h3 class="text-xl font-bold mb-2">Jack Sng</h3>
+      <h4 class="text-xl font-bold mb-2">backend developer</h3>
+
+        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+          GitHub
+        </a>
+        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+          42 prOfile
+        </a>
+        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+          Linkedin
+        </a>
     </div>
 
     <!-- Card 3 -->
-    <div class="w-64 p-4 border-[10px] border-black rounded bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="dev3.png" alt="Dev 3" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
-      <h3 class="text-xl font-bold mb-2">Developer 3</h3>
-      <a href="https://github.com/dev3" target="_blank" class="inline-block text-blue-600 hover:underline">
-        🐙 GitHub
-      </a>
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="daryl.jpeg" alt="Dev 3" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+      <h3 class="text-xl font-bold mb-2">Daryl Ong</h3>
+      <h4 class="text-xl font-bold mb-2">Game developer</h3>
+
+        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+          GitHub
+        </a>
+        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+          42 prOfile
+        </a>
+        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+          Linkedin
+        </a>
     </div>
 
     <!-- Card 4 -->
-    <div class="w-64 p-4 border-[10px] border-black rounded bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="dev4.png" alt="Dev 4" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
-      <h3 class="text-xl font-bold mb-2">Developer 4</h3>
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="eugene.jpeg" alt="Dev 4" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+      <h3 class="text-xl font-bold mb-2">Eugene</h3>
       <a href="https://github.com/dev4" target="_blank" class="inline-block text-blue-600 hover:underline">
         🐙 GitHub
       </a>
@@ -257,25 +273,39 @@ body {
   <!-- Pong Modal -->
   <div id="pongModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
 
-  <div class="relative bg-white mx-auto my-auto p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center top-1/2 transform -translate-y-1/2">
+    <div class="relative bg-white mx-auto my-auto p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center top-1/2 transform -translate-y-1/2">
       <button id="closePongModal"
         class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600">&times;</button>
       <h2 class="text-xl mb-4">PONG GAME 🏓</h2>
-      <canvas id="gameCanvas" width="800" height="600" class="mx-auto"></canvas>
+      <canvas id="gameCanvas" class="w-full h-full"></canvas>
     </div>
   </div>
 
-  <!-- Snake Modal -->
-  <div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
-    <!-- <divclass="relative bg-white mx-auto mt-20 p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center"> -->
-    <div class="relative bg-white mx-auto my-auto p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center top-1/2 transform -translate-y-1/2">
 
+
+  <!-- Snake Modal -->
+  <!-- <div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
+    <div class="relative bg-white mx-auto my-auto p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center top-1/2 transform -translate-y-1/2">
       <button id="closeSnakeModal"
         class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600">&times;</button>
       <h2 class="text-xl mb-4">SNAKE GAME 🐍</h2>
-      <canvas id="snakeCanvas" width="400" height="400" class="mx-auto"></canvas>
+      <canvas id="snakeCanvas" width="800" height="600" class="mx-auto"></canvas>
+    </div>
+  </div> -->
+
+<div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
+  <div class="flex items-center justify-center min-h-full p-4">
+    <div class="relative bg-white p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center max-h-[90vh] overflow-auto">
+      <button id="closeSnakeModal"
+        class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600 z-10">&times;</button>
+      <h2 class="text-xl mb-4">SNAKE GAME 🐍</h2>
+      <div class="overflow-hidden">
+        <canvas id="snakeCanvas" width="600" height="600" class="w-full h-auto max-w-full mx-auto"></canvas>
+      </div>
     </div>
   </div>
+</div>
+
 
   <script src="./dist/modal.js"></script>
 </body>
