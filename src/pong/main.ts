@@ -3,7 +3,7 @@ import { Ball } from './Ball.js';
 import { Board } from './Board.js';
 import { BOARD_WIDTH, BOARD_HEIGHT } from './settings.js';
 
-const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;
+const canvas = document.getElementById('pongCanvas') as HTMLCanvasElement;
 canvas.width = BOARD_WIDTH;
 canvas.height = BOARD_HEIGHT;
 
@@ -58,10 +58,3 @@ function gameLoop() {
 }
 
 gameLoop();
-
-
-/*
-ISSUES:
-- ball getting stuck on paddle => ball.checkCollision() does not take into account ball speed
-	- define (xMin, xMax) zone where ball will bounce?
-*/

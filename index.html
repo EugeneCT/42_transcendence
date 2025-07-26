@@ -184,7 +184,7 @@ body {
     }
   </style>
 </head>
-<body class="text-black font-[arial] text-[18px] bg-[yellow] bg-[length:150px_150px] bg-[position:0_0] bg-repeat animate-[slide_2s_linear_infinite] [background-image:url('/snakepong.png')]">
+<body class="text-black font-[arial] text-[18px] bg-[yellow] bg-[length:150px_150px] bg-[position:0_0] bg-repeat animate-[slide_2s_linear_infinite] [background-image:url('./src/snakepong.png')]">
 
   <!-- Launch Modal -->
   <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 inline-flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-20 py-6 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)]">
@@ -209,7 +209,7 @@ body {
   <div class="flex flex-wrap justify-center gap-8 mt-29">
     <!-- Card 1 -->
     <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="wes.jpeg" alt="Dev 1" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+      <img src="./img/wes.jpeg" alt="Dev 1" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Wesley Koh</h3>
       <h4 class="text-xl font-bold mb-2">backend developer</h3>
 
@@ -226,7 +226,7 @@ body {
 
     <!-- Card 2 -->
     <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="jack.jpeg" alt="Dev 2" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+      <img src="./img/jack.jpeg" alt="Dev 2" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Jack Sng</h3>
       <h4 class="text-xl font-bold mb-2">backend developer</h3>
 
@@ -243,7 +243,7 @@ body {
 
     <!-- Card 3 -->
     <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="daryl.jpeg" alt="Dev 3" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+      <img src="./img/daryl.jpeg" alt="Dev 3" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Daryl Ong</h3>
       <h4 class="text-xl font-bold mb-2">Game developer</h3>
 
@@ -260,7 +260,7 @@ body {
 
     <!-- Card 4 -->
     <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="eugene.jpeg" alt="Dev 4" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+      <img src="./img/eugene.jpeg" alt="Dev 4" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Eugene</h3>
       <a href="https://github.com/dev4" target="_blank" class="inline-block text-blue-600 hover:underline">
         🐙 GitHub
@@ -277,7 +277,7 @@ body {
       <button id="closePongModal"
         class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600">&times;</button>
       <h2 class="text-xl mb-4">PONG GAME 🏓</h2>
-      <canvas id="gameCanvas" class="w-full h-full"></canvas>
+      <canvas id="pongCanvas" class="w-full h-full"></canvas>
     </div>
   </div>
 
