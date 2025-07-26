@@ -23,7 +23,26 @@ export function run(canvasCtx) {
         keys.delete(event.key);
     });
     lastUpdateTimeMs = 0;
+    startScreen('3', 20);
     gameLoop();
+}
+function startScreen(text, fontSize) {
+    ctx.clearRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
+    board.drawBlankCanvas();
+    playerA.draw();
+    playerB.draw();
+    fruit.draw();
+    const maxFontSize = 80;
+    const growIncrement = 0.5;
+    fontSize += growIncrement;
+    if (fontSize > maxFontSize) {
+        return;
+    }
+    ctx.font = `${fontSize}px trebuchet ms`;
+    ctx.fillStyle = 'white';
+    ctx.textAlign = 'center';
+    ctx.fillText(text, BOARD_WIDTH / 2, BOARD_HEIGHT / 2);
+    requestAnimationFrame(() => startScreen(text, fontSize));
 }
 function gameLoop() {
     let currentTimeMs = Date.now();

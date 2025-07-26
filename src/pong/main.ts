@@ -9,9 +9,12 @@ let paddles: Set<Paddle>;
 let ball: Ball;
 let keys: Set<string>;
 
-// output winner
-
-export function run(canvasCtx: CanvasRenderingContext2D, mode: 'tournament' | 'ai' | '2v2') {
+export async function run(
+	canvasCtx: CanvasRenderingContext2D,
+	mode: 'tournament' | 'ai' | '2v2',
+	leftName: string,
+	rightName: string
+) {
 	ctx = canvasCtx;
 	board = new Board(ctx);
 	
@@ -44,40 +47,103 @@ export function run(canvasCtx: CanvasRenderingContext2D, mode: 'tournament' | 'a
 		keys.delete(event.key);
 	});
 
-	return gameLoop();
+	await countdown();
+	const winner = await startGame();
+	if (winner === 'left') {
+		printWinner(leftName);
+	} else {
+		printWinner(rightName);
+	}
+	return winner;
 }
-	
-function gameLoop() {
+
+function refreshCanvas() {
 	ctx.clearRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 	board.drawBlankCanvas();
 	paddles.forEach(paddle => paddle.draw());
 	ball.draw();
+}
+
+function countdown(): Promise<void> {
+	const numbers = ['3', '2', '1'];
+	let index = 0;
+	let fontSize = 20;
 	
-	if (board.leftScore === MAX_SCORE) {
-		return 'left';
-	} else if (board.rightScore === MAX_SCORE) {
-		return 'right';
-	}
-	paddles.forEach(paddle => {
-		if (paddle instanceof Player) {
-			paddle.move(keys);
-		} else if (paddle instanceof AI) {
-			paddle.move(ball.centerX, ball.centerY, ball.speedX, ball.speedY);
-		}
-	});
-	ball.move(paddles);
+	return new Promise(resolve => {
+		function animate() {
+			refreshCanvas();
 
-	let result = ball.checkVictory();
-	if (result !== undefined) {
-		if (result === 'left-win') {
-			board.leftScore++;
-		} else if (result === 'right-win') {
-			board.rightScore++;
+			fontSize += 3;
+			if (fontSize > 200) {
+				index++;
+				fontSize = 20;
+				if (index >= numbers.length) {
+					resolve();
+					return;
+				}
+			}
+			ctx.font = `${fontSize}px trebuchet ms`;
+			ctx.fillStyle = 'white';
+			ctx.shadowColor = 'black';
+			ctx.shadowBlur = 5;
+			ctx.textAlign = 'center';
+			ctx.fillText(numbers[index], BOARD_WIDTH/2, BOARD_HEIGHT/2 - 50);
+			
+			requestAnimationFrame(animate);
 		}
-		
-		paddles.forEach(paddle => paddle.resetPosition());
-		ball.resetPosition();
-	}
 
-	requestAnimationFrame(gameLoop);
+		animate();
+	})
+
+}
+
+function startGame(): Promise<string> {
+	return new Promise(resolve => {
+		function loop(){
+			refreshCanvas();
+			
+			paddles.forEach(paddle => {
+				if (paddle instanceof Player) {
+					paddle.move(keys);
+				} else if (paddle instanceof AI) {
+					paddle.move(ball.centerX, ball.centerY, ball.speedX, ball.speedY);
+				}
+			});
+			ball.move(paddles);
+			
+			let result = ball.checkVictory();
+			if (result === 'left-win') {
+				board.leftScore++;
+				paddles.forEach(paddle => paddle.resetPosition());
+				ball.resetPosition();
+			} else if (result === 'right-win') {
+				board.rightScore++;
+				paddles.forEach(paddle => paddle.resetPosition());
+				ball.resetPosition();
+			}
+			
+			if (board.leftScore === MAX_SCORE) {
+				resolve('left');
+				return;
+			} else if (board.rightScore === MAX_SCORE) {
+				resolve('right');
+				return;
+			}
+
+			requestAnimationFrame(loop);
+		}
+
+		loop();
+	})
+}
+
+function printWinner(name: string) {
+	refreshCanvas();
+	ctx.font = `100px trebuchet ms`;
+	ctx.fillStyle = 'yellow';
+	ctx.shadowColor = 'black';
+	ctx.shadowBlur = 5;
+	ctx.textAlign = 'center';
+	ctx.fillText(`${name}`, BOARD_WIDTH/2, BOARD_HEIGHT/2 - 150);
+	ctx.fillText('WIN🎉', BOARD_WIDTH/2, BOARD_HEIGHT/2 - 50);
 }

@@ -29,18 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     pongButton.addEventListener('click', (): void => {
         const mode = (document.getElementById('gameMode') as HTMLInputElement).value;
-        const player1 = (document.getElementById('player1') as HTMLInputElement).value;
-        const player2 = (document.getElementById('player2') as HTMLInputElement).value;
-        const player3 = (document.getElementById('player3') as HTMLInputElement).value;
-        const player4 = (document.getElementById('player4') as HTMLInputElement).value;
-        
-        
-        if (player1 !== '' && player2 !== '' && player3 !== '' && player4 !== '') {
-            console.log(`starting game mode: ${mode}`)
-            
-            console.log(`starting game: ${player1} vs ${player2}`)
+        let players: string[] = [];
+        players.push((document.getElementById('player1') as HTMLInputElement).value);
+        players.push((document.getElementById('player2') as HTMLInputElement).value);
+        players.push((document.getElementById('player3') as HTMLInputElement).value);
+        players.push((document.getElementById('player4') as HTMLInputElement).value);
+
+        if (players.indexOf('') === -1) {
             showModal(pongModal);
-            selectGame('pong', mode as 'tournament' | 'ai' | '2v2');
+            selectGame('pong', mode as 'tournament' | 'ai' | '2v2', players);
         }
     });
 
