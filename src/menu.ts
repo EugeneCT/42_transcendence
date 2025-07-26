@@ -11,7 +11,7 @@ import { run as runPong } from './pong/main.js'
 import { run as runSnake } from './snake/main.js'
 import { BOARD_WIDTH, BOARD_HEIGHT } from './settings.js'
 
-export function menu(mode: 'snake' | 'pong') {
+export function selectGame(mode: 'snake' | 'pong') {
 	if (mode === 'pong') {
 		const canvas = document.getElementById('pongCanvas') as HTMLCanvasElement;
 		const ctx = canvas.getContext('2d')!;
@@ -26,5 +26,6 @@ export function menu(mode: 'snake' | 'pong') {
 		canvas.height = BOARD_HEIGHT;
 		runSnake(ctx);
 	}
-
 }
+
+

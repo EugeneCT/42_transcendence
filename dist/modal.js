@@ -1,4 +1,4 @@
-import { menu } from "./menu.js";
+import { selectGame } from "./menu.js";
 document.addEventListener('DOMContentLoaded', () => {
     const pongButton = document.getElementById('pongButton');
     const snakeButton = document.getElementById('snakeButton');
@@ -16,25 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // snakeButton.addEventListener('click', (): void =>{showModal(snakeModal)})
     closePongModal.addEventListener('click', () => { hideModal(pongModal); });
     closeSnakeModal.addEventListener('click', () => { hideModal(snakeModal); });
+    pongButton.addEventListener('click', () => {
+        const player1 = document.getElementById('player1').value;
+        const player2 = document.getElementById('player2').value;
+        const player3 = document.getElementById('player3').value;
+        const player4 = document.getElementById('player4').value;
+        if (player1 !== '' && player2 !== '' && player3 !== '' && player4 !== '') {
+            showModal(pongModal);
+            selectGame('pong');
+        }
+    });
     snakeButton.addEventListener('click', () => {
         showModal(snakeModal);
-        menu('snake');
-        // Load snake game script dynamically
-        // const script = document.createElement('script');
-        // script.type = 'module';
-        // script.src = './dist/snake/main.js';
-        // document.head.appendChild(script);
-    });
-    pongButton.addEventListener('click', () => {
-        showModal(pongModal);
-        menu('pong');
+        selectGame('snake');
     });
 });
-/*
-1) html page loads, modal is hidden.
-    <script src="./dist/modal.js"></script> runs last after all modals are loaded
-2) when pong button is clicked:
-    show modal (remove hidden tag)
-    put <script type='module' src='./dist/pong/main.js' /> in <head>
-4) main.js calls document.getElementById('pongCanvas') => runs in the modal
-*/ 
