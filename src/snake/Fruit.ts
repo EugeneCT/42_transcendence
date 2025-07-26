@@ -1,4 +1,4 @@
-import { TILE_SIZE } from './settings.js'
+import { TILE_SIZE } from '../settings.js'
 
 export class Fruit {
 	tileX : number = 0;

@@ -1,23 +1,30 @@
 import { Board } from './Board.js';
 import { Snake } from './Snake.js';
 import { Fruit } from './Fruit.js';
-import { BOARD_WIDTH, BOARD_HEIGHT, REFRESH_TIME_MS } from './settings.js';
-const canvas = document.getElementById('snakeCanvas');
-canvas.width = BOARD_WIDTH;
-canvas.height = BOARD_HEIGHT;
-const ctx = canvas.getContext('2d');
-let board = new Board(ctx);
-let playerA = new Snake(ctx, 2, 3, 'N', 'w', 's', 'a', 'd', 'blue');
-let playerB = new Snake(ctx, 5, 3, 'N', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'red');
-let fruit = new Fruit(ctx);
-let keys = new Set;
-document.addEventListener('keydown', (event) => {
-    keys.add(event.key);
-});
-document.addEventListener('keyup', (event) => {
-    keys.delete(event.key);
-});
-let lastUpdateTimeMs = 0;
+import { BOARD_WIDTH, BOARD_HEIGHT, REFRESH_TIME_MS } from '../settings.js';
+let ctx;
+let board;
+let playerA;
+let playerB;
+let fruit;
+let keys;
+let lastUpdateTimeMs;
+export function run(canvasCtx) {
+    ctx = canvasCtx;
+    board = new Board(ctx);
+    playerA = new Snake(ctx, 2, 3, 'N', 'w', 's', 'a', 'd', 'blue');
+    playerB = new Snake(ctx, 5, 3, 'N', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'red');
+    fruit = new Fruit(ctx);
+    keys = new Set;
+    document.addEventListener('keydown', (event) => {
+        keys.add(event.key);
+    });
+    document.addEventListener('keyup', (event) => {
+        keys.delete(event.key);
+    });
+    lastUpdateTimeMs = 0;
+    gameLoop();
+}
 function gameLoop() {
     let currentTimeMs = Date.now();
     if (lastUpdateTimeMs === 0 || currentTimeMs >= lastUpdateTimeMs + REFRESH_TIME_MS) {
@@ -58,7 +65,6 @@ function gameLoop() {
     }
     requestAnimationFrame(gameLoop);
 }
-gameLoop();
 /*
 TODO:
 - create fruit

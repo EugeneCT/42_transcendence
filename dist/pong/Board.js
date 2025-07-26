@@ -1,4 +1,4 @@
-import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X } from './settings.js';
+import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X } from '../settings.js';
 export class Board {
     constructor(ctx) {
         this.ctx = ctx;

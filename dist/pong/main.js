@@ -1,26 +1,33 @@
 import { Player, AI } from './Paddle.js';
 import { Ball } from './Ball.js';
 import { Board } from './Board.js';
-import { BOARD_WIDTH, BOARD_HEIGHT } from './settings.js';
-const canvas = document.getElementById('pongCanvas');
-canvas.width = BOARD_WIDTH;
-canvas.height = BOARD_HEIGHT;
-const ctx = canvas.getContext('2d');
-let board = new Board(ctx);
-// Paddles can be either of class Player or AI
-let paddles = new Set;
-paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
-paddles.add(new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown'));
-paddles.add(new AI(ctx, 'green', 'left'));
-paddles.add(new AI(ctx, 'orange', 'right'));
-let ball = new Ball(ctx);
-let keys = new Set;
-document.addEventListener('keydown', (event) => {
-    keys.add(event.key);
-});
-document.addEventListener('keyup', (event) => {
-    keys.delete(event.key);
-});
+import { BOARD_WIDTH, BOARD_HEIGHT } from '../settings.js';
+let ctx;
+let board;
+let paddles;
+let ball;
+let keys;
+// TODO: input gameMode (pvp, ai, multiplayer)
+// output winner
+export function run(canvasCtx) {
+    ctx = canvasCtx;
+    board = new Board(ctx);
+    // Paddles can be either of class Player or AI
+    paddles = new Set;
+    paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
+    paddles.add(new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown'));
+    paddles.add(new AI(ctx, 'green', 'left'));
+    paddles.add(new AI(ctx, 'orange', 'right'));
+    ball = new Ball(ctx);
+    keys = new Set;
+    document.addEventListener('keydown', (event) => {
+        keys.add(event.key);
+    });
+    document.addEventListener('keyup', (event) => {
+        keys.delete(event.key);
+    });
+    gameLoop();
+}
 function gameLoop() {
     ctx.clearRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
     board.drawBlankCanvas();
@@ -48,4 +55,3 @@ function gameLoop() {
     }
     requestAnimationFrame(gameLoop);
 }
-gameLoop();

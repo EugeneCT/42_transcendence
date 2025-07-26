@@ -1,4 +1,4 @@
-import { BOARD_WIDTH, BOARD_HEIGHT, TILE_SIZE, TILES_X, TILES_Y } from './settings.js'
+import { BOARD_WIDTH, TILE_SIZE, TILES_X, TILES_Y } from '../settings.js'
 
 export class Board {
 	leftScore: number = 0;

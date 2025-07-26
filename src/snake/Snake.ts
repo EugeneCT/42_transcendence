@@ -1,4 +1,4 @@
-import { TILE_SIZE, TILES_X, TILES_Y } from './settings.js'
+import { TILE_SIZE, TILES_X, TILES_Y } from '../settings.js'
 
 export class Snake {
 	bodies: Array<Body> = new Array<Body>;

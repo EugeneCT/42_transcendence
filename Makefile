@@ -1,14 +1,15 @@
 SERVER_LOG = server.log
-PORT = 8081
+PORT = 8080
 DIST = dist
 
 help:
-	@echo "make start-server			- Starts server in background"
+	@echo "\033[1;31mmake rebuild-restart		- Use this!\033[0m"
+	@echo "make start-server		- Starts server in background"
 	@echo "make start-server-verbose	- Starts server in verbose mode"
-	@echo "make stop-server				- Stops server"
-	@echo "make build					- Compile the Typescript files"
-	@echo "make clean					- Remove generated files"
-	@echo "make help					- Show this help message"
+	@echo "make stop-server		- Stops server"
+	@echo "make build			- Compile the Typescript files"
+	@echo "make clean			- Remove generated files"
+	@echo "make help			- Show this help message"
 
 
 start-server:
@@ -38,4 +39,4 @@ clean: clean-js clean-logs
 
 re: clean build
 
-stop-rebuild-start: stop-server re start-server
+rebuild-restart: stop-server re start-server

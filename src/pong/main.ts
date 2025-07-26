@@ -1,33 +1,41 @@
 import { Paddle, Player, AI } from './Paddle.js';
 import { Ball } from './Ball.js';
 import { Board } from './Board.js';
-import { BOARD_WIDTH, BOARD_HEIGHT } from './settings.js';
+import { BOARD_WIDTH, BOARD_HEIGHT } from '../settings.js';
 
-const canvas = document.getElementById('pongCanvas') as HTMLCanvasElement;
-canvas.width = BOARD_WIDTH;
-canvas.height = BOARD_HEIGHT;
+let ctx: CanvasRenderingContext2D;
+let board: Board;
+let paddles: Set<Paddle>;
+let ball: Ball;
+let keys: Set<string>;
 
-const ctx = canvas.getContext('2d')!;
+// TODO: input gameMode (pvp, ai, multiplayer)
+// output winner
 
-let board = new Board(ctx);
+export function run(canvasCtx: CanvasRenderingContext2D) {
+	ctx = canvasCtx;
+	board = new Board(ctx);
+	
+	// Paddles can be either of class Player or AI
+	paddles = new Set<Paddle>;
+	paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
+	paddles.add(new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown'));
+	paddles.add(new AI(ctx, 'green', 'left'));
+	paddles.add(new AI(ctx, 'orange', 'right'));
+	
+	ball = new Ball(ctx);
+	
+	keys = new Set<string>;
+	document.addEventListener('keydown', (event: KeyboardEvent) => {
+		keys.add(event.key);
+	});
+	document.addEventListener('keyup', (event: KeyboardEvent) => {
+		keys.delete(event.key);
+	});
 
-// Paddles can be either of class Player or AI
-let paddles = new Set<Paddle>;
-paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
-paddles.add(new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown'));
-paddles.add(new AI(ctx, 'green', 'left'));
-paddles.add(new AI(ctx, 'orange', 'right'));
-
-let ball = new Ball(ctx);
-
-let keys = new Set<string>;
-document.addEventListener('keydown', (event: KeyboardEvent) => {
-	keys.add(event.key);
-});
-document.addEventListener('keyup', (event: KeyboardEvent) => {
-	keys.delete(event.key);
-});
-
+	gameLoop();
+}
+	
 function gameLoop() {
 	ctx.clearRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 	board.drawBlankCanvas();
@@ -56,5 +64,3 @@ function gameLoop() {
 
 	requestAnimationFrame(gameLoop);
 }
-
-gameLoop();
