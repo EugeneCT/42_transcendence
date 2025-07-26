@@ -200,10 +200,17 @@ body {
         Pong 🏓
       </button>
     </div>
-    <input id="player1" type="text" placeholder="Player 1" required />
-    <input id="player2" type="text" placeholder="Player 2" required />
-    <input id="player3" type="text" placeholder="Player 3" required />
-    <input id="player4" type="text" placeholder="Player 4" required />
+
+    <label for="gameMode">Choose A Game Mode</label>
+    <select name="gameMode" id="gameMode">
+      <option value="tournament">4-Player Tournament</option>
+      <option value="ai">Player vs AI</option>
+      <option value="2v2">2-Players vs 2-Players</option>
+    </select>
+    <input id="player1" type="text" placeholder="Player 1" maxlength="100" required />
+    <input id="player2" type="text" placeholder="Player 2" maxlength="100" required /> 
+    <input id="player3" type="text" placeholder="Player 3" maxlength="100" required />
+    <input id="player4" type="text" placeholder="Player 4" maxlength="100" required />
   </div>
 
   <div class="h-[100vh]"></div>

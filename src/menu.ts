@@ -11,15 +11,16 @@ import { run as runPong } from './pong/main.js'
 import { run as runSnake } from './snake/main.js'
 import { BOARD_WIDTH, BOARD_HEIGHT } from './settings.js'
 
-export function selectGame(mode: 'snake' | 'pong') {
-	if (mode === 'pong') {
+export function selectGame(game: 'snake' | 'pong', mode: 'tournament' | 'ai' | '2v2') {
+	if (game === 'pong') {
 		const canvas = document.getElementById('pongCanvas') as HTMLCanvasElement;
 		const ctx = canvas.getContext('2d')!;
 		canvas.width = BOARD_WIDTH;
 		canvas.height = BOARD_HEIGHT;
-		runPong(ctx);
+		let result = runPong(ctx, mode);
+		console.log(`${result} wins`);
 	}
-	if (mode === 'snake') {
+	if (game === 'snake') {
 		const canvas = document.getElementById('snakeCanvas') as HTMLCanvasElement;
 		const ctx = canvas.getContext('2d')!;
 		canvas.width = BOARD_WIDTH;

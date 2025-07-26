@@ -17,17 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
     closePongModal.addEventListener('click', () => { hideModal(pongModal); });
     closeSnakeModal.addEventListener('click', () => { hideModal(snakeModal); });
     pongButton.addEventListener('click', () => {
+        const mode = document.getElementById('gameMode').value;
         const player1 = document.getElementById('player1').value;
         const player2 = document.getElementById('player2').value;
         const player3 = document.getElementById('player3').value;
         const player4 = document.getElementById('player4').value;
         if (player1 !== '' && player2 !== '' && player3 !== '' && player4 !== '') {
+            console.log(`starting game mode: ${mode}`);
+            console.log(`starting game: ${player1} vs ${player2}`);
             showModal(pongModal);
-            selectGame('pong');
+            selectGame('pong', mode);
         }
     });
     snakeButton.addEventListener('click', () => {
         showModal(snakeModal);
-        selectGame('snake');
+        // selectGame('snake');
     });
 });

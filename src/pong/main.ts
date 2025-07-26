@@ -1,7 +1,7 @@
 import { Paddle, Player, AI } from './Paddle.js';
 import { Ball } from './Ball.js';
 import { Board } from './Board.js';
-import { BOARD_WIDTH, BOARD_HEIGHT } from '../settings.js';
+import { BOARD_WIDTH, BOARD_HEIGHT, MAX_SCORE } from '../settings.js';
 
 let ctx: CanvasRenderingContext2D;
 let board: Board;
@@ -9,19 +9,30 @@ let paddles: Set<Paddle>;
 let ball: Ball;
 let keys: Set<string>;
 
-// TODO: input gameMode (pvp, ai, multiplayer)
 // output winner
 
-export function run(canvasCtx: CanvasRenderingContext2D) {
+export function run(canvasCtx: CanvasRenderingContext2D, mode: 'tournament' | 'ai' | '2v2') {
 	ctx = canvasCtx;
 	board = new Board(ctx);
 	
 	// Paddles can be either of class Player or AI
 	paddles = new Set<Paddle>;
-	paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
-	paddles.add(new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown'));
-	paddles.add(new AI(ctx, 'green', 'left'));
-	paddles.add(new AI(ctx, 'orange', 'right'));
+	switch (mode) {
+		case 'tournament':
+			paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
+			paddles.add(new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown'));
+			break;
+		case 'ai':
+			paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
+			paddles.add(new AI(ctx, 'yellow', 'right'));
+			break;
+		case '2v2':
+			paddles.add(new Player(ctx, 'red', 'left', 'w', 's'));
+			paddles.add(new Player(ctx, 'yellow', 'right', 'ArrowUp', 'ArrowDown'));
+			paddles.add(new Player(ctx, 'green', 'left', 'i', 'k'));
+			paddles.add(new Player(ctx, 'orange', 'right', '5', '2'));
+			break;
+	}
 	
 	ball = new Ball(ctx);
 	
@@ -33,7 +44,7 @@ export function run(canvasCtx: CanvasRenderingContext2D) {
 		keys.delete(event.key);
 	});
 
-	gameLoop();
+	return gameLoop();
 }
 	
 function gameLoop() {
@@ -42,6 +53,11 @@ function gameLoop() {
 	paddles.forEach(paddle => paddle.draw());
 	ball.draw();
 	
+	if (board.leftScore === MAX_SCORE) {
+		return 'left';
+	} else if (board.rightScore === MAX_SCORE) {
+		return 'right';
+	}
 	paddles.forEach(paddle => {
 		if (paddle instanceof Player) {
 			paddle.move(keys);
@@ -58,6 +74,7 @@ function gameLoop() {
 		} else if (result === 'right-win') {
 			board.rightScore++;
 		}
+		
 		paddles.forEach(paddle => paddle.resetPosition());
 		ball.resetPosition();
 	}
