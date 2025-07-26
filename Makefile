@@ -1,5 +1,5 @@
 SERVER_LOG = server.log
-PORT = 8080
+PORT = 8000
 DIST = dist
 
 help:
