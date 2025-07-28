@@ -1,4 +1,4 @@
-import { TILE_SIZE } from './settings.js';
+import { TILE_SIZE, TILES_X, TILES_Y } from './settings.js';
 export class Snake {
     constructor(ctx, tileX, tileY, direction, upKey, downKey, leftKey, rightKey, color) {
         this.ctx = ctx;
@@ -10,7 +10,7 @@ export class Snake {
         this.leftKey = leftKey;
         this.rightKey = rightKey;
         this.color = color;
-        this.body = new Array;
+        this.bodies = new Array;
         this.size = 0;
         this.addNewBody(ctx, tileX, tileY, 'head');
         switch (direction) {
@@ -33,11 +33,11 @@ export class Snake {
         }
     }
     addNewBody(ctx, tileX, tileY, type) {
-        this.body.push(new Body(ctx, tileX, tileY, type));
+        this.bodies.push(new Body(ctx, tileX, tileY, type));
         this.size++;
     }
     draw() {
-        this.body.forEach(body => body.draw(this.color));
+        this.bodies.forEach(body => body.draw(this.color));
     }
     move(keys) {
         // change direction if key is pressed
@@ -55,24 +55,42 @@ export class Snake {
         }
         // move the body parts from back to front
         for (let i = this.size - 1; i > 0; i--) {
-            this.body[i].tileX = this.body[i - 1].tileX;
-            this.body[i].tileY = this.body[i - 1].tileY;
+            this.bodies[i].tileX = this.bodies[i - 1].tileX;
+            this.bodies[i].tileY = this.bodies[i - 1].tileY;
         }
         // move head
         switch (this.direction) {
             case 'N':
-                this.body[0].tileY--;
+                this.bodies[0].tileY--;
                 break;
             case 'S':
-                this.body[0].tileY++;
+                this.bodies[0].tileY++;
                 break;
             case 'E':
-                this.body[0].tileX++;
+                this.bodies[0].tileX++;
                 break;
             case 'W':
-                this.body[0].tileX--;
+                this.bodies[0].tileX--;
                 break;
         }
+    }
+    detectCollision(opponent) {
+        // check for wall
+        if (this.bodies[0].tileX < 0
+            || this.bodies[0].tileX >= TILES_X
+            || this.bodies[0].tileY < 0
+            || this.bodies[0].tileY >= TILES_Y) {
+            return true;
+        }
+        // check for own body
+        if ([...this.bodies].some(body => body.type == 'tail' && body.tileX == this.tileX && body.tileY == this.tileY)) {
+            return true;
+        }
+        // check for opponent head + body
+        if ([...opponent.bodies].some(body => body.tileX == this.tileX && body.tileY == this.tileY)) {
+            return true;
+        }
+        return false;
     }
 }
 class Body {
@@ -86,5 +104,4 @@ class Body {
         this.ctx.fillStyle = color;
         this.ctx.fillRect(this.tileX * TILE_SIZE, this.tileY * TILE_SIZE, TILE_SIZE, TILE_SIZE);
     }
-    ;
 }
