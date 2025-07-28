@@ -139,7 +139,6 @@
         <button id="backToModes"
           class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-blue-600 font-bold">←Back
         </button>
-
       </div>
 
       <!-- Canvas (hidden initially, can be shown when a game mode is selected) -->
@@ -165,5 +164,18 @@
 
 
   <script src="./dist/modal.js"></script>
+  <script>
+    document.getElementById('singlePlayerBtn').addEventListener('click', function(){
+      console.log('single player clicked!');
+      document.getElementById('gameModeSelection').classList.add('hidden');
+      document.getElementById('singlePlayerStepper').classList.remove('hidden');
+    });
+    document.getElementById('backToModes').addEventListener('click', function(){
+      console.log('back clicked!');
+      document.getElementById('singlePlayerStepper').classList.add('hidden');
+      document.getElementById('gameModeSelection').classList.remove('hidden');
+    })
+  </script>
+  <!-- <script src="./dist/stepper.js"></script> -->
 </body>
 </html>
