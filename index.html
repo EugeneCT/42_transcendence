@@ -181,12 +181,12 @@
         <!-- Step 2 Content (Hidden Initially) -->
         <div id="step2Content" class="hidden w-full p-4">
           <h1 class="text-5xl font-bold mb-4">Welcome, <span id="welcomePlayerName"
-              class="font-bold text-blue-600"></span>!</p>
-            <h3 class="text-lg font-bold mb-4">Are you ready?</h3>
-            <button id="startGameBtn"
-              class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
-              🎮 Start
-            </button>
+              class="font-bold text-blue-600"></span>!</h1>
+          <h3 class="text-lg font-bold mb-4">Are you ready?</h3>
+          <button id="startGameBtn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
+            🎮 Start
+          </button>
         </div>
       </div>
       <!-- 2 v 2 stepper -->
@@ -268,12 +268,12 @@
           <div class="flex justify-center gap-8 mb-6">
             <div class="text-center">
               <h4 class="font-bold text-blue-600 mb-2">Team A</h4>
-              <p><span id="teamAPlayer1"></span></p> 
+              <p><span id="teamAPlayer1"></span></p>
               <p><span id="teamAPlayer2"></span></p>
             </div>
             <div class="text-center">
               <h4 class="font-bold text-red-600 mb-2">Team B</h4>
-              <p><span id="teamBPlayer1"></span></p> 
+              <p><span id="teamBPlayer1"></span></p>
               <p><span id="teamBPlayer2"></span></p>
             </div>
           </div>
@@ -283,186 +283,257 @@
           </button>
         </div>
       </div>
+      <!-- tournament stepper -->
+      <div id="tournamentStepper" class="hidden">
+        <button id="backToModesFromTournament"
+          class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">←
+          Back
+        </button>
+        <div class="relative m-0 flex w-full justify-between overflow-hidden p-0 mb-8">
+          <!-- Step 1 register player 1 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center ps-6 after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+              <span id="tournament1Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-yellow-500 text-black font-bold border-black border-[5px]">
+                1
+              </span>
+              <span class="font-semibold">Player 1</span>
+            </div>
+          </div>
+
+          <!-- Step 2 register player 2 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-[''] after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+
+              <span id="tournament2Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                2
+              </span>
+              <span class="font-semibold text-gray-400">Player 2</span>
+            </div>
+          </div>
+
+          <!-- Step 3 register player 3 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-[''] after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+
+              <span id="tournament3Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                3
+              </span>
+              <span class="font-semibold text-gray-400">Player 3</span>
+            </div>
+          </div>
+          <!-- Step 4 register player 4 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-[''] after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+
+              <span id="tournament4Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                4
+              </span>
+              <span class="font-semibold text-gray-400">Player 4</span>
+            </div>
+          </div>
+          <!-- Step 5 -->
+
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center pe-6 before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-['']">
+              <span id="startTournamentIcon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                5
+              </span>
+              <span class="font-semibold text-gray-400">Start Game</span>
+            </div>
+          </div>
+        </div>
+        <!-- Step 1 Content: Player 1 Registration -->
+
+      </div>
       <!-- Canvas (hidden initially, can be shown when a game mode is selected) -->
       <canvas id="gameCanvas" class="w-full h-full mt-6 hidden"></canvas>
     </div>
-  </div>
 
-  <!-- Snake Modal -->
-  <div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
-    <div class="flex items-center justify-center min-h-full p-4">
-      <div
-        class="relative bg-white p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center max-h-[90vh] overflow-auto">
-        <button id="closeSnakeModal"
-          class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600 z-10">&times;</button>
-        <h2 class="text-xl mb-4">SNAKE GAME 🐍</h2>
-        <div class="overflow-hidden">
-          <canvas id="snakeCanvas" width="600" height="600" class="w-full h-auto max-w-full mx-auto"></canvas>
+    <!-- Snake Modal -->
+    <div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
+      <div class="flex items-center justify-center min-h-full p-4">
+        <div
+          class="relative bg-white p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center max-h-[90vh] overflow-auto">
+          <button id="closeSnakeModal"
+            class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600 z-10">&times;</button>
+          <h2 class="text-xl mb-4">SNAKE GAME 🐍</h2>
+          <div class="overflow-hidden">
+            <canvas id="snakeCanvas" width="600" height="600" class="w-full h-auto max-w-full mx-auto"></canvas>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
 
 
-  <script src="./dist/modal.js"></script>
-  <script>
-    // single player script
-    const playerNameInput = document.getElementById('playerNameInput');
-    const registerBtn = document.getElementById('registerBtn');
-    const step1Content = document.getElementById('step1Content');
-    const step2Content = document.getElementById('step2Content');
-    const step1Icon = document.getElementById('step1Icon');
-    const step2Icon = document.getElementById('step2Icon');
-    const welcomePlayerName = document.getElementById('welcomePlayerName');
-    const startGameBtn = document.getElementById('startGameBtn');
-    const gameCanvas = document.getElementById('gameCanvas');
-    
-    //activate single player modal
-    document.getElementById('singlePlayerBtn').addEventListener('click', function () {
-      console.log('single player clicked!');
-      document.getElementById('gameModeSelection').classList.add('hidden');
-      document.getElementById('singlePlayerStepper').classList.remove('hidden');
-    });
+    <script src="./dist/modal.js"></script>
+    <script>
+      // single player script
+      const playerNameInput = document.getElementById('playerNameInput');
+      const registerBtn = document.getElementById('registerBtn');
+      const step1Content = document.getElementById('step1Content');
+      const step2Content = document.getElementById('step2Content');
+      const step1Icon = document.getElementById('step1Icon');
+      const step2Icon = document.getElementById('step2Icon');
+      const welcomePlayerName = document.getElementById('welcomePlayerName');
+      const startGameBtn = document.getElementById('startGameBtn');
+      const gameCanvas = document.getElementById('gameCanvas');
 
-    //back button for single player modal
-    document.getElementById('backToModes').addEventListener('click', function () {
-      console.log('back clicked!');
-      document.getElementById('singlePlayerStepper').classList.add('hidden');
-      document.getElementById('gameModeSelection').classList.remove('hidden');
-    });
+      //activate single player modal
+      document.getElementById('singlePlayerBtn').addEventListener('click', function () {
+        console.log('single player clicked!');
+        document.getElementById('gameModeSelection').classList.add('hidden');
+        document.getElementById('singlePlayerStepper').classList.remove('hidden');
+      });
+
+      //back button for single player modal
+      document.getElementById('backToModes').addEventListener('click', function () {
+        console.log('back clicked!');
+        document.getElementById('singlePlayerStepper').classList.add('hidden');
+        document.getElementById('gameModeSelection').classList.remove('hidden');
+      });
 
 
-    playerNameInput.addEventListener('input', function () {
-      const name = this.value.trim();
-      registerBtn.disabled = name.length === 0;
-    });
+      playerNameInput.addEventListener('input', function () {
+        const name = this.value.trim();
+        registerBtn.disabled = name.length === 0;
+      });
 
-    registerBtn.addEventListener('click', function () {
-      const playerName = playerNameInput.value.trim();
-      console.log('Registering player: ', playerName);
-      if (playerName) {
-        step1Icon.classList.remove('bg-yellow-500', 'text-black');
-        step1Icon.classList.add('bg-green-500', 'text-white');
-        step1Icon.innerHTML = '✓';
+      registerBtn.addEventListener('click', function () {
+        const playerName = playerNameInput.value.trim();
+        console.log('Registering player: ', playerName);
+        if (playerName) {
+          step1Icon.classList.remove('bg-yellow-500', 'text-black');
+          step1Icon.classList.add('bg-green-500', 'text-white');
+          step1Icon.innerHTML = '✓';
 
-        step2Icon.classList.remove('bg-gray-300', 'text-gray-600');
-        step2Icon.classList.add('bg-yellow-500', 'text-black');
-        step2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+          step2Icon.classList.remove('bg-gray-300', 'text-gray-600');
+          step2Icon.classList.add('bg-yellow-500', 'text-black');
+          step2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
 
-        step1Content.classList.add('hidden');
-        step2Content.classList.remove('hidden');
+          step1Content.classList.add('hidden');
+          step2Content.classList.remove('hidden');
 
-        welcomePlayerName.textContent = playerName;
+          welcomePlayerName.textContent = playerName;
+        }
+      });
+
+      startGameBtn.addEventListener('click', function () {
+        console.log('starting game for: ', welcomePlayerName.textContent);
+        document.getElementById('singlePlayerStepper').classList.add('hidden');
+        gameCanvas.classList.remove('hidden');
+      });
+      // 2v2 script
+      const player1Input = document.getElementById('player1Input');
+      const player2Input = document.getElementById('player2Input');
+      const player3Input = document.getElementById('player3Input');
+      const player4Input = document.getElementById('player4Input');
+      const registerTeamAbtn = document.getElementById('registerTeamAbtn');
+      const registerTeamBbtn = document.getElementById('registerTeamBbtn');
+      const teamAcontent = document.getElementById('teamAcontent');
+      const teamBcontent = document.getElementById('teamBcontent');
+      const start2V2content = document.getElementById('start2V2content');
+      const team1Icon = document.getElementById('team1Icon');
+      const team2Icon = document.getElementById('team2Icon');
+      const start2V2Icon = document.getElementById('start2V2Icon');
+      const teamAPlayer1 = document.getElementById('teamAPlayer1');
+      const teamAPlayer2 = document.getElementById('teamAPlayer2');
+      const teamBPlayer1 = document.getElementById('teamBPlayer1');
+      const teamBPlayer2 = document.getElementById('teamBPlayer2');
+      const start2v2GameBtn = document.getElementById('start2v2GameBtn');
+
+      //activate 2v2 modal
+      document.getElementById('twoVsTwoBtn').addEventListener('click', function () {
+        console.log('2 v2 clicked!');
+        document.getElementById('gameModeSelection').classList.add('hidden');
+        document.getElementById('twoVersusTwoStepper').classList.remove('hidden');
+      })
+      //back button for 2v2 modal
+      document.getElementById('backToModesFrom2v2').addEventListener('click', function () {
+        console.log('backToModesFrom2v2 clicked');
+        document.getElementById('twoVersusTwoStepper').classList.add('hidden');
+        document.getElementById('gameModeSelection').classList.remove('hidden');
+      })
+
+      //validate team A
+      function validTeamA() {
+        const p1 = player1Input.value.trim();
+        const p2 = player2Input.value.trim();
+
+        const isValid = p1.length > 0 && p2.length > 0 && p1 !== p2;
+        registerTeamAbtn.disabled = !isValid;
       }
-    });
+      //validate team B and everybody else
+      function validTeamB() {
+        const p1 = player1Input.value.trim();
+        const p2 = player2Input.value.trim();
+        const p3 = player3Input.value.trim();
+        const p4 = player4Input.value.trim();
 
-    startGameBtn.addEventListener('click', function () {
-      console.log('starting game for: ', welcomePlayerName.textContent);
-      document.getElementById('singlePlayerStepper').classList.add('hidden');
-      gameCanvas.classList.remove('hidden');
-    });
-     // 2v2 script
-    const player1Input = document.getElementById('player1Input');
-    const player2Input = document.getElementById('player2Input');
-    const player3Input = document.getElementById('player3Input');
-    const player4Input = document.getElementById('player4Input');
-    const registerTeamAbtn = document.getElementById('registerTeamAbtn');
-    const registerTeamBbtn = document.getElementById('registerTeamBbtn');
-    const teamAcontent = document.getElementById('teamAcontent');
-    const teamBcontent = document.getElementById('teamBcontent');
-    const start2V2content = document.getElementById('start2V2content');
-    const team1Icon = document.getElementById('team1Icon');
-    const team2Icon = document.getElementById('team2Icon');
-    const start2V2Icon = document.getElementById('start2V2Icon');
-    const teamAPlayer1 = document.getElementById('teamAPlayer1');
-    const teamAPlayer2 = document.getElementById('teamAPlayer2');
-    const teamBPlayer1 = document.getElementById('teamBPlayer1');
-    const teamBPlayer2 = document.getElementById('teamBPlayer2');
-    const start2v2GameBtn = document.getElementById('start2v2GameBtn');
+        const isValid = p3.length > 0 && p4.length > 0 && p3 !== p4 && p3 !== p1 && p3 !== p2 && p4 !== p1 && p4 !== p2;
 
-    //activate 2v2 modal
-    document.getElementById('twoVsTwoBtn').addEventListener('click', function(){
-      console.log('2 v2 clicked!');
-      document.getElementById('gameModeSelection').classList.add('hidden');
-      document.getElementById('twoVersusTwoStepper').classList.remove('hidden');
-    })
-    //back button for 2v2 modal
-    document.getElementById('backToModesFrom2v2').addEventListener('click', function(){
-      console.log('backToModesFrom2v2 clicked');
-      document.getElementById('twoVersusTwoStepper').classList.add('hidden');
-      document.getElementById('gameModeSelection').classList.remove('hidden');
-    })
+        registerTeamBbtn.disabled = !isValid;
+      }
+      // Listen to Team A input and Team B input changes
+      player1Input.addEventListener('input', validTeamA);
+      player2Input.addEventListener('input', validTeamA);
+      player3Input.addEventListener('input', validTeamB);
+      player4Input.addEventListener('input', validTeamB);
 
-    //validate team A
-   function validTeamA(){
-    const p1 = player1Input.value.trim();
-    const p2 = player2Input.value.trim();
+      registerTeamAbtn.addEventListener('click', function () {
+        console.log('Team A registered:', player1Input.value, player2Input.value);
+        // Update step 1 to completed (green with checkmark)
+        team1Icon.classList.remove('bg-yellow-500', 'text-black');
+        team1Icon.classList.add('bg-green-500', 'text-white');
+        team1Icon.innerHTML = '✓';
+        // Update step 2 to active (yellow)
+        team2Icon.classList.remove('bg-gray-300', 'text-gray-600');
+        team2Icon.classList.add('bg-yellow-500', 'text-black');
+        team2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
 
-    const isValid = p1.length > 0 &&  p2.length > 0 && p1 !== p2;
-    registerTeamAbtn.disabled = !isValid;
-   }
-   //validate team B and everybody else
-   function validTeamB(){
-    const p1 = player1Input.value.trim();
-    const p2 = player2Input.value.trim();
-    const p3 = player3Input.value.trim();
-    const p4 = player4Input.value.trim();
+        teamAcontent.classList.add('hidden');
+        teamBcontent.classList.remove('hidden');
+      });
 
-    const isValid = p3.length > 0 && p4.length > 0 && p3 !== p4 && p3 !== p1 && p3 !== p2 && p4 !== p1 && p4 !== p2;
+      registerTeamBbtn.addEventListener('click', function () {
+        console.log('Team B registered:', player3Input.value, player4Input.value);
+        team2Icon.classList.remove('bg-yellow-500', 'text-black');
+        team2Icon.classList.add('bg-green-500', 'text-white');
+        team2Icon.innerHTML = '✓';
 
-    registerTeamBbtn.disabled = !isValid;
-   } 
-  // Listen to Team A input and Team B input changes
-  player1Input.addEventListener('input', validTeamA);
-  player2Input.addEventListener('input', validTeamA);
-  player3Input.addEventListener('input', validTeamB);
-  player4Input.addEventListener('input', validTeamB);
+        start2V2Icon.classList.remove('bg-gray-300', 'text-gray-600');
+        start2V2Icon.classList.add('bg-yellow-500', 'text-black');
+        start2V2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
 
-  registerTeamAbtn.addEventListener('click', function(){
-    console.log('Team A registered:', player1Input.value, player2Input.value);
-    // Update step 1 to completed (green with checkmark)
-    team1Icon.classList.remove('bg-yellow-500', 'text-black');
-    team1Icon.classList.add('bg-green-500', 'text-white');
-    team1Icon.innerHTML = '✓';
-    // Update step 2 to active (yellow)
-    team2Icon.classList.remove('bg-gray-300', 'text-gray-600');
-    team2Icon.classList.add('bg-yellow-500', 'text-black');
-    team2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+        teamBcontent.classList.add('hidden');
+        start2V2content.classList.remove('hidden');
 
-    teamAcontent.classList.add('hidden');
-    teamBcontent.classList.remove('hidden');
-  });
+        teamAPlayer1.textContent = player1Input.value;
+        teamAPlayer2.textContent = player2Input.value;
+        teamBPlayer1.textContent = player3Input.value;
+        teamBPlayer2.textContent = player4Input.value;
+      });
+      start2v2GameBtn.addEventListener('click', function () {
+        console.log('Starting 2v2 game!');
+        console.log('Team A:', teamAPlayer1.textContent, teamAPlayer2.textContent);
+        console.log('Team B:', teamBPlayer1.textContent, teamBPlayer2.textContent);
 
-  registerTeamBbtn.addEventListener('click', function(){
-    console.log('Team B registered:', player3Input.value, player4Input.value);
-    team2Icon.classList.remove('bg-yellow-500', 'text-black');
-    team2Icon.classList.add('bg-green-500', 'text-white');
-    team2Icon.innerHTML = '✓';
+        // Hide stepper, show canvas
+        document.getElementById('twoVersusTwoStepper').classList.add('hidden');
+        gameCanvas.classList.remove('hidden');
+      });
 
-    start2V2Icon.classList.remove('bg-gray-300', 'text-gray-600');
-    start2V2Icon.classList.add('bg-yellow-500', 'text-black');
-    start2V2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
-
-    teamBcontent.classList.add('hidden');
-    start2V2content.classList.remove('hidden');
-
-    teamAPlayer1.textContent = player1Input.value;
-    teamAPlayer2.textContent = player2Input.value;
-    teamBPlayer1.textContent = player3Input.value;
-    teamBPlayer2.textContent = player4Input.value;
-  });
-  start2v2GameBtn.addEventListener('click', function() {
-    console.log('Starting 2v2 game!');
-    console.log('Team A:', teamAPlayer1.textContent, teamAPlayer2.textContent);
-    console.log('Team B:', teamBPlayer1.textContent, teamBPlayer2.textContent);
-    
-    // Hide stepper, show canvas
-    document.getElementById('twoVersusTwoStepper').classList.add('hidden');
-    gameCanvas.classList.remove('hidden');
-  });
-
-</script>
-  <!-- <script src="./dist/stepper.js"></script> -->
+    </script>
+    <!-- <script src="./dist/stepper.js"></script> -->
 </body>
 </html>
