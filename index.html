@@ -111,14 +111,14 @@
   <!-- Pong Modal -->
   <div id="pongModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
     <div
-      class="relative bg-white mx-auto my-auto p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center top-1/2 transform -translate-y-1/2">
+      class="relative bg-white mx-auto my-auto p-5 b w-[90%] max-w-[900px] text-center top-1/2 transform -translate-y-1/2 border-[10px] border-black rounded-xl shadow-[10px_10px_0_rgba(0,0,0,0.2)]">
       <button id="closePongModal"
         class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600">&times;</button>
 
       <h2 class="text-xl mb-8">PONG GAME 🏓</h2>
 
       <!-- Game Mode Selection Buttons -->
-      <div id="gameModeSelection" class="flex justify-center items-center gap-4 flex-wrap">
+      <div id="gameModeSelection" class="flex justify-center items-center gap-4 flex-wrap ">
         <button id="tournamentBtn"
           class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0">
           🏟 Tournament
@@ -137,8 +137,7 @@
 
       <div id="singlePlayerStepper" class="hidden">
         <button id="backToModes"
-          class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">←
-          Back
+          class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">← Back
         </button>
         <div class="relative m-0 flex w-full justify-between overflow-hidden p-0 mb-8">
           <!-- Step 1 -->
@@ -146,7 +145,7 @@
             <div
               class="flex items-center ps-6 after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
               <span id="step1Icon"
-                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-yellow-500 text-black font-bold">
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-yellow-500 text-black font-bold border-black border-[]">
                 1
               </span>
               <span class="font-semibold">Register</span>
@@ -171,15 +170,15 @@
           <input id="playerNameInput" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
             placeholder="Enter your name" maxlength="20">
           <br>
-          <button id="registerBtn" class="bg-yellow-500 text-white px-6 py-2 rounded disabled:bg-gray-300" disabled>
+            <button id="registerBtn" class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white" disabled> 
             Register Player
           </button>
         </div>
         <!-- Step 2 Content (Hidden Initially) -->
         <div id="step2Content" class="hidden w-full p-4">
-          <h3 class="text-lg font-bold mb-4">Ready to Play!</h3>
-          <p class="mb-6">Welcome, <span id="welcomePlayerName" class="font-bold text-blue-600"></span>!</p>
-          <button id="startGameBtn" class="bg-yellow-500 text-white px-6 py-2 rounded">
+          <h1 class="text-5xl font-bold mb-4">Welcome, <span id="welcomePlayerName" class="font-bold text-blue-600"></span>!</p>
+          <h3 class="text-lg font-bold mb-4">Are you ready?</h3>
+          <button id="startGameBtn" class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0">
             🎮 Start Single Player Game
           </button>
         </div>
