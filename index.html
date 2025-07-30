@@ -137,8 +137,52 @@
 
       <div id="singlePlayerStepper" class="hidden">
         <button id="backToModes"
-          class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-blue-600 font-bold">←Back
+          class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">←
+          Back
         </button>
+        <div class="relative m-0 flex w-full justify-between overflow-hidden p-0 mb-8">
+          <!-- Step 1 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center ps-6 after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+              <span id="step1Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-yellow-500 text-black font-bold">
+                1
+              </span>
+              <span class="font-semibold">Register</span>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center pe-6 before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-['']">
+              <span id="step2Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold">
+                2
+              </span>
+              <span class="font-semibold text-gray-400">Start Game</span>
+            </div>
+          </div>
+        </div>
+        <!-- Step 1 Content -->
+        <div id="step1Content" class="w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Enter Your Name</h3>
+          <input id="playerNameInput" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Enter your name" maxlength="20">
+          <br>
+          <button id="registerBtn" class="bg-yellow-500 text-white px-6 py-2 rounded disabled:bg-gray-300" disabled>
+            Register Player
+          </button>
+        </div>
+        <!-- Step 2 Content (Hidden Initially) -->
+        <div id="step2Content" class="hidden w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Ready to Play!</h3>
+          <p class="mb-6">Welcome, <span id="welcomePlayerName" class="font-bold text-blue-600"></span>!</p>
+          <button id="startGameBtn" class="bg-yellow-500 text-white px-6 py-2 rounded">
+            🎮 Start Single Player Game
+          </button>
+        </div>
       </div>
 
       <!-- Canvas (hidden initially, can be shown when a game mode is selected) -->
@@ -165,16 +209,58 @@
 
   <script src="./dist/modal.js"></script>
   <script>
-    document.getElementById('singlePlayerBtn').addEventListener('click', function(){
+    const playerNameInput = document.getElementById('playerNameInput');
+    const registerBtn = document.getElementById('registerBtn');
+    const step1Content = document.getElementById('step1Content');
+    const step2Content = document.getElementById('step2Content');
+    const step1Icon = document.getElementById('step1Icon');
+    const step2Icon = document.getElementById('step2Icon');
+    const welcomePlayerName = document.getElementById('welcomePlayerName');
+    const startGameBtn = document.getElementById('startGameBtn'); 
+    const gameCanvas = document.getElementById('gameCanvas'); 
+
+    document.getElementById('singlePlayerBtn').addEventListener('click', function () {
       console.log('single player clicked!');
       document.getElementById('gameModeSelection').classList.add('hidden');
       document.getElementById('singlePlayerStepper').classList.remove('hidden');
     });
-    document.getElementById('backToModes').addEventListener('click', function(){
+
+    document.getElementById('backToModes').addEventListener('click', function () {
       console.log('back clicked!');
       document.getElementById('singlePlayerStepper').classList.add('hidden');
       document.getElementById('gameModeSelection').classList.remove('hidden');
-    })
+    });
+
+    playerNameInput.addEventListener('input', function(){
+      const name = this.value.trim();
+      registerBtn.disabled = name.length === 0;
+    });
+
+    registerBtn.addEventListener('click', function(){
+      const playerName = playerNameInput.value.trim();
+      console.log('Registering player: ', playerName);
+      if(playerName)
+      {
+        step1Icon.classList.remove('bg-yellow-500', 'text-black');
+        step1Icon.classList.add('bg-green-500', 'text-white');
+        step1Icon.innerHTML = '✓';
+
+        step2Icon.classList.remove('bg-gray-300', 'text-gray-600');
+        step2Icon.classList.add('bg-yellow-500', 'text-black');
+        step2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+
+        step1Content.classList.add('hidden');
+        step2Content.classList.remove('hidden');
+
+        welcomePlayerName.textContent = playerName;
+      }
+    });
+
+    startGameBtn.addEventListener('click', function(){
+      console.log('starting game for: ', welcomePlayerName.textContent);
+      document.getElementById('singlePlayerStepper').classList.add('hidden');
+      gameCanvas.classList.remove('hidden');
+    });
   </script>
   <!-- <script src="./dist/stepper.js"></script> -->
 </body>
