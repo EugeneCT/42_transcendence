@@ -120,17 +120,17 @@
       <!-- Game Mode Selection Buttons -->
       <div id="gameModeSelection" class="flex justify-center items-center gap-4 flex-wrap ">
         <button id="tournamentBtn"
-          class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0">
+          class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
           🏟 Tournament
         </button>
 
         <button id="singlePlayerBtn"
-          class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0">
+          class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
           🎮 Single Player
         </button>
 
         <button id="twoVsTwoBtn"
-          class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0">
+          class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
           🕹 2 vs 2
         </button>
       </div>
@@ -242,7 +242,7 @@
             placeholder="Player 2 name" maxlength="20">
           <br>
           <button id="registerTeamAbtn"
-            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white"
             disabled>
             Register Team A
           </button>
@@ -257,7 +257,7 @@
             placeholder="Player 4 name" maxlength="20">
           <br>
           <button id="registerTeamBbtn"
-            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white"
             disabled>
             Register Team B
           </button>
@@ -278,7 +278,7 @@
             </div>
           </div>
           <button id="start2v2GameBtn"
-            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0">
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
             🎮 Start
           </button>
         </div>
@@ -307,6 +307,7 @@
 
   <script src="./dist/modal.js"></script>
   <script>
+    // single player script
     const playerNameInput = document.getElementById('playerNameInput');
     const registerBtn = document.getElementById('registerBtn');
     const step1Content = document.getElementById('step1Content');
@@ -316,18 +317,21 @@
     const welcomePlayerName = document.getElementById('welcomePlayerName');
     const startGameBtn = document.getElementById('startGameBtn');
     const gameCanvas = document.getElementById('gameCanvas');
-
+    
+    //activate single player modal
     document.getElementById('singlePlayerBtn').addEventListener('click', function () {
       console.log('single player clicked!');
       document.getElementById('gameModeSelection').classList.add('hidden');
       document.getElementById('singlePlayerStepper').classList.remove('hidden');
     });
 
+    //back button for single player modal
     document.getElementById('backToModes').addEventListener('click', function () {
       console.log('back clicked!');
       document.getElementById('singlePlayerStepper').classList.add('hidden');
       document.getElementById('gameModeSelection').classList.remove('hidden');
     });
+
 
     playerNameInput.addEventListener('input', function () {
       const name = this.value.trim();
@@ -358,7 +362,107 @@
       document.getElementById('singlePlayerStepper').classList.add('hidden');
       gameCanvas.classList.remove('hidden');
     });
-  </script>
+     // 2v2 script
+    const player1Input = document.getElementById('player1Input');
+    const player2Input = document.getElementById('player2Input');
+    const player3Input = document.getElementById('player3Input');
+    const player4Input = document.getElementById('player4Input');
+    const registerTeamAbtn = document.getElementById('registerTeamAbtn');
+    const registerTeamBbtn = document.getElementById('registerTeamBbtn');
+    const teamAcontent = document.getElementById('teamAcontent');
+    const teamBcontent = document.getElementById('teamBcontent');
+    const start2V2content = document.getElementById('start2V2content');
+    const team1Icon = document.getElementById('team1Icon');
+    const team2Icon = document.getElementById('team2Icon');
+    const start2V2Icon = document.getElementById('start2V2Icon');
+    const teamAPlayer1 = document.getElementById('teamAPlayer1');
+    const teamAPlayer2 = document.getElementById('teamAPlayer2');
+    const teamBPlayer1 = document.getElementById('teamBPlayer1');
+    const teamBPlayer2 = document.getElementById('teamBPlayer2');
+    const start2v2GameBtn = document.getElementById('start2v2GameBtn');
+
+    //activate 2v2 modal
+    document.getElementById('twoVsTwoBtn').addEventListener('click', function(){
+      console.log('2 v2 clicked!');
+      document.getElementById('gameModeSelection').classList.add('hidden');
+      document.getElementById('twoVersusTwoStepper').classList.remove('hidden');
+    })
+    //back button for 2v2 modal
+    document.getElementById('backToModesFrom2v2').addEventListener('click', function(){
+      console.log('backToModesFrom2v2 clicked');
+      document.getElementById('twoVersusTwoStepper').classList.add('hidden');
+      document.getElementById('gameModeSelection').classList.remove('hidden');
+    })
+
+    //validate team A
+   function validTeamA(){
+    const p1 = player1Input.value.trim();
+    const p2 = player2Input.value.trim();
+
+    const isValid = p1.length > 0 &&  p2.length > 0 && p1 !== p2;
+    registerTeamAbtn.disabled = !isValid;
+   }
+   //validate team B and everybody else
+   function validTeamB(){
+    const p1 = player1Input.value.trim();
+    const p2 = player2Input.value.trim();
+    const p3 = player3Input.value.trim();
+    const p4 = player4Input.value.trim();
+
+    const isValid = p3.length > 0 && p4.length > 0 && p3 !== p4 && p3 !== p1 && p3 !== p2 && p4 !== p1 && p4 !== p2;
+
+    registerTeamBbtn.disabled = !isValid;
+   } 
+  // Listen to Team A input and Team B input changes
+  player1Input.addEventListener('input', validTeamA);
+  player2Input.addEventListener('input', validTeamA);
+  player3Input.addEventListener('input', validTeamB);
+  player4Input.addEventListener('input', validTeamB);
+
+  registerTeamAbtn.addEventListener('click', function(){
+    console.log('Team A registered:', player1Input.value, player2Input.value);
+    // Update step 1 to completed (green with checkmark)
+    team1Icon.classList.remove('bg-yellow-500', 'text-black');
+    team1Icon.classList.add('bg-green-500', 'text-white');
+    team1Icon.innerHTML = '✓';
+    // Update step 2 to active (yellow)
+    team2Icon.classList.remove('bg-gray-300', 'text-gray-600');
+    team2Icon.classList.add('bg-yellow-500', 'text-black');
+    team2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+
+    teamAcontent.classList.add('hidden');
+    teamBcontent.classList.remove('hidden');
+  });
+
+  registerTeamBbtn.addEventListener('click', function(){
+    console.log('Team B registered:', player3Input.value, player4Input.value);
+    team2Icon.classList.remove('bg-yellow-500', 'text-black');
+    team2Icon.classList.add('bg-green-500', 'text-white');
+    team2Icon.innerHTML = '✓';
+
+    start2V2Icon.classList.remove('bg-gray-300', 'text-gray-600');
+    start2V2Icon.classList.add('bg-yellow-500', 'text-black');
+    start2V2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+
+    teamBcontent.classList.add('hidden');
+    start2V2content.classList.remove('hidden');
+
+    teamAPlayer1.textContent = player1Input.value;
+    teamAPlayer2.textContent = player2Input.value;
+    teamBPlayer1.textContent = player3Input.value;
+    teamBPlayer2.textContent = player4Input.value;
+  });
+  start2v2GameBtn.addEventListener('click', function() {
+    console.log('Starting 2v2 game!');
+    console.log('Team A:', teamAPlayer1.textContent, teamAPlayer2.textContent);
+    console.log('Team B:', teamBPlayer1.textContent, teamBPlayer2.textContent);
+    
+    // Hide stepper, show canvas
+    document.getElementById('twoVersusTwoStepper').classList.add('hidden');
+    gameCanvas.classList.remove('hidden');
+  });
+
+</script>
   <!-- <script src="./dist/stepper.js"></script> -->
 </body>
 </html>
