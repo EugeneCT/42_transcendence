@@ -619,16 +619,148 @@
     const tournamentStep2Input = document.getElementById('tournamentStep2Input');
     const tournamentStep3Input = document.getElementById('tournamentStep3Input');
     const tournamentStep4Input = document.getElementById('tournamentStep4Input');
+
+    const tournamentStep1Content = document.getElementById('tournamentStep1Content');
+    const tournamentStep2Content = document.getElementById('tournamentStep2Content');;
+    const tournamentStep3Content = document.getElementById('tournamentStep3Content');;
+    const tournamentStep4Content = document.getElementById('tournamentStep4Content');;
+    const tournamentStep5Content = document.getElementById('tournamentStep5Content');
+    
     const tournament1Icon = document.getElementById('tournament1Icon');
     const tournament2Icon = document.getElementById('tournament2Icon');
     const tournament3Icon = document.getElementById('tournament3Icon');
     const tournament4Icon = document.getElementById('tournament4Icon');
     const startTournamentIcon = document.getElementById('startTournamentIcon');
+    
     const tournamentShowPlayer1 = document.getElementById('tournamentShowPlayer1');
     const tournamentShowPlayer2 = document.getElementById('tournamentShowPlayer2');
     const tournamentShowPlayer3 = document.getElementById('tournamentShowPlayer3');
     const tournamentShowPlayer4 = document.getElementById('tournamentShowPlayer4');
     const startTournamentGameBtn = document.getElementById('startTournamentGameBtn');
+
+    document.getElementById('backToModesFromTournament').addEventListener('click', function(){
+      console.log('Back from tournanert clicked');
+      document.getElementById('gameModeSelection').classList.remove('hidden');
+      document.getElementById('tournamentStepper').classList.add('hidden');
+    });
+
+  document.getElementById('tournamentBtn').addEventListener('click', function(){
+    console.log('tournament btn clicked');
+    document.getElementById('gameModeSelection').classList.add('hidden');
+    document.getElementById('tournamentStepper').classList.remove('hidden');
+  });
+
+  function validateTournamentPlayer1(){
+    const p1 = tournamentPlayer1Input.value.trim();
+    const isValid = p1.length > 0;
+    registerTournamentPlayer1Btn.disabled = !isValid;
+  }
+
+  function validateTournamentPlayer2(){
+    const p1 = tournamentPlayer1Input.value.trim();
+    const p2 = tournamentPlayer2Input.value.trim();
+    const isValid = p2.length > 0 && p1 !== p2;
+    registerTournamentPlayer2Btn.disabled = !isValid;
+  }
+
+  function validateTournamentPlayer3(){
+    const p1 = tournamentPlayer1Input.value.trim();
+    const p2 = tournamentPlayer2Input.value.trim();
+    const p3 = tournamentPlayer3Input.value.trim();
+
+    const isValid = p3.length > 0 && p3 !== p2 && p3 !== p1;
+    registerTournamentPlayer3Btn.disabled = !isValid;
+  }
+  
+  function validateTournamentPlayer4(){
+    const p1 = tournamentPlayer1Input.value.trim();
+    const p2 = tournamentPlayer2Input.value.trim();
+    const p3 = tournamentPlayer3Input.value.trim();
+    const p4 = tournamentPlayer4Input.value.trim();
+
+    const isValid = p4.length > 0 && p4 !== p3 && p4 !== p2 && p4 !== p1;
+    registerTournamentPlayer4Btn.disabled = !isValid;
+  }
+  
+  tournamentPlayer1Input.addEventListener('input', validateTournamentPlayer1);
+  tournamentPlayer2Input.addEventListener('input', validateTournamentPlayer2);
+  tournamentPlayer3Input.addEventListener('input', validateTournamentPlayer3);
+  tournamentPlayer4Input.addEventListener('input', validateTournamentPlayer4);
+
+
+  registerTournamentPlayer1Btn.addEventListener('click', function(){
+    console.log('Player 1 registered:', tournamentPlayer1Input.value);
+    tournamentStep1Content.classList.add('hidden');
+    tournamentStep2Content.classList.remove('hidden');
+
+    tournament1Icon.classList.remove('bg-yellow-500', 'text-black');
+    tournament1Icon.classList.add('bg-green-500', 'text-white');
+    tournament1Icon.innerHTML = '✓';
+
+    tournament2Icon.classList.remove('bg-gray-300', 'text-gray-600');
+    tournament2Icon.classList.add('bg-yellow-500', 'text-black');
+    tournament2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+  });
+
+    registerTournamentPlayer2Btn.addEventListener('click', function(){
+    console.log('Player 2 registered:', tournamentPlayer2Input.value);
+    tournamentStep2Content.classList.add('hidden');
+    tournamentStep3Content.classList.remove('hidden');
+
+    tournament2Icon.classList.remove('bg-yellow-500', 'text-black');
+    tournament2Icon.classList.add('bg-green-500', 'text-white');
+    tournament2Icon.innerHTML = '✓';
+
+    tournament3Icon.classList.remove('bg-gray-300', 'text-gray-600');
+    tournament3Icon.classList.add('bg-yellow-500', 'text-black');
+    tournament3Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+  });
+
+    registerTournamentPlayer3Btn.addEventListener('click', function(){
+    console.log('Player 3 registered:', tournamentPlayer3Input.value);
+    tournamentStep3Content.classList.add('hidden');
+    tournamentStep4Content.classList.remove('hidden');
+
+    tournament3Icon.classList.remove('bg-yellow-500', 'text-black');
+    tournament3Icon.classList.add('bg-green-500', 'text-white');
+    tournament3Icon.innerHTML = '✓';
+
+    tournament4Icon.classList.remove('bg-gray-300', 'text-gray-600');
+    tournament4Icon.classList.add('bg-yellow-500', 'text-black');
+    tournament4Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+  });
+
+    registerTournamentPlayer4Btn.addEventListener('click', function(){
+    console.log('Player 4 registered:', tournamentPlayer4Input.value);
+    tournamentStep4Content.classList.add('hidden');
+    tournamentStep5Content.classList.remove('hidden');
+
+    tournament4Icon.classList.remove('bg-yellow-500', 'text-black');
+    tournament4Icon.classList.add('bg-green-500', 'text-white');
+    tournament4Icon.innerHTML = '✓';
+
+    startTournamentIcon.classList.remove('bg-gray-300', 'text-gray-600');
+    startTournamentIcon.classList.add('bg-yellow-500', 'text-black');
+    startTournamentIcon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+
+    tournamentShowPlayer1.textContent = tournamentPlayer1Input.value;
+    tournamentShowPlayer2.textContent = tournamentPlayer2Input.value;
+    tournamentShowPlayer3.textContent = tournamentPlayer3Input.value;
+    tournamentShowPlayer4.textContent = tournamentPlayer4Input.value;
+  });
+
+    startTournamentGameBtn.addEventListener('click', function(){
+    console.log('Starting tournament!');
+    console.log('Players:', 
+      tournamentShowPlayer1.textContent, 
+      tournamentShowPlayer2.textContent, 
+      tournamentShowPlayer3.textContent, 
+      tournamentShowPlayer4.textContent
+    );
+    
+    document.getElementById('tournamentStepper').classList.add('hidden');
+    gameCanvas.classList.remove('hidden');
+  });
   </script>
   <!-- <script src="./dist/stepper.js"></script> -->
 </body>
