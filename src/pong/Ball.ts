@@ -78,7 +78,7 @@ export class Ball {
 		this.speedY = Math.min(BALL_MAX_SPEED, this.speedY * 1.01);
 	}
 
-	checkVictory(): 'left-win' | 'right-win' | undefined {
+	checkWin(): 'left-win' | 'right-win' | undefined {
 		if (this.centerX + BALL_RADIUS < 0) {
 			return 'right-win';
 		} else if (this.centerX - BALL_RADIUS > BOARD_WIDTH) {

@@ -1,4 +1,4 @@
-import {selectGame} from "./menu.js"
+import { selectGame } from "./menu.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const pongButton: HTMLButtonElement = document.getElementById('pongButton') as HTMLButtonElement;
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     snakeButton.addEventListener('click', (): void => {
         showModal(snakeModal);
-        // selectGame('snake');
+        // startGame('snake');
     });
 
 
