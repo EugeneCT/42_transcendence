@@ -2,7 +2,7 @@
 // Client ID: 811465816616-rvc89rg2o97d9to1431q0c11jl45avk3.apps.googleusercontent.com
 // Client Secret: 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
 // http://localhost:8000/#state=pass-through%20value&access_token=ya29.A0AS3H6NyLIAwimlidukHySqfQWygj1h6svyFNuHt_U5DkbZmnBLnUeIsEE8oG8xuBEKf3jz6mGc_So3fVu4WfMBVoJMOHFUE0yg2QPiR69UVvdeaSbkk2sK4kza2MRB0bYq6ARb0soxhtdLnmcd3fw2RZ50wTzL-HuzzyDLaBhngvX4rvVsUVwR4T7v438rKj5yptCx0aCgYKAbQSARISFQHGX2MirAWxKQ0RMJ1TkLxNvUVrCQ0206&token_type=Bearer&expires_in=3599&scope=https://www.googleapis.com/auth/calendar.readonly%20https://www.googleapis.com/auth/drive.m
-function oauthSignIn() {
+function sendGetTokenRequest() {
     const oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
     const form = document.createElement('form');
     form.setAttribute('method', 'GET');
@@ -35,6 +35,37 @@ document.addEventListener('DOMContentLoaded', () => {
     oauthButton.addEventListener('click', () => {
         getToken();
         console.log('button pressed');
-        oauthSignIn();
+        createPopUp('http://localhost:8000', 'hello');
     });
 });
+function receiveMessage(event) { }
+let windowObjectReference = null;
+let previousUrl = null;
+function isPopUpNotOpen() {
+    return (windowObjectReference === null || windowObjectReference.closed);
+    // return true;
+    // return false;
+}
+function createPopUp(url, name) {
+    window.removeEventListener('message', receiveMessage);
+    const strWindowFeatures = 'toolbar=no, menubar=no, width=600, height=700, top=100, left=100';
+    if (windowObjectReference === null || windowObjectReference.closed) {
+        console.log('1');
+        if (windowObjectReference !== null) {
+            console.log('closed? ' + windowObjectReference.closed);
+        }
+        windowObjectReference = window.open(url, name, strWindowFeatures);
+        console.log(windowObjectReference === null || windowObjectReference === void 0 ? void 0 : windowObjectReference.closed);
+    }
+    else if (previousUrl !== url) {
+        console.log('2');
+        windowObjectReference = window.open(url, name, strWindowFeatures);
+        windowObjectReference.focus();
+    }
+    else {
+        console.log('3');
+        windowObjectReference.focus();
+    }
+    window.addEventListener('message', event => receiveMessage(event), false);
+    previousUrl = url;
+}
