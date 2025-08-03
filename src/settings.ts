@@ -27,3 +27,8 @@ export const TILES_X = BOARD_WIDTH / TILE_SIZE;		// number of tiles in x axis. N
 export const TILES_Y = BOARD_HEIGHT / TILE_SIZE;	// number of tiles in y axis. Needs to be odd number for the alternate tile colors
 
 export const REFRESH_TIME_MS = 500;
+
+
+// --- SERVER SETTINGS ---
+export const BASE_URL = 'http://localhost:8000';
+export const OAUTH_CLIENT_ID = '811465816616-rvc89rg2o97d9to1431q0c11jl45avk3.apps.googleusercontent.com';
