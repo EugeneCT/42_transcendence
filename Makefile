@@ -1,13 +1,14 @@
 SERVER_LOG = server.log
 PORT = 8000
 DIST = dist
+SRC = src
 
 help:
 	@echo "\033[1;31mmake rebuild-restart		- Use this!\033[0m"
 	@echo "make start-server		- Starts server in background"
 	@echo "make start-server-verbose	- Starts server in verbose mode"
 	@echo "make stop-server		- Stops server"
-	@echo "make build			- Compile the Typescript files"
+	@echo "make build			- Compile files"
 	@echo "make clean			- Remove generated files"
 	@echo "make help			- Show this help message"
 
@@ -25,16 +26,15 @@ stop-server:
 	@echo "server stopped"
 
 build:
+	@npm install
+	-@mkdir -p ./$(DIST)
 	@npx tsc
+	@npx tailwindcss -i ./$(SRC)/input.css -o ./$(DIST)/output.css
 
 
-clean-js:
-	@find $(DIST) -type f -name "*.js" -delete
-
-clean-logs:
+clean: 
+	@rm -rf $(DIST)
 	@rm -f $(SERVER_LOG)
-
-clean: clean-js clean-logs
 
 
 re: clean build
