@@ -1,4 +1,5 @@
-import { BOARD_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_MOVE_SPEED, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS } from '../settings.js';
+import { BALL_RADIUS, BOARD_HEIGHT, LEFT_GOAL_X, PADDLE_HEIGHT, PADDLE_MOVE_SPEED, PADDLE_WIDTH, RIGHT_GOAL_X } from '../settings.js';
+import { PongGameEngine } from './PongGameEngine.js';
 
 export abstract class Paddle {
 	protected x: number = 0;
@@ -27,7 +28,7 @@ export abstract class Paddle {
 		this.ctx.fillRect(this.x, this.y, PADDLE_WIDTH, PADDLE_HEIGHT);
 	}
 
-	abstract move(...args: any[]) : void
+	abstract move(game: PongGameEngine ) : void
 
 	moveUp() {
 		if (this.y - PADDLE_MOVE_SPEED >= 0) {
@@ -57,10 +58,10 @@ export class Player extends Paddle {
 			super(ctx, color, side);
 		}
 
-	move(keys: Set<string>) {
-		if (keys.has(this.upKey)) {
+	move(game: PongGameEngine ) {
+		if (game.keys.has(this.upKey)) {
 			this.moveUp();
-		} else if (keys.has(this.downKey)) {
+		} else if (game.keys.has(this.downKey)) {
 			this.moveDown();
 		}
 	}
@@ -83,9 +84,13 @@ export class AI extends Paddle {
 		super.resetPosition();
 	}
 
-
-	private calculateProjectedY(ballCenterX: number, ballCenterY: number, ballSpeedX: number, ballSpeedY: number) {
+	private calculateProjectedY(game: PongGameEngine ) {
+		let ballCenterX = game.ball.centerX;
+		let ballCenterY = game.ball.centerY;
+		let ballSpeedX = game.ball.speedX;
+		let ballSpeedY = game.ball.speedY;
 		let projectedX = 0;
+	
 		if ((ballSpeedX > 0 && this.side === 'right') || (ballSpeedX < 0 && this.side === 'left')) {
 			// ball is going towards the paddle
 			projectedX = (ballSpeedX > 0) ? RIGHT_GOAL_X : LEFT_GOAL_X;
@@ -110,10 +115,11 @@ export class AI extends Paddle {
 		return rawProjectedY;
 	}
 	
-	move(ballCenterX: number, ballCenterY: number, ballSpeedX: number, ballSpeedY: number) {		
+	// move(ballCenterX: number, ballCenterY: number, ballSpeedX: number, ballSpeedY: number) {	
+	move(game: PongGameEngine ) {	
 		let currentTime = Date.now();
 		if (this.lastUpdateTime === 0 || currentTime >= this.lastUpdateTime + this.refreshTimeMs) {
-			this.projectedY = this.calculateProjectedY(ballCenterX, ballCenterY, ballSpeedX, ballSpeedY);
+			this.projectedY = this.calculateProjectedY(game);
 			this.lastUpdateTime = currentTime;
 		}
 
