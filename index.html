@@ -16,8 +16,12 @@
     }
   </style>
 </head>
+<<<<<<< HEAD
 <body
   class="text-black font-[arial] text-[18px] bg-[yellow] bg-[length:150px_150px] bg-[position:0_0] bg-repeat animate-[slide_2s_linear_infinite] [background-image:url('/snakepong.png')]">
+=======
+<body class="text-black font-[arial] text-[18px] bg-[yellow] bg-[length:150px_150px] bg-[position:0_0] bg-repeat animate-[slide_2s_linear_infinite] [background-image:url('./img/snakepong.png')]">
+>>>>>>> 0ca5c27137496d6c38caf7c5ea47b497cc6afccf
 
   <!-- Launch Modal -->
   <div
@@ -34,6 +38,17 @@
         Pong 🏓
       </button>
     </div>
+
+    <label for="gameMode">Choose A Game Mode</label>
+    <select name="gameMode" id="gameMode">
+      <option value="tournament">4-Player Tournament</option>
+      <option value="ai">Player vs AI</option>
+      <option value="2v2">2-Players vs 2-Players</option>
+    </select>
+    <input id="player1" type="text" placeholder="Player 1" maxlength="100" required />
+    <input id="player2" type="text" placeholder="Player 2" maxlength="100" required /> 
+    <input id="player3" type="text" placeholder="Player 3" maxlength="100" required />
+    <input id="player4" type="text" placeholder="Player 4" maxlength="100" required />
   </div>
 
   <div class="h-[100vh]"></div>
@@ -42,9 +57,9 @@
   <!-- cards -->
   <div class="flex flex-wrap justify-center gap-8 mt-29">
     <!-- Card 1 -->
-    <div
-      class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="wes.jpeg" alt="Dev 1" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="./img/wes.jpeg" alt="Dev 1" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Wesley Koh</h3>
       <h4 class="text-xl font-bold mb-2">backend developer</h3>
 
@@ -60,9 +75,10 @@
     </div>
 
     <!-- Card 2 -->
-    <div
-      class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="jack.jpeg" alt="Dev 2" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+ 
+
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="./img/jack.jpeg" alt="Dev 2" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Jack Sng</h3>
       <h4 class="text-xl font-bold mb-2">backend developer</h3>
 
@@ -78,9 +94,9 @@
     </div>
 
     <!-- Card 3 -->
-    <div
-      class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="daryl.jpeg" alt="Dev 3" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="./img/daryl.jpeg" alt="Dev 3" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Daryl Ong</h3>
       <h4 class="text-xl font-bold mb-2">Game developer</h3>
 
@@ -96,9 +112,9 @@
     </div>
 
     <!-- Card 4 -->
-    <div
-      class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
-      <img src="eugene.jpeg" alt="Dev 4" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
+
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+      <img src="./img/eugene.jpeg" alt="Dev 4" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Eugene</h3>
       <a href="https://github.com/dev4" target="_blank" class="inline-block text-blue-600 hover:underline">
         🐙 GitHub
@@ -114,6 +130,10 @@
       class="relative bg-white mx-auto my-auto p-5 b w-[90%] max-w-[900px] text-center top-1/2 transform -translate-y-1/2 border-[10px] border-black rounded-xl shadow-[10px_10px_0_rgba(0,0,0,0.2)]">
       <button id="closePongModal"
         class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600">&times;</button>
+      <h2 class="text-xl mb-4">PONG GAME 🏓</h2>
+      <canvas id="pongCanvas" class="w-full h-full"></canvas>
+    </div>
+  </div>
 
       <h2 class="text-xl mb-8">PONG GAME 🏓</h2>
 
@@ -450,6 +470,7 @@
 
 
 
+<<<<<<< HEAD
   <script src="./dist/modal.js"></script>
   <!-- <script>
     // single player script
@@ -763,5 +784,8 @@
   });
   </script> -->
   <script src="./dist/stepper.js"></script>
+=======
+  <script type="module" src="./dist/modal.js"></script>
+>>>>>>> 0ca5c27137496d6c38caf7c5ea47b497cc6afccf
 </body>
 </html>
