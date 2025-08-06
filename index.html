@@ -1,171 +1,3 @@
-<!--
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>🔥 ft_transcendance</title>
-    <link href="./dist/output.css" rel="stylesheet" />
-
-		<style>
-			html {
-  font-size: 18px;
-}
-body {
-  color:black;
-  font-family: "Questrial", sans-serif;
-  background-color: #ffec63;
-  background-image: linear-gradient(
-      45deg,
-      #ffd966 25%,
-      transparent 25%,
-      transparent 75%,
-      #ffd966 75%,
-      #ffd966
-    ),
-    linear-gradient(
-      -45deg,
-      #ffd966 25%,
-      transparent 25%,
-      transparent 75%,
-      #ffd966 75%,
-      #ffd966
-    );
-  background-size: 60px 60px;
-  background-position: 0 0;
-  animation: slide 4s infinite linear;
-}
-
-@keyframes slide {
-  from {
-    background-position: 0 0;
-  }
-
-  to {
-    background-position: -120px 60px;
-  }
-}
-
-.modal {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: auto;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.6rem 3rem;
-  border: 3px solid black;
-  border-radius: 5px;
-  background: white;
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
-}
-.message {
-  font-size:1.1rem;
-  margin-bottom: 1.6rem;
-  margin-top: 0;
-}
-.btn {
-  color:inherit;
-    font-family:inherit;
-  font-size: inherit;
-  background: white;
-  padding: 0.3rem 3.4rem;
-  border: 3px solid black;
-  margin-right: 2.6rem;
-  box-shadow: 0 0 0 black;
-  transition: all 0.2s;
-}
-
-.btn:last-child {
-  margin: 0;
-}
-
-.btn:hover {
-  box-shadow: 0.4rem 0.4rem 0 black;
-  transform: translate(-0.4rem, -0.4rem);
-}
-
-.btn:active {
-  box-shadow: 0 0 0 black;
-  transform: translate(0, 0);
-}
-
-.options {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.game-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    overflow-y: auto;
-
-}
-
-.game-modal-content {
-    position: relative;
-    background-color: white;
-    margin: 5% auto;
-    padding: 20px;
-    border: 3px solid black;
-    border-radius: 5px;
-    width: 90%;
-    max-width: 900px;
-    text-align: center;
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.close-btn:hover {
-    color: red;
-}
-	</style>
-	</head>
-	<body>
-		<div class="modal">
-			<p class="message"> 🔥 ft_transcendance</p>
-			<div class="options">
-				<button class="btn" id="snakeButton">Snake 🐍</button>
-				<button class="btn" id="pongButton">Pong 🏓</button>
-			</div>
-		</div>
-
-		<div id="pongModal" class="game-modal">
-			<div class="game-modal-content">
-				<button id="closePongModal" class="close-btn">&times;</button>
-				<h2>PONG GAME 🏓</h2>
-				<canvas id="gameCanvas" width="800" height="600"></canvas>
-			</div>
-		</div>
-
-		<div id="snakeModal" class="game-modal">
-			<div class="game-modal-content">
-				<button id="closeSnakeModal" class="close-btn">&times;</button>
-				<h2>SNAKE GAME 🐍</h2>
-				<canvas id="snakeCanvas" width="400" height="400"></canvas>
-			</div>
-		</div>
-
-	<script src="./dist/modal.js"></script>
-
-	</body>
-</html>
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -187,16 +19,17 @@ body {
 <body class="text-black font-[arial] text-[18px] bg-[yellow] bg-[length:150px_150px] bg-[position:0_0] bg-repeat animate-[slide_2s_linear_infinite] [background-image:url('./img/snakepong.png')]">
 
   <!-- Launch Modal -->
-  <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 inline-flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-20 py-6 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)]">
+  <div
+    class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 inline-flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-20 py-6 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)]">
 
     <p class="text-lg mb-6 mt-0">🔥 Choose your game</p>
     <div class="flex gap-6 justify-between w-full">
       <button id="snakeButton"
-        class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0">
+        class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
         Snake 🐍
       </button>
       <button id="pongButton"
-        class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0">
+        class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
         Pong 🏓
       </button>
     </div>
@@ -283,41 +116,658 @@ body {
 
   <!-- Pong Modal -->
   <div id="pongModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
-
-    <div class="relative bg-white mx-auto my-auto p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center top-1/2 transform -translate-y-1/2">
+    <div
+      class="relative bg-white mx-auto my-auto p-5 b w-[90%] max-w-[900px] text-center top-1/2 transform -translate-y-1/2 border-[10px] border-black rounded-xl shadow-[10px_10px_0_rgba(0,0,0,0.2)]">
       <button id="closePongModal"
         class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600">&times;</button>
-      <h2 class="text-xl mb-4">PONG GAME 🏓</h2>
-      <canvas id="pongCanvas" class="w-full h-full"></canvas>
+
+      <h2 class="text-xl mb-8">PONG GAME 🏓</h2>
+
+      <!-- Game Mode Selection Buttons -->
+      <div id="gameModeSelection" class="flex justify-center items-center gap-4 flex-wrap ">
+        <button id="tournamentBtn"
+          class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
+          🏟 Tournament
+        </button>
+
+        <button id="singlePlayerBtn"
+          class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
+          🎮 Single Player
+        </button>
+
+        <button id="twoVsTwoBtn"
+          class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
+          🕹 2 vs 2
+        </button>
+      </div>
+
+      <!-- Single player stepper -->
+      <div id="singlePlayerStepper" class="hidden">
+        <button id="backToModes"
+          class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">←
+          Back
+        </button>
+        <div class="relative m-0 flex w-full justify-between overflow-hidden p-0 mb-8">
+          <!-- Step 1 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center ps-6 after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+              <span id="step1Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-yellow-500 text-black font-bold border-black border-[5px]">
+                1
+              </span>
+              <span class="font-semibold">Register</span>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center pe-6 before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-['']">
+              <span id="step2Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                2
+              </span>
+              <span class="font-semibold text-gray-400">Start Game</span>
+            </div>
+          </div>
+        </div>
+        <!-- single player Step 1 Content -->
+        <div id="step1Content" class="w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Enter Your Name</h3>
+          <input id="playerNameInput" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Enter your name" maxlength="20">
+          <br>
+          <button id="registerBtn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white active:bg-yellow-500"
+            disabled>
+            Register Player
+          </button>
+        </div>
+        <!-- single player Step 2 Content (Hidden Initially) -->
+        <div id="step2Content" class="hidden w-full p-4">
+          <h1 class="text-5xl font-bold mb-4">Welcome, <span id="welcomePlayerName"
+              class="font-bold text-blue-600"></span>!</h1>
+          <h3 class="text-lg font-bold mb-4">Are you ready?</h3>
+          <button id="startGameBtn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
+            🎮 Start
+          </button>
+        </div>
+      </div>
+      <!-- 2 v 2 stepper -->
+      <div id="twoVersusTwoStepper" class="hidden">
+        <button id="backToModesFrom2v2"
+          class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">←
+          Back
+        </button>
+        <div class="relative m-0 flex w-full justify-between overflow-hidden p-0 mb-8">
+          <!-- 2v2 Step 1 register team A -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center ps-6 after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+              <span id="team1Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-yellow-500 text-black font-bold border-black border-[5px]">
+                1
+              </span>
+              <span class="font-semibold">Register Team A</span>
+            </div>
+          </div>
+
+          <!-- 2v2 Step 2 register team B-->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center pe-6 before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-['']">
+              <span id="team2Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                2
+              </span>
+              <span class="font-semibold text-gray-400">Register Team B</span>
+            </div>
+          </div>
+          <!-- Step 3 -->
+
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center pe-6 before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-['']">
+              <span id="start2V2Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                3
+              </span>
+              <span class="font-semibold text-gray-400">Start Game</span>
+            </div>
+          </div>
+        </div>
+        <!-- 2v2 Step 1 Content -->
+        <div id="teamAcontent" class="w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Register Team A</h3>
+          <input id="player1Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Player 1 name" maxlength="20">
+          <br>
+          <input id="player2Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Player 2 name" maxlength="20">
+          <br>
+          <button id="registerTeamAbtn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white"
+            disabled>
+            Register Team A
+          </button>
+        </div>
+        <!-- 2v2 Step 2 Content -->
+        <div id="teamBcontent" class="w-full p-4 hidden">
+          <h3 class="text-lg font-bold mb-4">Register Team B</h3>
+          <input id="player3Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Player 3 name" maxlength="20">
+          <br>
+          <input id="player4Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Player 4 name" maxlength="20">
+          <br>
+          <button id="registerTeamBbtn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white"
+            disabled>
+            Register Team B
+          </button>
+        </div>
+        <!-- 2v2 Step 3 Content (Hidden Initially) -->
+        <div id="start2V2content" class=" w-full p-4 hidden">
+          <h1 class="text-3xl font-bold mb-4">Teams Ready!</h1>
+          <div class="flex justify-center gap-8 mb-6">
+            <div class="text-center">
+              <h4 class="font-bold text-blue-600 mb-2">Team A</h4>
+              <p><span id="teamAPlayer1"></span></p>
+              <p><span id="teamAPlayer2"></span></p>
+            </div>
+            <div class="text-center">
+              <h4 class="font-bold text-red-600 mb-2">Team B</h4>
+              <p><span id="teamBPlayer1"></span></p>
+              <p><span id="teamBPlayer2"></span></p>
+            </div>
+          </div>
+          <button id="start2v2GameBtn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
+            🎮 Start
+          </button>
+        </div>
+      </div>
+      <!-- tournament stepper -->
+      <div id="tournamentStepper" class="hidden">
+        <button id="backToModesFromTournament"
+          class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">←
+          Back
+        </button>
+        <div class="relative m-0 flex w-full justify-between overflow-hidden p-0 mb-8">
+          <!-- Step 1 register player 1 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center ps-6 after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+              <span id="tournament1Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-yellow-500 text-black font-bold border-black border-[5px]">
+                1
+              </span>
+              <span class="font-semibold">Player 1</span>
+            </div>
+          </div>
+
+          <!-- Step 2 register player 2 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-[''] after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+
+              <span id="tournament2Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                2
+              </span>
+              <span class="font-semibold text-gray-400">Player 2</span>
+            </div>
+          </div>
+
+          <!-- Step 3 register player 3 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-[''] after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+
+              <span id="tournament3Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                3
+              </span>
+              <span class="font-semibold text-gray-400">Player 3</span>
+            </div>
+          </div>
+          <!-- Step 4 register player 4 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-[''] after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+
+              <span id="tournament4Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                4
+              </span>
+              <span class="font-semibold text-gray-400">Player 4</span>
+            </div>
+          </div>
+          <!-- Step 5 -->
+
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center pe-6 before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-['']">
+              <span id="startTournamentIcon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                5
+              </span>
+              <span class="font-semibold text-gray-400">Start Game</span>
+            </div>
+          </div>
+        </div>
+        <!-- tournament Step 1 Content: Player 1 Registration -->
+        <div id="tournamentStep1Content" class="w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Register Player 1</h3>
+          <input id="tournamentPlayer1Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Enter your name" maxlength="20">
+          <br>
+          <button id="registerTournamentPlayer1Btn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white active:bg-yellow-500"
+            disabled>
+            Register Player 1
+          </button>
+        </div>
+        <!-- tournament Step 2 Content: Player 2 Registration -->
+        <div id="tournamentStep2Content" class="hidden w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Register Player 2</h3>
+          <input id="tournamentPlayer2Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Enter your name" maxlength="20">
+          <br>
+          <button id="registerTournamentPlayer2Btn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white active:bg-yellow-500"
+            disabled>
+            Register Player 2
+          </button>
+        </div>
+        <!-- tournament Step 3 Content: Player 3 Registration -->
+        <div id="tournamentStep3Content" class="hidden w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Register Player 3</h3>
+          <input id="tournamentPlayer3Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Enter your name" maxlength="20">
+          <br>
+          <button id="registerTournamentPlayer3Btn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white active:bg-yellow-500"
+            disabled>
+            Register Player 3
+          </button>
+        </div>
+        <!-- tournament Step 4 Content: Player 4 Registration -->
+        <div id="tournamentStep4Content" class="hidden w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Register Player 4</h3>
+          <input id="tournamentPlayer4Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Enter your name" maxlength="20">
+          <br>
+          <button id="registerTournamentPlayer4Btn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white active:bg-yellow-500"
+            disabled>
+            Register Player 4
+          </button>
+        </div>
+        <!-- tournament Step 5 Content: Player 5 Registration -->
+        <!-- Step 5 Content: Tournament Ready -->
+        <div id="tournamentStep5Content" class="hidden w-full p-4">
+          <h1 class="text-3xl font-bold mb-4">Tournament Ready!</h1>
+          <div class="grid grid-cols-2 gap-4 mb-6 max-w-md mx-auto">
+            <div class="text-center p-3 bg-blue-100 rounded">
+              <h4 class="font-bold text-blue-600 mb-1">Player 1</h4>
+              <p><span id="tournamentShowPlayer1"></span></p>
+            </div>
+            <div class="text-center p-3 bg-green-100 rounded">
+              <h4 class="font-bold text-green-600 mb-1">Player 2</h4>
+              <p><span id="tournamentShowPlayer2"></span></p>
+            </div>
+            <div class="text-center p-3 bg-red-100 rounded">
+              <h4 class="font-bold text-red-600 mb-1">Player 3</h4>
+              <p><span id="tournamentShowPlayer3"></span></p>
+            </div>
+            <div class="text-center p-3 bg-purple-100 rounded">
+              <h4 class="font-bold text-purple-600 mb-1">Player 4</h4>
+              <p><span id="tournamentShowPlayer4"></span></p>
+            </div>
+          </div>
+          <button id="startTournamentGameBtn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
+            🏟 Start Tournament
+          </button>
+        </div>
+      </div>
+      <!-- Canvas (hidden initially, can be shown when a game mode is selected) -->
+      <canvas id="gameCanvas" class="w-full h-full mt-6 hidden"></canvas>
     </div>
   </div>
 
-
-
   <!-- Snake Modal -->
-  <!-- <div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
-    <div class="relative bg-white mx-auto my-auto p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center top-1/2 transform -translate-y-1/2">
-      <button id="closeSnakeModal"
-        class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600">&times;</button>
-      <h2 class="text-xl mb-4">SNAKE GAME 🐍</h2>
-      <canvas id="snakeCanvas" width="800" height="600" class="mx-auto"></canvas>
-    </div>
-  </div> -->
-
-<div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
-  <div class="flex items-center justify-center min-h-full p-4">
-    <div class="relative bg-white p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center max-h-[90vh] overflow-auto">
-      <button id="closeSnakeModal"
-        class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600 z-10">&times;</button>
-      <h2 class="text-xl mb-4">SNAKE GAME 🐍</h2>
-      <div class="overflow-hidden">
-        <canvas id="snakeCanvas" width="600" height="600" class="w-full h-auto max-w-full mx-auto"></canvas>
+  <div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
+    <div class="flex items-center justify-center min-h-full p-4">
+      <div
+        class="relative bg-white p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center max-h-[90vh] overflow-auto">
+        <button id="closeSnakeModal"
+          class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600 z-10">&times;</button>
+        <h2 class="text-xl mb-4">SNAKE GAME 🐍</h2>
+        <div class="overflow-hidden">
+          <canvas id="snakeCanvas" width="600" height="600" class="w-full h-auto max-w-full mx-auto"></canvas>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-  <script type="module" src="./dist/modal.js"></script>
+
+  <script src="./dist/modal.js"></script>
+  <!-- <script>
+    // single player script
+    const playerNameInput = document.getElementById('playerNameInput');
+    const registerBtn = document.getElementById('registerBtn');
+    const step1Content = document.getElementById('step1Content');
+    const step2Content = document.getElementById('step2Content');
+    const step1Icon = document.getElementById('step1Icon');
+    const step2Icon = document.getElementById('step2Icon');
+    const welcomePlayerName = document.getElementById('welcomePlayerName');
+    const startGameBtn = document.getElementById('startGameBtn');
+    const gameCanvas = document.getElementById('gameCanvas');
+
+    //activate single player modal
+    document.getElementById('singlePlayerBtn').addEventListener('click', function () {
+      console.log('single player clicked!');
+      document.getElementById('gameModeSelection').classList.add('hidden');
+      document.getElementById('singlePlayerStepper').classList.remove('hidden');
+    });
+
+    //back button for single player modal
+    document.getElementById('backToModes').addEventListener('click', function () {
+      console.log('back clicked!');
+      document.getElementById('singlePlayerStepper').classList.add('hidden');
+      document.getElementById('gameModeSelection').classList.remove('hidden');
+    });
+
+
+    playerNameInput.addEventListener('input', function () {
+      const name = this.value.trim();
+      registerBtn.disabled = name.length === 0;
+    });
+
+    registerBtn.addEventListener('click', function () {
+      const playerName = playerNameInput.value.trim();
+      console.log('Registering player: ', playerName);
+      if (playerName) {
+        step1Icon.classList.remove('bg-yellow-500', 'text-black');
+        step1Icon.classList.add('bg-green-500', 'text-white');
+        step1Icon.innerHTML = '✓';
+
+        step2Icon.classList.remove('bg-gray-300', 'text-gray-600');
+        step2Icon.classList.add('bg-yellow-500', 'text-black');
+        step2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+
+        step1Content.classList.add('hidden');
+        step2Content.classList.remove('hidden');
+
+        welcomePlayerName.textContent = playerName;
+      }
+    });
+
+    startGameBtn.addEventListener('click', function () {
+      console.log('starting game for: ', welcomePlayerName.textContent);
+      document.getElementById('singlePlayerStepper').classList.add('hidden');
+      gameCanvas.classList.remove('hidden');
+    });
+    // 2v2 script
+    const player1Input = document.getElementById('player1Input');
+    const player2Input = document.getElementById('player2Input');
+    const player3Input = document.getElementById('player3Input');
+    const player4Input = document.getElementById('player4Input');
+    const registerTeamAbtn = document.getElementById('registerTeamAbtn');
+    const registerTeamBbtn = document.getElementById('registerTeamBbtn');
+    const teamAcontent = document.getElementById('teamAcontent');
+    const teamBcontent = document.getElementById('teamBcontent');
+    const start2V2content = document.getElementById('start2V2content');
+    const team1Icon = document.getElementById('team1Icon');
+    const team2Icon = document.getElementById('team2Icon');
+    const start2V2Icon = document.getElementById('start2V2Icon');
+    const teamAPlayer1 = document.getElementById('teamAPlayer1');
+    const teamAPlayer2 = document.getElementById('teamAPlayer2');
+    const teamBPlayer1 = document.getElementById('teamBPlayer1');
+    const teamBPlayer2 = document.getElementById('teamBPlayer2');
+    const start2v2GameBtn = document.getElementById('start2v2GameBtn');
+
+    //activate 2v2 modal
+    document.getElementById('twoVsTwoBtn').addEventListener('click', function () {
+      console.log('2 v2 clicked!');
+      document.getElementById('gameModeSelection').classList.add('hidden');
+      document.getElementById('twoVersusTwoStepper').classList.remove('hidden');
+    })
+    //back button for 2v2 modal
+    document.getElementById('backToModesFrom2v2').addEventListener('click', function () {
+      console.log('backToModesFrom2v2 clicked');
+      document.getElementById('twoVersusTwoStepper').classList.add('hidden');
+      document.getElementById('gameModeSelection').classList.remove('hidden');
+    })
+
+    //validate team A
+    function validTeamA() {
+      const p1 = player1Input.value.trim();
+      const p2 = player2Input.value.trim();
+
+      const isValid = p1.length > 0 && p2.length > 0 && p1 !== p2;
+      registerTeamAbtn.disabled = !isValid;
+    }
+    //validate team B and everybody else
+    function validTeamB() {
+      const p1 = player1Input.value.trim();
+      const p2 = player2Input.value.trim();
+      const p3 = player3Input.value.trim();
+      const p4 = player4Input.value.trim();
+
+      const isValid = p3.length > 0 && p4.length > 0 && p3 !== p4 && p3 !== p1 && p3 !== p2 && p4 !== p1 && p4 !== p2;
+
+      registerTeamBbtn.disabled = !isValid;
+    }
+    // Listen to Team A input and Team B input changes
+    player1Input.addEventListener('input', validTeamA);
+    player2Input.addEventListener('input', validTeamA);
+    player3Input.addEventListener('input', validTeamB);
+    player4Input.addEventListener('input', validTeamB);
+
+    registerTeamAbtn.addEventListener('click', function () {
+      console.log('Team A registered:', player1Input.value, player2Input.value);
+      // Update step 1 to completed (green with checkmark)
+      team1Icon.classList.remove('bg-yellow-500', 'text-black');
+      team1Icon.classList.add('bg-green-500', 'text-white');
+      team1Icon.innerHTML = '✓';
+      // Update step 2 to active (yellow)
+      team2Icon.classList.remove('bg-gray-300', 'text-gray-600');
+      team2Icon.classList.add('bg-yellow-500', 'text-black');
+      team2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+
+      teamAcontent.classList.add('hidden');
+      teamBcontent.classList.remove('hidden');
+    });
+
+    registerTeamBbtn.addEventListener('click', function () {
+      console.log('Team B registered:', player3Input.value, player4Input.value);
+      team2Icon.classList.remove('bg-yellow-500', 'text-black');
+      team2Icon.classList.add('bg-green-500', 'text-white');
+      team2Icon.innerHTML = '✓';
+
+      start2V2Icon.classList.remove('bg-gray-300', 'text-gray-600');
+      start2V2Icon.classList.add('bg-yellow-500', 'text-black');
+      start2V2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+
+      teamBcontent.classList.add('hidden');
+      start2V2content.classList.remove('hidden');
+
+      teamAPlayer1.textContent = player1Input.value;
+      teamAPlayer2.textContent = player2Input.value;
+      teamBPlayer1.textContent = player3Input.value;
+      teamBPlayer2.textContent = player4Input.value;
+    });
+    start2v2GameBtn.addEventListener('click', function () {
+      console.log('Starting 2v2 game!');
+      console.log('Team A:', teamAPlayer1.textContent, teamAPlayer2.textContent);
+      console.log('Team B:', teamBPlayer1.textContent, teamBPlayer2.textContent);
+
+      // Hide stepper, show canvas
+      document.getElementById('twoVersusTwoStepper').classList.add('hidden');
+      gameCanvas.classList.remove('hidden');
+    });
+    //tournament script
+    const tournamentPlayer1Input = document.getElementById('tournamentPlayer1Input');
+    const tournamentPlayer2Input = document.getElementById('tournamentPlayer2Input');
+    const tournamentPlayer3Input = document.getElementById('tournamentPlayer3Input');
+    const tournamentPlayer4Input = document.getElementById('tournamentPlayer4Input');
+    const registerTournamentPlayer1Btn = document.getElementById('registerTournamentPlayer1Btn');
+    const registerTournamentPlayer2Btn = document.getElementById('registerTournamentPlayer2Btn');
+    const registerTournamentPlayer3Btn = document.getElementById('registerTournamentPlayer3Btn');
+    const registerTournamentPlayer4Btn = document.getElementById('registerTournamentPlayer4Btn');
+    const tournamentStep1Input = document.getElementById('tournamentStep1Input');
+    const tournamentStep2Input = document.getElementById('tournamentStep2Input');
+    const tournamentStep3Input = document.getElementById('tournamentStep3Input');
+    const tournamentStep4Input = document.getElementById('tournamentStep4Input');
+
+    const tournamentStep1Content = document.getElementById('tournamentStep1Content');
+    const tournamentStep2Content = document.getElementById('tournamentStep2Content');;
+    const tournamentStep3Content = document.getElementById('tournamentStep3Content');;
+    const tournamentStep4Content = document.getElementById('tournamentStep4Content');;
+    const tournamentStep5Content = document.getElementById('tournamentStep5Content');
+    
+    const tournament1Icon = document.getElementById('tournament1Icon');
+    const tournament2Icon = document.getElementById('tournament2Icon');
+    const tournament3Icon = document.getElementById('tournament3Icon');
+    const tournament4Icon = document.getElementById('tournament4Icon');
+    const startTournamentIcon = document.getElementById('startTournamentIcon');
+    
+    const tournamentShowPlayer1 = document.getElementById('tournamentShowPlayer1');
+    const tournamentShowPlayer2 = document.getElementById('tournamentShowPlayer2');
+    const tournamentShowPlayer3 = document.getElementById('tournamentShowPlayer3');
+    const tournamentShowPlayer4 = document.getElementById('tournamentShowPlayer4');
+    const startTournamentGameBtn = document.getElementById('startTournamentGameBtn');
+
+    document.getElementById('backToModesFromTournament').addEventListener('click', function(){
+      console.log('Back from tournanert clicked');
+      document.getElementById('gameModeSelection').classList.remove('hidden');
+      document.getElementById('tournamentStepper').classList.add('hidden');
+    });
+
+  document.getElementById('tournamentBtn').addEventListener('click', function(){
+    console.log('tournament btn clicked');
+    document.getElementById('gameModeSelection').classList.add('hidden');
+    document.getElementById('tournamentStepper').classList.remove('hidden');
+  });
+
+  function validateTournamentPlayer1(){
+    const p1 = tournamentPlayer1Input.value.trim();
+    const isValid = p1.length > 0;
+    registerTournamentPlayer1Btn.disabled = !isValid;
+  }
+
+  function validateTournamentPlayer2(){
+    const p1 = tournamentPlayer1Input.value.trim();
+    const p2 = tournamentPlayer2Input.value.trim();
+    const isValid = p2.length > 0 && p1 !== p2;
+    registerTournamentPlayer2Btn.disabled = !isValid;
+  }
+
+  function validateTournamentPlayer3(){
+    const p1 = tournamentPlayer1Input.value.trim();
+    const p2 = tournamentPlayer2Input.value.trim();
+    const p3 = tournamentPlayer3Input.value.trim();
+
+    const isValid = p3.length > 0 && p3 !== p2 && p3 !== p1;
+    registerTournamentPlayer3Btn.disabled = !isValid;
+  }
+  
+  function validateTournamentPlayer4(){
+    const p1 = tournamentPlayer1Input.value.trim();
+    const p2 = tournamentPlayer2Input.value.trim();
+    const p3 = tournamentPlayer3Input.value.trim();
+    const p4 = tournamentPlayer4Input.value.trim();
+
+    const isValid = p4.length > 0 && p4 !== p3 && p4 !== p2 && p4 !== p1;
+    registerTournamentPlayer4Btn.disabled = !isValid;
+  }
+  
+  tournamentPlayer1Input.addEventListener('input', validateTournamentPlayer1);
+  tournamentPlayer2Input.addEventListener('input', validateTournamentPlayer2);
+  tournamentPlayer3Input.addEventListener('input', validateTournamentPlayer3);
+  tournamentPlayer4Input.addEventListener('input', validateTournamentPlayer4);
+
+
+  registerTournamentPlayer1Btn.addEventListener('click', function(){
+    console.log('Player 1 registered:', tournamentPlayer1Input.value);
+    tournamentStep1Content.classList.add('hidden');
+    tournamentStep2Content.classList.remove('hidden');
+
+    tournament1Icon.classList.remove('bg-yellow-500', 'text-black');
+    tournament1Icon.classList.add('bg-green-500', 'text-white');
+    tournament1Icon.innerHTML = '✓';
+
+    tournament2Icon.classList.remove('bg-gray-300', 'text-gray-600');
+    tournament2Icon.classList.add('bg-yellow-500', 'text-black');
+    tournament2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+  });
+
+    registerTournamentPlayer2Btn.addEventListener('click', function(){
+    console.log('Player 2 registered:', tournamentPlayer2Input.value);
+    tournamentStep2Content.classList.add('hidden');
+    tournamentStep3Content.classList.remove('hidden');
+
+    tournament2Icon.classList.remove('bg-yellow-500', 'text-black');
+    tournament2Icon.classList.add('bg-green-500', 'text-white');
+    tournament2Icon.innerHTML = '✓';
+
+    tournament3Icon.classList.remove('bg-gray-300', 'text-gray-600');
+    tournament3Icon.classList.add('bg-yellow-500', 'text-black');
+    tournament3Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+  });
+
+    registerTournamentPlayer3Btn.addEventListener('click', function(){
+    console.log('Player 3 registered:', tournamentPlayer3Input.value);
+    tournamentStep3Content.classList.add('hidden');
+    tournamentStep4Content.classList.remove('hidden');
+
+    tournament3Icon.classList.remove('bg-yellow-500', 'text-black');
+    tournament3Icon.classList.add('bg-green-500', 'text-white');
+    tournament3Icon.innerHTML = '✓';
+
+    tournament4Icon.classList.remove('bg-gray-300', 'text-gray-600');
+    tournament4Icon.classList.add('bg-yellow-500', 'text-black');
+    tournament4Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+  });
+
+    registerTournamentPlayer4Btn.addEventListener('click', function(){
+    console.log('Player 4 registered:', tournamentPlayer4Input.value);
+    tournamentStep4Content.classList.add('hidden');
+    tournamentStep5Content.classList.remove('hidden');
+
+    tournament4Icon.classList.remove('bg-yellow-500', 'text-black');
+    tournament4Icon.classList.add('bg-green-500', 'text-white');
+    tournament4Icon.innerHTML = '✓';
+
+    startTournamentIcon.classList.remove('bg-gray-300', 'text-gray-600');
+    startTournamentIcon.classList.add('bg-yellow-500', 'text-black');
+    startTournamentIcon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
+
+    tournamentShowPlayer1.textContent = tournamentPlayer1Input.value;
+    tournamentShowPlayer2.textContent = tournamentPlayer2Input.value;
+    tournamentShowPlayer3.textContent = tournamentPlayer3Input.value;
+    tournamentShowPlayer4.textContent = tournamentPlayer4Input.value;
+  });
+
+    startTournamentGameBtn.addEventListener('click', function(){
+    console.log('Starting tournament!');
+    console.log('Players:', 
+      tournamentShowPlayer1.textContent, 
+      tournamentShowPlayer2.textContent, 
+      tournamentShowPlayer3.textContent, 
+      tournamentShowPlayer4.textContent
+    );
+    
+    document.getElementById('tournamentStepper').classList.add('hidden');
+    gameCanvas.classList.remove('hidden');
+  });
+  </script> -->
+  <script src="./dist/stepper.js"></script>
 </body>
 </html>
