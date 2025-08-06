@@ -1,0 +1,46 @@
+node:internal/modules/cjs/loader:1228
+  throw err;
+  ^
+
+Error: Cannot find module 'function-bind'
+Require stack:
+- /home/daryloye/42_projects/42_transcendence/node_modules/call-bind-apply-helpers/index.js
+- /home/daryloye/42_projects/42_transcendence/node_modules/dunder-proto/get.js
+- /home/daryloye/42_projects/42_transcendence/node_modules/get-proto/index.js
+- /home/daryloye/42_projects/42_transcendence/node_modules/get-intrinsic/index.js
+- /home/daryloye/42_projects/42_transcendence/node_modules/side-channel-map/index.js
+- /home/daryloye/42_projects/42_transcendence/node_modules/side-channel/index.js
+- /home/daryloye/42_projects/42_transcendence/node_modules/qs/lib/stringify.js
+- /home/daryloye/42_projects/42_transcendence/node_modules/qs/lib/index.js
+- /home/daryloye/42_projects/42_transcendence/node_modules/union/lib/http-stream.js
+- /home/daryloye/42_projects/42_transcendence/node_modules/union/lib/index.js
+- /home/daryloye/42_projects/42_transcendence/node_modules/http-server/lib/http-server.js
+- /home/daryloye/42_projects/42_transcendence/node_modules/http-server/bin/http-server
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Module.require (node:internal/modules/cjs/loader:1311:12)
+    at require (node:internal/modules/helpers:136:16)
+    at Object.<anonymous> (/home/daryloye/42_projects/42_transcendence/node_modules/call-bind-apply-helpers/index.js:3:12)
+    at Module._compile (node:internal/modules/cjs/loader:1554:14)
+    at Object..js (node:internal/modules/cjs/loader:1706:10)
+    at Module.load (node:internal/modules/cjs/loader:1289:32) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/daryloye/42_projects/42_transcendence/node_modules/call-bind-apply-helpers/index.js',
+    '/home/daryloye/42_projects/42_transcendence/node_modules/dunder-proto/get.js',
+    '/home/daryloye/42_projects/42_transcendence/node_modules/get-proto/index.js',
+    '/home/daryloye/42_projects/42_transcendence/node_modules/get-intrinsic/index.js',
+    '/home/daryloye/42_projects/42_transcendence/node_modules/side-channel-map/index.js',
+    '/home/daryloye/42_projects/42_transcendence/node_modules/side-channel/index.js',
+    '/home/daryloye/42_projects/42_transcendence/node_modules/qs/lib/stringify.js',
+    '/home/daryloye/42_projects/42_transcendence/node_modules/qs/lib/index.js',
+    '/home/daryloye/42_projects/42_transcendence/node_modules/union/lib/http-stream.js',
+    '/home/daryloye/42_projects/42_transcendence/node_modules/union/lib/index.js',
+    '/home/daryloye/42_projects/42_transcendence/node_modules/http-server/lib/http-server.js',
+    '/home/daryloye/42_projects/42_transcendence/node_modules/http-server/bin/http-server'
+  ]
+}
+
+Node.js v22.14.0
