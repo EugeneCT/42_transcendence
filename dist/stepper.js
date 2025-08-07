@@ -138,13 +138,20 @@ class TwoVsTwoManager {
             this.teamBPlayer1.textContent = this.player3Input.value;
             this.teamBPlayer2.textContent = this.player4Input.value;
         });
-        this.start2v2GameBtn.addEventListener("click", () => {
+        this.start2v2GameBtn.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
             console.log("Starting 2v2 game!");
             console.log("Team A:", this.teamAPlayer1.textContent, this.teamAPlayer2.textContent);
             console.log("Team B:", this.teamBPlayer1.textContent, this.teamBPlayer2.textContent);
             getElementById("twoVersusTwoStepper").classList.add("hidden");
             getElementById("gameCanvas").classList.remove("hidden");
-        });
+            const players = [
+                this.teamAPlayer1.textContent || "Player 1",
+                this.teamAPlayer2.textContent || "Player 2",
+                this.teamBPlayer1.textContent || "Player 3",
+                this.teamBPlayer2.textContent || "Player 4",
+            ];
+            yield selectGame('pong', '2v2', players);
+        }));
     }
     validateTeamA() {
         const p1 = this.player1Input.value.trim();
@@ -237,12 +244,19 @@ class TournamentManager {
         this.registerButtons.forEach((button, index) => {
             button.addEventListener("click", () => this.registerTournamentPlayer(index));
         });
-        this.startTournamentGameBtn.addEventListener("click", () => {
+        this.startTournamentGameBtn.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
             console.log("Starting tournament!");
             console.log("Players:", this.showPlayerElements[0].textContent, this.showPlayerElements[1].textContent, this.showPlayerElements[2].textContent, this.showPlayerElements[3].textContent);
             getElementById('tournamentStepper').classList.add('hidden');
             getElementById('gameCanvas').classList.remove('hidden');
-        });
+            const players = [
+                this.showPlayerElements[0].textContent || "Player 1",
+                this.showPlayerElements[1].textContent || "Player 2",
+                this.showPlayerElements[2].textContent || "Player 3",
+                this.showPlayerElements[3].textContent || "Player 4",
+            ];
+            yield selectGame('pong', 'tournament', players);
+        }));
     }
     validateTournamentPlayer(playerIndex) {
         const currentPlayerName = this.tournamentInputs[playerIndex].value.trim();
