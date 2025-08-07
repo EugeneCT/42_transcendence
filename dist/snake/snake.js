@@ -1,4 +1,4 @@
-import { TILE_SIZE, TILES_X, TILES_Y } from './settings.js';
+import { TILE_SIZE, TILES_X, TILES_Y } from '../settings.js';
 export class Snake {
     constructor(ctx, tileX, tileY, direction, upKey, downKey, leftKey, rightKey, color) {
         this.ctx = ctx;

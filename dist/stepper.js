@@ -60,7 +60,7 @@ class SinglePlayerManager {
         this.startGameBtn.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
             console.log("starting game for: ", this.welcomePlayerName.textContent);
             getElementById("singlePlayerStepper").classList.add("hidden");
-            // this.gameCanvas.classList.remove("hidden");
+            this.gameCanvas.classList.remove("hidden");
             const playerName = this.welcomePlayerName.textContent || "Player 1";
             yield selectGame('pong', 'ai', [playerName]);
         }));

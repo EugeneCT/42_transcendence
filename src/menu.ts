@@ -26,7 +26,8 @@ export async function selectGame(
 ) {
 	let winner;
 	if (game === 'pong') {
-		const ctx = getCtx('pongCanvas');
+		// const ctx = getCtx('pongCanvas');
+		const ctx = getCtx('gameCanvas');
 		switch (mode) {
 			case 'tournament':
 				winner = await runPongTournament(ctx, players);

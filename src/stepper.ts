@@ -99,7 +99,7 @@ class SinglePlayerManager {
     this.startGameBtn.addEventListener("click", async() => {
       console.log("starting game for: ", this.welcomePlayerName.textContent);
       getElementById<HTMLElement>("singlePlayerStepper").classList.add( "hidden");
-      // this.gameCanvas.classList.remove("hidden");
+      this.gameCanvas.classList.remove("hidden");
       const playerName = this.welcomePlayerName.textContent || "Player 1";
       await selectGame('pong', 'ai', [playerName]);
 

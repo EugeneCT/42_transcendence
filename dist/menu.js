@@ -29,7 +29,8 @@ export function selectGame(game, mode, players) {
     return __awaiter(this, void 0, void 0, function* () {
         let winner;
         if (game === 'pong') {
-            const ctx = getCtx('pongCanvas');
+            // const ctx = getCtx('pongCanvas');
+            const ctx = getCtx('gameCanvas');
             switch (mode) {
                 case 'tournament':
                     winner = yield runPongTournament(ctx, players);
