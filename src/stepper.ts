@@ -1,3 +1,5 @@
+import { selectGame } from "./menu.js";
+
 interface Player {
   name: string;
 }
@@ -94,12 +96,13 @@ class SinglePlayerManager {
         this.welcomePlayerName.textContent = playerName;
       }
     });
-    this.startGameBtn.addEventListener("click", () => {
+    this.startGameBtn.addEventListener("click", async() => {
       console.log("starting game for: ", this.welcomePlayerName.textContent);
-      getElementById<HTMLElement>("singlePlayerStepper").classList.add(
-        "hidden"
-      );
-      this.gameCanvas.classList.remove("hidden");
+      getElementById<HTMLElement>("singlePlayerStepper").classList.add( "hidden");
+      // this.gameCanvas.classList.remove("hidden");
+      const playerName = this.welcomePlayerName.textContent || "Player 1";
+      await selectGame('pong', 'ai', [playerName]);
+
     });
   }
   private updateStepToCompleted(icon: HTMLElement): void {
