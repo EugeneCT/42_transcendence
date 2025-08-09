@@ -1,3 +1,5 @@
+import { selectGame } from "./menu.js";
+
 interface Player {
   name: string;
 }
@@ -94,12 +96,13 @@ class SinglePlayerManager {
         this.welcomePlayerName.textContent = playerName;
       }
     });
-    this.startGameBtn.addEventListener("click", () => {
+    this.startGameBtn.addEventListener("click", async() => {
       console.log("starting game for: ", this.welcomePlayerName.textContent);
-      getElementById<HTMLElement>("singlePlayerStepper").classList.add(
-        "hidden"
-      );
+      getElementById<HTMLElement>("singlePlayerStepper").classList.add( "hidden");
       this.gameCanvas.classList.remove("hidden");
+      const playerName = this.welcomePlayerName.textContent || "Player 1";
+      await selectGame('pong', 'ai', [playerName]);
+
     });
   }
   private updateStepToCompleted(icon: HTMLElement): void {
@@ -230,7 +233,7 @@ class TwoVsTwoManager {
       this.teamBPlayer1.textContent = this.player3Input.value;
       this.teamBPlayer2.textContent = this.player4Input.value;
     });
-    this.start2v2GameBtn.addEventListener("click", () => {
+    this.start2v2GameBtn.addEventListener("click", async () => {
       console.log("Starting 2v2 game!");
       console.log(
         "Team A:",
@@ -247,6 +250,14 @@ class TwoVsTwoManager {
         "hidden"
       );
       getElementById<HTMLElement>("gameCanvas").classList.remove("hidden");
+
+      const players = [
+        this.teamAPlayer1.textContent || "Player 1",
+        this.teamAPlayer2.textContent || "Player 2",
+        this.teamBPlayer1.textContent || "Player 3",
+        this.teamBPlayer2.textContent || "Player 4",
+      ];
+     await selectGame('pong', '2v2', players);
     });
   }
   private validateTeamA(): void {
@@ -368,11 +379,19 @@ class TournamentManager {
         this.registerTournamentPlayer(index)
       );
     });
-    this.startTournamentGameBtn.addEventListener("click", () => {
+    this.startTournamentGameBtn.addEventListener("click", async () => {
       console.log("Starting tournament!");
       console.log("Players:", this.showPlayerElements[0].textContent, this.showPlayerElements[1].textContent, this.showPlayerElements[2].textContent, this.showPlayerElements[3].textContent);
       getElementById<HTMLElement>('tournamentStepper').classList.add('hidden');
       getElementById<HTMLElement>('gameCanvas').classList.remove('hidden');
+
+      const players = [
+        this.showPlayerElements[0].textContent || "Player 1",
+        this.showPlayerElements[1].textContent || "Player 2",
+        this.showPlayerElements[2].textContent || "Player 3",
+        this.showPlayerElements[3].textContent || "Player 4",
+      ];
+      await selectGame('pong', 'tournament', players);
     });
   }
   private validateTournamentPlayer(playerIndex: number): void {

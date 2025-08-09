@@ -1,4 +1,4 @@
-import { BOARD_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_MOVE_SPEED, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS } from './settings.js';
+import { BALL_RADIUS, BOARD_HEIGHT, LEFT_GOAL_X, PADDLE_HEIGHT, PADDLE_MOVE_SPEED, PADDLE_WIDTH, RIGHT_GOAL_X } from '../settings.js';
 export class Paddle {
     constructor(ctx, color, side) {
         this.ctx = ctx;
@@ -44,11 +44,11 @@ export class Player extends Paddle {
         this.upKey = upKey;
         this.downKey = downKey;
     }
-    move(keys) {
-        if (keys.has(this.upKey)) {
+    move(game) {
+        if (game.keys.has(this.upKey)) {
             this.moveUp();
         }
-        else if (keys.has(this.downKey)) {
+        else if (game.keys.has(this.downKey)) {
             this.moveDown();
         }
     }
@@ -64,7 +64,11 @@ export class AI extends Paddle {
         this.lastUpdateTime = 0;
         super.resetPosition();
     }
-    calculateProjectedY(ballCenterX, ballCenterY, ballSpeedX, ballSpeedY) {
+    calculateProjectedY(game) {
+        let ballCenterX = game.ball.centerX;
+        let ballCenterY = game.ball.centerY;
+        let ballSpeedX = game.ball.speedX;
+        let ballSpeedY = game.ball.speedY;
         let projectedX = 0;
         if ((ballSpeedX > 0 && this.side === 'right') || (ballSpeedX < 0 && this.side === 'left')) {
             // ball is going towards the paddle
@@ -89,10 +93,11 @@ export class AI extends Paddle {
         }
         return rawProjectedY;
     }
-    move(ballCenterX, ballCenterY, ballSpeedX, ballSpeedY) {
+    // move(ballCenterX: number, ballCenterY: number, ballSpeedX: number, ballSpeedY: number) {	
+    move(game) {
         let currentTime = Date.now();
         if (this.lastUpdateTime === 0 || currentTime >= this.lastUpdateTime + this.refreshTimeMs) {
-            this.projectedY = this.calculateProjectedY(ballCenterX, ballCenterY, ballSpeedX, ballSpeedY);
+            this.projectedY = this.calculateProjectedY(game);
             this.lastUpdateTime = currentTime;
         }
         if (this.projectedY > this.y && this.projectedY < this.y + PADDLE_HEIGHT) {

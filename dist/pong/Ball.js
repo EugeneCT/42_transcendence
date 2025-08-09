@@ -1,4 +1,4 @@
-import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS, BALL_START_SPEED, BALL_MAX_SPEED, PADDLE_WIDTH } from './settings.js';
+import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS, BALL_START_SPEED, BALL_MAX_SPEED, PADDLE_WIDTH } from '../settings.js';
 export class Ball {
     constructor(ctx) {
         this.ctx = ctx;
@@ -62,7 +62,7 @@ export class Ball {
         this.speedX = Math.min(BALL_MAX_SPEED, this.speedX * 1.01);
         this.speedY = Math.min(BALL_MAX_SPEED, this.speedY * 1.01);
     }
-    checkVictory() {
+    checkWin() {
         if (this.centerX + BALL_RADIUS < 0) {
             return 'right-win';
         }
