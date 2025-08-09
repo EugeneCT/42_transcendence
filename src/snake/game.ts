@@ -1,5 +1,5 @@
+import { SnakeGameEngine } from './GameEngine.js';
 import { Snake } from './Snake.js';
-import { SnakeGameEngine } from './SnakeGameEngine.js';
 
 export async function runSnakeTournament(ctx: CanvasRenderingContext2D, players: string[]) {
 	const game = new SnakeGameEngine(ctx);

@@ -1,5 +1,5 @@
+import { PongGameEngine } from './GameEngine.js';
 import { AI, Player } from './Paddle.js';
-import { PongGameEngine } from './PongGameEngine.js';
 
 export async function runPongTournament(ctx: CanvasRenderingContext2D, players: string[]) {
 	const game = new PongGameEngine(ctx);

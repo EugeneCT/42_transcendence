@@ -1,5 +1,5 @@
 import { BALL_RADIUS, BOARD_HEIGHT, LEFT_GOAL_X, PADDLE_HEIGHT, PADDLE_MOVE_SPEED, PADDLE_WIDTH, RIGHT_GOAL_X } from '../settings.js';
-import { PongGameEngine } from './PongGameEngine.js';
+import { PongGameEngine } from './GameEngine.js';
 
 export abstract class Paddle {
 	protected x: number = 0;
