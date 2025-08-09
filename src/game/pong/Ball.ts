@@ -1,4 +1,4 @@
-import { BOARD_WIDTH, BOARD_HEIGHT, LEFT_GOAL_X, RIGHT_GOAL_X, BALL_RADIUS, BALL_START_SPEED, BALL_MAX_SPEED, PADDLE_WIDTH } from '../settings.js';
+import { BALL_MAX_SPEED, BALL_RADIUS, BALL_START_SPEED, BOARD_HEIGHT, BOARD_WIDTH, LEFT_GOAL_X, PADDLE_WIDTH, RIGHT_GOAL_X } from '../settings.js';
 import { Paddle } from './Paddle.js';
 
 export class Ball {

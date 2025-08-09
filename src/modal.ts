@@ -27,19 +27,19 @@ closeSnakeModal.addEventListener('click', (): void =>{hideModal(snakeModal)})
 snakeButton.addEventListener('click', (): void => {
     showModal(snakeModal);
     
-    // Load snake game script dynamically
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = './dist/snake/main.js';
-    document.head.appendChild(script);
+    // // Load snake game script dynamically
+    // const script = document.createElement('script');
+    // script.type = 'module';
+    // script.src = './dist/snake/main.js';
+    // document.head.appendChild(script);
 });
 
 pongButton.addEventListener('click', (): void => {
     showModal(pongModal);
     
-    // Load pong game script dynamically
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = './dist/pong/main.js';
-    document.head.appendChild(script);
+    // // Load pong game script dynamically
+    // const script = document.createElement('script');
+    // script.type = 'module';
+    // script.src = './dist/pong/main.js';
+    // document.head.appendChild(script);
 });

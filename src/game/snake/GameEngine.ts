@@ -12,6 +12,7 @@ export class SnakeGameEngine extends BaseGameEngine {
 	constructor(ctx: CanvasRenderingContext2D) {
 		super(ctx);
 		this.board = new SnakeBoard(ctx);
+		this.fruit = new Fruit(ctx);
 	}
 
 	refresh() {
@@ -29,13 +30,13 @@ export class SnakeGameEngine extends BaseGameEngine {
 		this.playerB.move(this.keys);
 
 		// collision with fruit
-		if (this.playerA.bodies[0].tileX == this.fruit.tileX && this.playerA.bodies[0].tileY) {
+		if (this.playerA.bodies[0].positionX == this.fruit.positionX && this.playerA.bodies[0].positionY) {
 			console.log("A eats");
 			// playerA.grow();
 			this.fruit = new Fruit(this.ctx);
 		}
 
-		if (this.playerB.bodies[0].tileX == this.fruit.tileX && this.playerB.bodies[0].tileY) {
+		if (this.playerB.bodies[0].positionX == this.fruit.positionX && this.playerB.bodies[0].positionY) {
 			console.log("B eats");
 			// playerB.grow();
 			this.fruit = new Fruit(this.ctx);

@@ -1,4 +1,4 @@
-import { selectGame } from "./menu.js";
+import { selectGame } from "./game/menu.js";
 
 interface Player {
   name: string;
