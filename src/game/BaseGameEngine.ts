@@ -6,11 +6,11 @@ export abstract class BaseGameEngine {
 	keys: Set<string>;
 
 	keyDownHandler = (event: KeyboardEvent) => {
-		this.keys.add(event.key); 
+		this.keys.add(event.key.toLowerCase()); 
 	};
 
 	keyUpHandler = (event: KeyboardEvent) => {
-		this.keys.delete(event.key);
+		this.keys.delete(event.key.toLowerCase());
 	};
 
 	constructor(ctx: CanvasRenderingContext2D) {
@@ -47,22 +47,22 @@ export abstract class BaseGameEngine {
 					}
 				}
 				// print count down
+				this.ctx.shadowBlur = 5;
+				this.ctx.shadowColor = 'black';
+				this.ctx.textAlign = 'center';
+				
 				this.ctx.font = `${fontSize}px ${FONT}`;
 				this.ctx.fillStyle = 'yellow';
-				this.ctx.shadowColor = 'black';
-				this.ctx.shadowBlur = 5;
-				this.ctx.textAlign = 'center';
 				this.ctx.fillText(numbers[index], BOARD_WIDTH/2, BOARD_HEIGHT/2 + 200);
 
 				// print names
 				this.ctx.font = `50px ${FONT}`;
-				this.ctx.fillStyle = 'yellow';
-				this.ctx.shadowColor = 'black';
-				this.ctx.shadowBlur = 5;
-				this.ctx.textAlign = 'center';
 				this.ctx.fillText("<< " + leftName, BOARD_WIDTH/2, BOARD_HEIGHT/2 - 200);
 				this.ctx.fillText('vs', BOARD_WIDTH/2, BOARD_HEIGHT/2 - 140);
 				this.ctx.fillText(rightName + " >>", BOARD_WIDTH/2, BOARD_HEIGHT/2 - 80);
+				
+				this.ctx.shadowBlur = 0;
+				this.ctx.shadowColor = 'transparent';
 				
 				requestAnimationFrame(animate);
 			}
@@ -80,6 +80,20 @@ export abstract class BaseGameEngine {
 		this.ctx.textAlign = 'center';
 		this.ctx.fillText(`${text}`, BOARD_WIDTH/2, BOARD_HEIGHT/2 - 150);
 		this.ctx.fillText('WIN 🎉', BOARD_WIDTH/2, BOARD_HEIGHT/2 - 50);
+		this.ctx.shadowBlur = 0;
+		this.ctx.shadowColor = 'transparent';
+	}
+
+	protected async printTie() {
+		this.refresh();
+		this.ctx.font = `100px ${FONT}`;
+		this.ctx.fillStyle = 'yellow';
+		this.ctx.shadowColor = 'black';
+		this.ctx.shadowBlur = 5;
+		this.ctx.textAlign = 'center';
+		this.ctx.fillText(`TIE 😑`, BOARD_WIDTH/2, BOARD_HEIGHT/2 - 150);
+		this.ctx.shadowBlur = 0;
+		this.ctx.shadowColor = 'transparent';
 	}
 
 	protected async gameLoop(): Promise<string> {
@@ -88,8 +102,11 @@ export abstract class BaseGameEngine {
 				this.refresh();
 				this.move();
 				this.checkWin();
-				
-				if (this.board.leftScore === MAX_SCORE) {
+
+				if (this.board.leftScore === MAX_SCORE && this.board.rightScore === MAX_SCORE) {
+					resolve('tie');
+					return;
+				} else if (this.board.leftScore === MAX_SCORE) {
 					resolve('left');
 					return;
 				} else if (this.board.rightScore === MAX_SCORE) {
@@ -105,11 +122,25 @@ export abstract class BaseGameEngine {
 	}
 	
 	async start(leftName: string, rightName: string): Promise<string> {
+		console.log("start scores:", this.board.leftScore, this.board.rightScore);
 		await this.countDown(leftName, rightName);
-		const winner = (await this.gameLoop() == 'left') ? leftName : rightName;
-		await this.printWinner(winner);
-		await this.sleep(3000);
-		return winner;
+		
+		const resolve = await this.gameLoop();
+		switch (resolve) {
+			case 'left':
+				await this.printWinner(leftName);
+				await this.sleep(3000);
+				return leftName;
+			case 'right':
+				await this.printWinner(rightName);
+				await this.sleep(3000);
+				return rightName;
+			default:
+				console.log("scores:", this.board.leftScore, this.board.rightScore);
+				await this.printTie();
+				await this.sleep(3000);
+				return '';
+		}
 	}
 
 	private sleep = (milliseconds: number) => {
@@ -127,9 +158,13 @@ export abstract class BaseBoard {
 
 	protected drawScores() {
 		this.ctx.fillStyle = 'white';
+		this.ctx.shadowColor = 'black';
+		this.ctx.shadowBlur = 5;
 		this.ctx.textAlign = 'center';
 		this.ctx.font = `50px ${FONT}`;
 		this.ctx.fillText(this.leftScore.toString(), BOARD_WIDTH / 4, 50);
 		this.ctx.fillText(this.rightScore.toString(), BOARD_WIDTH / 4 * 3, 50);
+		this.ctx.shadowBlur = 0;
+		this.ctx.shadowColor = 'transparent';
 	}
 }

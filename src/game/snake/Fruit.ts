@@ -1,4 +1,4 @@
-import { TILE_SIZE } from '../settings.js';
+import { FONT, TILE_SIZE } from "../settings.js";
 
 export class Fruit {
 	positionX : number = 0;
@@ -13,7 +13,13 @@ export class Fruit {
 	}
 
 	draw() {
-		this.ctx.fillStyle = 'orange';
-		this.ctx.fillRect(this.positionX * TILE_SIZE, this.positionY * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+		this.ctx.textAlign = 'center';
+		this.ctx.textBaseline = 'middle';
+		this.ctx.font = `30px ${FONT}`;
+		this.ctx.fillText(
+			'🍎', 
+			this.positionX * TILE_SIZE + TILE_SIZE/2,
+			this.positionY * TILE_SIZE + TILE_SIZE/2
+		);
 	}
 }

@@ -9,34 +9,35 @@ type KeyMap = {
 
 type Direction = 'up' | 'down' | 'left' | 'right';
 
-export class Snake {
-	bodies: Array<Body> = new Array<Body>;
-	size: number = 0;
+export abstract class Snake {
+	bodies = new Array<Body>;
+	size = 0;
 	direction: Direction = 'up';
-	protected keyMap!: KeyMap;
-	positionX!: number;
-	positionY!: number;
 
 	constructor(
-		private ctx: CanvasRenderingContext2D,
-		private color: string) {
-			this.addNewBody(this.positionX, this.positionY, 'head');
+		protected ctx: CanvasRenderingContext2D,
+		protected color: string,
+		protected keyMap: KeyMap,
+		positionX: number,
+		positionY: number
+	) {
+			this.addNewBody(positionX, positionY, 'head');
 			switch (this.direction) {
 				case 'up':
-					this.addNewBody(this.positionX, this.positionY + 1, 'tail');
-					this.addNewBody(this.positionX, this.positionY + 2, 'tail');
+					this.addNewBody(positionX, positionY + 1, 'tail');
+					this.addNewBody(positionX, positionY + 2, 'tail');
 					break;
 				case 'down':
-					this.addNewBody(this.positionX, this.positionY - 1, 'tail');
-					this.addNewBody(this.positionX, this.positionY - 2, 'tail');
+					this.addNewBody(positionX, positionY - 1, 'tail');
+					this.addNewBody(positionX, positionY - 2, 'tail');
 					break;
 				case 'left':
-					this.addNewBody(this.positionX + 1, this.positionY, 'tail');
-					this.addNewBody(this.positionX + 2, this.positionY, 'tail');
+					this.addNewBody(positionX + 1, positionY, 'tail');
+					this.addNewBody(positionX + 2, positionY, 'tail');
 					break;
 				case 'right':
-					this.addNewBody(this.positionX - 1, this.positionY, 'tail');
-					this.addNewBody(this.positionX - 2, this.positionY, 'tail');
+					this.addNewBody(positionX - 1, positionY, 'tail');
+					this.addNewBody(positionX - 2, positionY, 'tail');
 					break;
 			}
 		}
@@ -52,13 +53,13 @@ export class Snake {
 
 	move(keys: Set<string>) {
 		// change direction if key is pressed
-		if (keys.has(this.keyMap.up) && this.direction != 'down') {
+		if (keys.has(this.keyMap.up) && this.direction !== 'down') {
 			this.direction = 'up';
-		} else if (keys.has(this.keyMap.down) && this.direction != 'up') {
+		} else if (keys.has(this.keyMap.down) && this.direction !== 'up') {
 			this.direction = 'down';
-		} else if (keys.has(this.keyMap.left) && this.direction != 'right') {
+		} else if (keys.has(this.keyMap.left) && this.direction !== 'right') {
 			this.direction = 'left';
-		} else if (keys.has(this.keyMap.right) && this.direction != 'left') {
+		} else if (keys.has(this.keyMap.right) && this.direction !== 'left') {
 			this.direction = 'right';
 		}
 		
@@ -77,10 +78,10 @@ export class Snake {
 				this.bodies[0].positionY++;
 				break;
 			case 'left':
-				this.bodies[0].positionX++;
+				this.bodies[0].positionX--;
 				break;		
 			case 'right':
-				this.bodies[0].positionX--;
+				this.bodies[0].positionX++;
 				break;
 		}
 	}
@@ -91,17 +92,17 @@ export class Snake {
 			|| this.bodies[0].positionX >= TILES_X
 			|| this.bodies[0].positionY < 0
 			|| this.bodies[0].positionY >= TILES_Y
-		) { return true; }
+		) { console.log('hit wall'); return true; }
 		
 		// check for own body
 		if ([...this.bodies].some(
-			body => body.type == 'tail' && body.positionX == this.positionX && body.positionY == this.positionY
-		)) { return true; }
+			body => body.type == 'tail' && body.positionX == this.bodies[0].positionX && body.positionY == this.bodies[0].positionY
+		)) { console.log('hit body'); return true; }
 
 		// check for opponent head + body
 		if ([...opponent.bodies].some(
-			body => body.positionX == this.positionX && body.positionY == this.positionY
-		)) { return true; }
+			body => body.positionX == this.bodies[0].positionX && body.positionY == this.bodies[0].positionY
+		)) { console.log('hit opponenet'); return true; }
 
 		return false;
 	}
@@ -122,35 +123,23 @@ class Body {
 }
 
 export class SnakeA extends Snake {
-	constructor(
-		ctx: CanvasRenderingContext2D,
-		color: string,
-	) {
-		super(ctx, color);
-		this.keyMap = {
-			up: 'W',
-			down: 'S',
-			left: 'A',
-			right: 'D',
-		}
-		this.positionX = 2;
-		this.positionY = 3;
+	constructor(ctx: CanvasRenderingContext2D, color: string) {
+		super(
+			ctx,
+			color,
+			{ up: 'w', down: 's', left: 'a', right: 'd' },
+			2, 3
+		);
 	}
 }
 
 export class SnakeB extends Snake {
-	constructor(
-		ctx: CanvasRenderingContext2D,
-		color: string,
-	) {
-		super(ctx, color);
-		this.keyMap = {
-			up: 'ArrowUp',
-			down: 'ArrowDown',
-			left: 'ArrowLeft',
-			right: 'ArrowRight',
-		}
-		this.positionX = 5;
-		this.positionY = 3;
+	constructor(ctx: CanvasRenderingContext2D, color: string) {
+		super(
+			ctx,
+			color,
+			{ up: 'arrowup', down: 'arrowdown', left: 'arrowleft', right: 'arrowright' },
+			5, 3
+		)
 	}
 }

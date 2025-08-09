@@ -1,4 +1,4 @@
-import { runPong2v2, runPongAI } from './pong/game.js';
+import { runPong2v2, runPongAI, runPongTournament } from './pong/game.js';
 import { BOARD_HEIGHT, BOARD_WIDTH } from './settings.js';
 import { runSnakeTournament } from './snake/game.js';
 
@@ -21,9 +21,9 @@ export async function selectGame(
 		const ctx = getCtx('gameCanvas');
 		switch (mode) {
 			case 'tournament':
-				// winner = await runPongTournament(ctx, players);
+				winner = await runPongTournament(ctx, players);
 
-				winner = await runSnakeTournament(ctx, players);
+				// winner = await runSnakeTournament(ctx, players);
 				break;
 			case 'ai':
 				winner = await runPongAI(ctx, players);

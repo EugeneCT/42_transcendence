@@ -12,10 +12,17 @@
 
 
 ### Issues and bugs
-- Game speed increases every time the modal is closed and opened
-	- is it because the 'X' only hides the modal and not reset?
+- General:
+	- 'X' only hides the modal, game is still running in the background. need to delete the game instance
+	- Add tournament mode to snake game.
+	- show player colours and keys on menu?
 
-- need to have a separate menu (maybe the div expands?) to show game modes and player names
+- Pong:
+	- game speed seems quite slow, not sure if its cos in VM
 
-- 'undefined' wins --> should be left or right
-
+- Snake issues:
+	- can add 👀 emoji to the head of the snake
+	- check collision before making move
+	- when fruit is created, check that it is not inside a snake
+	- score points based on number of fruits eaten
+	- move snakes to a better starting position

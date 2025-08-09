@@ -1,5 +1,5 @@
 import { BaseBoard, BaseGameEngine } from '../BaseGameEngine.js';
-import { REFRESH_TIME_MS, TILE_SIZE, TILES_X, TILES_Y } from '../settings.js';
+import { MAX_SCORE, REFRESH_TIME_MS, TILE_SIZE, TILES_X, TILES_Y } from '../settings.js';
 import { Fruit } from './Fruit.js';
 import { Snake } from './Snake.js';
 
@@ -25,38 +25,39 @@ export class SnakeGameEngine extends BaseGameEngine {
 	move() {
 		let currentTimeMs = Date.now();
 		if (this.lastUpdateTimeMs === 0 || currentTimeMs >= this.lastUpdateTimeMs + REFRESH_TIME_MS) {
+			this.playerA.move(this.keys);
+			this.playerB.move(this.keys);
+	
+			// collision with fruit
+			if (this.playerA.bodies[0].positionX == this.fruit.positionX
+				&& this.playerA.bodies[0].positionY == this.fruit.positionY) {
+				console.log("A eats");
+				// playerA.grow();
+				this.fruit = new Fruit(this.ctx);
+			}
+	
+			if (this.playerB.bodies[0].positionX == this.fruit.positionX
+				&& this.playerB.bodies[0].positionY == this.fruit.positionY) {
+				console.log("B eats");
+				// playerB.grow();
+				this.fruit = new Fruit(this.ctx);
+			}
+	
+			this.lastUpdateTimeMs = currentTimeMs;
 		}
-		this.playerA.move(this.keys);
-		this.playerB.move(this.keys);
-
-		// collision with fruit
-		if (this.playerA.bodies[0].positionX == this.fruit.positionX && this.playerA.bodies[0].positionY) {
-			console.log("A eats");
-			// playerA.grow();
-			this.fruit = new Fruit(this.ctx);
-		}
-
-		if (this.playerB.bodies[0].positionX == this.fruit.positionX && this.playerB.bodies[0].positionY) {
-			console.log("B eats");
-			// playerB.grow();
-			this.fruit = new Fruit(this.ctx);
-		}
-
-		this.lastUpdateTimeMs = currentTimeMs;
 	}
 
 	checkWin() {
 		let collisionA = this.playerA.detectCollision(this.playerB);
 		let collisionB = this.playerB.detectCollision(this.playerA);
+		
 		if (collisionA && collisionB) {
-			console.log("tie");
-			return;
+			this.board.leftScore += MAX_SCORE;
+			this.board.rightScore += MAX_SCORE;
 		} else if (collisionA) {
-			console.log("B win");
-			return;
+			this.board.rightScore += MAX_SCORE;
 		} else if (collisionB) {
-			console.log("A win");
-			return;
+			this.board.leftScore += MAX_SCORE;
 		}
 	}
 }
@@ -83,8 +84,5 @@ export class SnakeBoard extends BaseBoard {
 			}
 			y += TILE_SIZE;
 		}
-
-		// scores
-		this.drawScores();
 	}
 }
