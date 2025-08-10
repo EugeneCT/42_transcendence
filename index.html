@@ -16,9 +16,12 @@
     }
   </style>
 </head>
-<body
-  class="text-black font-[arial] text-[18px] bg-[yellow] bg-[length:150px_150px] bg-[position:0_0] bg-repeat animate-[slide_2s_linear_infinite] [background-image:url('/./img/snakepong.png')]">
-
+<body class="text-black font-[arial] text-[18px] bg-[yellow] bg-[length:150px_150px] bg-[position:0_0] bg-repeat animate-[slide_2s_linear_infinite] [background-image:url('./img/snakepong.png')]">
+  <button id="oauthButton" 
+    class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0">
+    Google Login
+  </button>
+  <script type="module" src="./dist/oauth/oauth.js"></script>
   <!-- Launch Modal -->
   <div
     class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 inline-flex flex-col items-center px-4 sm:px-8 md:px-16 lg:px-20 py-6 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)]">
@@ -34,6 +37,17 @@
         Pong 🏓
       </button>
     </div>
+
+    <label for="gameMode">Choose A Game Mode</label>
+    <select name="gameMode" id="gameMode">
+      <option value="tournament">4-Player Tournament</option>
+      <option value="ai">Player vs AI</option>
+      <option value="2v2">2-Players vs 2-Players</option>
+    </select>
+    <input id="player1" type="text" placeholder="Player 1" maxlength="100" required />
+    <input id="player2" type="text" placeholder="Player 2" maxlength="100" required /> 
+    <input id="player3" type="text" placeholder="Player 3" maxlength="100" required />
+    <input id="player4" type="text" placeholder="Player 4" maxlength="100" required />
   </div>
 
   <div class="h-[100vh]"></div>
@@ -42,8 +56,7 @@
   <!-- cards -->
   <div class="flex flex-wrap justify-center gap-8 mt-29">
     <!-- Card 1 -->
-    <div
-      class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
       <img src="./img/wes.jpeg" alt="Dev 1" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Wesley Koh</h3>
       <h4 class="text-xl font-bold mb-2">backend developer</h4>
@@ -60,8 +73,7 @@
     </div>
 
     <!-- Card 2 -->
-    <div
-      class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
       <img src="./img/jack.jpeg" alt="Dev 2" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Jack Sng</h3>
       <h4 class="text-xl font-bold mb-2">backend developer</h4>
@@ -78,8 +90,7 @@
     </div>
 
     <!-- Card 3 -->
-    <div
-      class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
       <img src="./img/daryl.jpeg" alt="Dev 3" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Daryl Ong</h3>
       <h4 class="text-xl font-bold mb-2">Game developer</h4>
@@ -96,8 +107,7 @@
     </div>
 
     <!-- Card 4 -->
-    <div
-      class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
+    <div class="w-[350px] p-4 border-[10px] border-black rounded-xl bg-white shadow-[10px_10px_0_rgba(0,0,0,0.2)] text-center">
       <img src="./img/eugene.jpeg" alt="Dev 4" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-black" />
       <h3 class="text-xl font-bold mb-2">Eugene</h3>
       <a href="https://github.com/dev4" target="_blank" class="inline-block text-blue-600 hover:underline">
