@@ -1,3 +1,5 @@
+# VERSION V1.0
+
 # 🕹️ ft_transcendence – Frontend Setup
 
 - To compile the .ts files, run `npx tsc`
