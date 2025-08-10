@@ -7,6 +7,7 @@ export abstract class BaseGameEngine {
 
 	keyDownHandler = (event: KeyboardEvent) => {
 		this.keys.add(event.key.toLowerCase()); 
+		console.log('pressing key:', event.key.toLowerCase());
 	};
 
 	keyUpHandler = (event: KeyboardEvent) => {

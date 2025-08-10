@@ -14,15 +14,11 @@
 ### Issues and bugs
 - General:
 	- 'X' only hides the modal, game is still running in the background. need to delete the game instance
-	- Add tournament mode to snake game.
+	- Add snake tournament mode to stepper.
 	- show player colours and keys on menu?
 
 - Pong:
-	- game speed seems quite slow, not sure if its cos in VM
+	- game speed seems quite slow, not sure if its cos in VM -- Yes it works better outside VM
 
 - Snake issues:
-	- can add 👀 emoji to the head of the snake
-	- check collision before making move
-	- when fruit is created, check that it is not inside a snake
-	- score points based on number of fruits eaten
-	- move snakes to a better starting position
+	- [idea]: score points based on number of fruits eaten

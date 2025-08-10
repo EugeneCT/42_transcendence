@@ -1,15 +1,28 @@
-import { FONT, TILE_SIZE } from "../settings.js";
+import { FONT, TILE_SIZE, TILES_X, TILES_Y } from "../settings.js";
+import { Snake } from "./Snake.js";
 
 export class Fruit {
 	positionX : number = 0;
 	positionY : number = 0;
 	
-	constructor(private ctx: CanvasRenderingContext2D) {
+	constructor(private ctx: CanvasRenderingContext2D, snakeA: Snake, snakeB: Snake) {
 		const getRandomInt = (min: number, max: number) => {
 			return Math.floor(Math.random() * (max - min) + min);		
-		};
-		this.positionX = getRandomInt(0, 15);
-		this.positionY = getRandomInt(0, 15);
+		};	// [min, max)
+
+		do {
+			this.positionX = getRandomInt(0, TILES_X);
+			this.positionY = getRandomInt(0, TILES_Y);
+		} while (
+			snakeA.bodies.some(
+				body => body.positionX === this.positionX
+				&& body.positionY === this.positionY
+			) || 
+			snakeB.bodies.some(
+				body => body.positionX === this.positionX
+				&& body.positionY === this.positionY
+			)
+		)
 	}
 
 	draw() {

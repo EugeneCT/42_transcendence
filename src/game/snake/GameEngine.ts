@@ -6,42 +6,40 @@ import { Snake } from './Snake.js';
 export class SnakeGameEngine extends BaseGameEngine {
 	playerA!: Snake;
 	playerB!: Snake;
-	fruit!: Fruit;
+	fruit?: Fruit;
 	lastUpdateTimeMs = 0;
 
 	constructor(ctx: CanvasRenderingContext2D) {
 		super(ctx);
 		this.board = new SnakeBoard(ctx);
-		this.fruit = new Fruit(ctx);
 	}
 
 	refresh() {
 		super.refresh();
 		this.playerA.draw();
 		this.playerB.draw();
-		this.fruit.draw();
+		this.fruit?.draw();
 	}
 
 	move() {
 		let currentTimeMs = Date.now();
 		if (this.lastUpdateTimeMs === 0 || currentTimeMs >= this.lastUpdateTimeMs + REFRESH_TIME_MS) {
-			this.playerA.move(this.keys);
-			this.playerB.move(this.keys);
-	
-			// collision with fruit
-			if (this.playerA.bodies[0].positionX == this.fruit.positionX
-				&& this.playerA.bodies[0].positionY == this.fruit.positionY) {
-				console.log("A eats");
-				// playerA.grow();
-				this.fruit = new Fruit(this.ctx);
+			const handleMovement = (player: Snake) => {
+				const lastPositionX = player.bodies[player.size - 1].positionX;
+				const lastPositionY = player.bodies[player.size - 1].positionY;
+
+				player.move(this.keys);
+
+				// collision with fruit
+				if (player.bodies[0].positionX == this.fruit?.positionX
+					&& player.bodies[0].positionY == this.fruit?.positionY) {
+					player.addNewBody(lastPositionX, lastPositionY, 'tail');
+					delete this.fruit;
+				}
 			}
-	
-			if (this.playerB.bodies[0].positionX == this.fruit.positionX
-				&& this.playerB.bodies[0].positionY == this.fruit.positionY) {
-				console.log("B eats");
-				// playerB.grow();
-				this.fruit = new Fruit(this.ctx);
-			}
+
+			handleMovement(this.playerA);
+			handleMovement(this.playerB);
 	
 			this.lastUpdateTimeMs = currentTimeMs;
 		}
@@ -58,6 +56,10 @@ export class SnakeGameEngine extends BaseGameEngine {
 			this.board.rightScore += MAX_SCORE;
 		} else if (collisionB) {
 			this.board.leftScore += MAX_SCORE;
+		}
+
+		if (this.fruit === undefined) {
+			this.fruit = new Fruit(this.ctx, this.playerA, this.playerB);
 		}
 	}
 }

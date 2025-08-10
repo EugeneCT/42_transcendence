@@ -22,8 +22,6 @@ export async function selectGame(
 		switch (mode) {
 			case 'tournament':
 				winner = await runPongTournament(ctx, players);
-
-				// winner = await runSnakeTournament(ctx, players);
 				break;
 			case 'ai':
 				winner = await runPongAI(ctx, players);

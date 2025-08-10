@@ -24,7 +24,7 @@ export const BALL_MAX_SPEED = 20;
 // --- SNAKE SETTINGS ---
 
 export const TILE_SIZE = 40;						// length in pixels of each tile square
-export const TILES_X = BOARD_WIDTH / TILE_SIZE;		// number of tiles in x axis. Needs to be odd number for the alternate tile colors
-export const TILES_Y = BOARD_HEIGHT / TILE_SIZE;	// number of tiles in y axis. Needs to be odd number for the alternate tile colors
+export const TILES_X = Math.round(BOARD_WIDTH / TILE_SIZE);		// number of tiles in x axis. Needs to be odd number for the alternate tile colors
+export const TILES_Y = Math.round(BOARD_HEIGHT / TILE_SIZE);	// number of tiles in y axis. Needs to be odd number for the alternate tile colors
 
 export const REFRESH_TIME_MS = 500;

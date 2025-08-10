@@ -1,4 +1,4 @@
-import { TILE_SIZE, TILES_X, TILES_Y } from '../settings.js';
+import { FONT, TILE_SIZE, TILES_X, TILES_Y } from '../settings.js';
 
 type KeyMap = {
 	up: string,
@@ -95,12 +95,12 @@ export abstract class Snake {
 		) { console.log('hit wall'); return true; }
 		
 		// check for own body
-		if ([...this.bodies].some(
+		if (this.bodies.some(
 			body => body.type == 'tail' && body.positionX == this.bodies[0].positionX && body.positionY == this.bodies[0].positionY
 		)) { console.log('hit body'); return true; }
 
 		// check for opponent head + body
-		if ([...opponent.bodies].some(
+		if (opponent.bodies.some(
 			body => body.positionX == this.bodies[0].positionX && body.positionY == this.bodies[0].positionY
 		)) { console.log('hit opponenet'); return true; }
 
@@ -118,7 +118,18 @@ class Body {
 
 	draw(color: string) {
 		this.ctx.fillStyle = color;
-		this.ctx.fillRect(this.positionX * TILE_SIZE, this.positionY * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+		this.ctx.fillRect(this.positionX * TILE_SIZE + 5, this.positionY * TILE_SIZE + 5, TILE_SIZE - 10, TILE_SIZE - 10);
+
+		if (this.type === 'head') {
+			this.ctx.textAlign = 'center';
+			this.ctx.textBaseline = 'middle';
+			this.ctx.font = `30px ${FONT}`;
+			this.ctx.fillText(
+				'👀', 
+				this.positionX * TILE_SIZE + TILE_SIZE/2,
+				this.positionY * TILE_SIZE + TILE_SIZE/2
+			);
+		}
 	}
 }
 
@@ -128,7 +139,7 @@ export class SnakeA extends Snake {
 			ctx,
 			color,
 			{ up: 'w', down: 's', left: 'a', right: 'd' },
-			2, 3
+			4, Math.round(TILES_Y / 2) - 2 
 		);
 	}
 }
@@ -139,7 +150,7 @@ export class SnakeB extends Snake {
 			ctx,
 			color,
 			{ up: 'arrowup', down: 'arrowdown', left: 'arrowleft', right: 'arrowright' },
-			5, 3
+			TILES_X - 5, Math.round(TILES_Y / 2) - 2
 		)
 	}
 }
