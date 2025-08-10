@@ -14,7 +14,7 @@ help:
 
 
 start-server:
-	@npx http-server . -p $(PORT) -c-1 > $(SERVER_LOG) 2>&1 &
+	@npx http-server ./dist -p $(PORT) -c-1 > $(SERVER_LOG) 2>&1 &
 	@echo "Server started on http://localhost:$(PORT)"
 	@echo "Logs: $(SERVER_LOG)"
 
@@ -28,15 +28,20 @@ stop-server:
 build:
 	@npm install
 	-@mkdir -p ./$(DIST)
-	@npx tsc
-	@npx tailwindcss -i ./$(SRC)/input.css -o ./$(DIST)/output.css
+	@npx tailwindcss -i ./$(SRC)/input.css -o ./$(SRC)/output.css
+	@npx vite build
 
 
 clean: 
 	@rm -rf $(DIST)
 	@rm -f $(SERVER_LOG)
 
-
 re: clean build
 
 rebuild-restart: stop-server re start-server
+
+
+backend:
+	npm i -D typescript @types/node
+	npx tsc
+	node dist/backend_test/backend.js
