@@ -9,11 +9,13 @@
       0% {
         background-position: 0 0;
       }
+
       100% {
         background-position: -150px 150px;
       }
     }
-    body{
+
+    body {
       background-image: url('./img/snakepong.png') !important;
     }
   </style>
@@ -50,15 +52,15 @@
       <h3 class="text-xl font-bold mb-2">Wesley Koh</h3>
       <h4 class="text-xl font-bold mb-2">backend developer</h4>
 
-        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
-          GitHub
-        </a>
-        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
-          42 prOfile
-        </a>
-        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
-          Linkedin
-        </a>
+      <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+        GitHub
+      </a>
+      <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+        42 prOfile
+      </a>
+      <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+        Linkedin
+      </a>
     </div>
 
     <!-- Card 2 -->
@@ -68,15 +70,15 @@
       <h3 class="text-xl font-bold mb-2">Jack Sng</h3>
       <h4 class="text-xl font-bold mb-2">backend developer</h4>
 
-        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
-          GitHub
-        </a>
-        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
-          42 prOfile
-        </a>
-        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
-          Linkedin
-        </a>
+      <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+        GitHub
+      </a>
+      <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+        42 prOfile
+      </a>
+      <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+        Linkedin
+      </a>
     </div>
 
     <!-- Card 3 -->
@@ -86,15 +88,15 @@
       <h3 class="text-xl font-bold mb-2">Daryl Ong</h3>
       <h4 class="text-xl font-bold mb-2">Game developer</h4>
 
-        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
-          GitHub
-        </a>
-        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
-          42 prOfile
-        </a>
-        <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
-          Linkedin
-        </a>
+      <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+        GitHub
+      </a>
+      <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+        42 prOfile
+      </a>
+      <a href="https://github.com/negakyzer/" target="_blank" class="block text-blue-600 hover:underline">
+        Linkedin
+      </a>
     </div>
 
     <!-- Card 4 -->
@@ -435,8 +437,8 @@
     </div>
   </div>
 
-  <!-- Snake Modal -->
-  <div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
+  <!-- Snake Modal old -->
+  <!-- <div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
     <div class="flex items-center justify-center min-h-full p-4">
       <div
         class="relative bg-white p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center max-h-[90vh] overflow-auto">
@@ -448,322 +450,173 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+  <!-- snake modal new -->
+  <div id="snakeModal" class="hidden fixed inset-0 w-full h-full bg-black bg-opacity-80 z-[1000] overflow-y-auto">
+    <div class="flex items-center justify-center min-h-full p-4">
+      <div
+        class="relative bg-white p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center max-h-[90vh] overflow-auto">
+        <button id="closeSnakeModal"
+          class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600 z-10">&times;</button>
+        <h2 class="text-xl mb-4">SNAKE GAME 🐍</h2>
+        <!-- Game Mode Selection Buttons -->
+        <div id="snakeGameModeSelection" class="flex justify-center items-center gap-4 flex-wrap ">
+          <button id="snakeTournamentBtn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
+            🏟 Tournament
+          </button>
+        </div>
+        <!-- Snake tournamnet stepper -->
+      <div id="snakeTournamentStepper" class="hidden">
+        <button id="snakeBackToModesFromTournament"
+          class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">←
+          Back
+        </button>
+        <div class="relative m-0 flex w-full justify-between overflow-hidden p-0 mb-8">
+          <!-- Step 1 register player 1 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center ps-6 after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+              <span id="snakeTournament1Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-yellow-500 text-black font-bold border-black border-[5px]">
+                1
+              </span>
+              <span class="font-semibold">Player 1</span>
+            </div>
+          </div>
+
+          <!-- Step 2 register player 2 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-[''] after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+
+              <span id="snakeTournament2Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                2
+              </span>
+              <span class="font-semibold text-gray-400">Player 2</span>
+            </div>
+          </div>
+
+          <!-- Step 3 register player 3 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-[''] after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+
+              <span id="snakeTournament3Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                3
+              </span>
+              <span class="font-semibold text-gray-400">Player 3</span>
+            </div>
+          </div>
+          <!-- Step 4 register player 4 -->
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-[''] after:ms-2 after:h-px after:w-full after:flex-1 after:bg-neutral-200 after:content-['']">
+
+              <span id="snakeTournament4Icon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                4
+              </span>
+              <span class="font-semibold text-gray-400">Player 4</span>
+            </div>
+          </div>
+          <!-- Step 5 -->
+
+          <div class="w-[4.5rem] flex-auto">
+            <div
+              class="flex items-center pe-6 before:me-2 before:h-px before:w-full before:flex-1 before:bg-neutral-200 before:content-['']">
+              <span id="snakeStartTournamentIcon"
+                class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
+                5
+              </span>
+              <span class="font-semibold text-gray-400">Start Game</span>
+            </div>
+          </div>
+        </div>
+        <!-- tournament Step 1 Content: Player 1 Registration -->
+        <div id="snakeTournamentStep1Content" class="w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Register Player 1</h3>
+          <input id="snakeTournamentPlayer1Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Enter your name" maxlength="20">
+          <br>
+          <button id="snakeRegisterTournamentPlayer1Btn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white active:bg-yellow-500"
+            disabled>
+            Register Player 1
+          </button>
+        </div>
+        <!-- tournament Step 2 Content: Player 2 Registration -->
+        <div id="snakeTournamentStep2Content" class="hidden w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Register Player 2</h3>
+          <input id="snakeTournamentPlayer2Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Enter your name" maxlength="20">
+          <br>
+          <button id="snakeRegisterTournamentPlayer2Btn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white active:bg-yellow-500"
+            disabled>
+            Register Player 2
+          </button>
+        </div>
+        <!-- tournament Step 3 Content: Player 3 Registration -->
+        <div id="snakeTournamentStep3Content" class="hidden w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Register Player 3</h3>
+          <input id="snakeTournamentPlayer3Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Enter your name" maxlength="20">
+          <br>
+          <button id="snakeRegisterTournamentPlayer3Btn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white active:bg-yellow-500"
+            disabled>
+            Register Player 3
+          </button>
+        </div>
+        <!-- tournament Step 4 Content: Player 4 Registration -->
+        <div id="snakeTournamentStep4Content" class="hidden w-full p-4">
+          <h3 class="text-lg font-bold mb-4">Register Player 4</h3>
+          <input id="snakeTournamentPlayer4Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
+            placeholder="Enter your name" maxlength="20">
+          <br>
+          <button id="snakeRegisterTournamentPlayer4Btn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white active:bg-yellow-500"
+            disabled>
+            Register Player 4
+          </button>
+        </div>
+        <!-- tournament Step 5 Content: Tournament Ready -->
+        <div id="snakeTournamentStep5Content" class="hidden w-full p-4">
+          <h1 class="text-3xl font-bold mb-4">Tournament Ready!</h1>
+          <div class="grid grid-cols-2 gap-4 mb-6 max-w-md mx-auto">
+            <div class="text-center p-3 bg-blue-100 rounded">
+              <h4 class="font-bold text-blue-600 mb-1">Player 1</h4>
+              <p><span id="snakeTournamentShowPlayer1"></span></p>
+            </div>
+            <div class="text-center p-3 bg-green-100 rounded">
+              <h4 class="font-bold text-green-600 mb-1">Player 2</h4>
+              <p><span id="snakeTournamentShowPlayer2"></span></p>
+            </div>
+            <div class="text-center p-3 bg-red-100 rounded">
+              <h4 class="font-bold text-red-600 mb-1">Player 3</h4>
+              <p><span id="snakeTournamentShowPlayer3"></span></p>
+            </div>
+            <div class="text-center p-3 bg-purple-100 rounded">
+              <h4 class="font-bold text-purple-600 mb-1">Player 4</h4>
+              <p><span id="snakeTournamentShowPlayer4"></span></p>
+            </div>
+          </div>
+          <button id="snakeStartTournamentGameBtn"
+            class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
+            🏟 Start Tournament
+          </button>
+        </div>
+      </div>
+        <canvas id="snakeCanvas" width="600" height="600" class="w-full h-auto max-w-full mx-auto mt-6 hidden"></canvas>
+      </div>
+    </div>
   </div>
 
-
-
   <script type="module" src="./dist/modal.js"></script>
-  <!-- <script>
-    // single player script
-    const playerNameInput = document.getElementById('playerNameInput');
-    const registerBtn = document.getElementById('registerBtn');
-    const step1Content = document.getElementById('step1Content');
-    const step2Content = document.getElementById('step2Content');
-    const step1Icon = document.getElementById('step1Icon');
-    const step2Icon = document.getElementById('step2Icon');
-    const welcomePlayerName = document.getElementById('welcomePlayerName');
-    const startGameBtn = document.getElementById('startGameBtn');
-    const gameCanvas = document.getElementById('gameCanvas');
-
-    //activate single player modal
-    document.getElementById('singlePlayerBtn').addEventListener('click', function () {
-      console.log('single player clicked!');
-      document.getElementById('gameModeSelection').classList.add('hidden');
-      document.getElementById('singlePlayerStepper').classList.remove('hidden');
-    });
-
-    //back button for single player modal
-    document.getElementById('backToModes').addEventListener('click', function () {
-      console.log('back clicked!');
-      document.getElementById('singlePlayerStepper').classList.add('hidden');
-      document.getElementById('gameModeSelection').classList.remove('hidden');
-    });
-
-
-    playerNameInput.addEventListener('input', function () {
-      const name = this.value.trim();
-      registerBtn.disabled = name.length === 0;
-    });
-
-    registerBtn.addEventListener('click', function () {
-      const playerName = playerNameInput.value.trim();
-      console.log('Registering player: ', playerName);
-      if (playerName) {
-        step1Icon.classList.remove('bg-yellow-500', 'text-black');
-        step1Icon.classList.add('bg-green-500', 'text-white');
-        step1Icon.innerHTML = '✓';
-
-        step2Icon.classList.remove('bg-gray-300', 'text-gray-600');
-        step2Icon.classList.add('bg-yellow-500', 'text-black');
-        step2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
-
-        step1Content.classList.add('hidden');
-        step2Content.classList.remove('hidden');
-
-        welcomePlayerName.textContent = playerName;
-      }
-    });
-
-    startGameBtn.addEventListener('click', function () {
-      console.log('starting game for: ', welcomePlayerName.textContent);
-      document.getElementById('singlePlayerStepper').classList.add('hidden');
-      gameCanvas.classList.remove('hidden');
-    });
-    // 2v2 script
-    const player1Input = document.getElementById('player1Input');
-    const player2Input = document.getElementById('player2Input');
-    const player3Input = document.getElementById('player3Input');
-    const player4Input = document.getElementById('player4Input');
-    const registerTeamAbtn = document.getElementById('registerTeamAbtn');
-    const registerTeamBbtn = document.getElementById('registerTeamBbtn');
-    const teamAcontent = document.getElementById('teamAcontent');
-    const teamBcontent = document.getElementById('teamBcontent');
-    const start2V2content = document.getElementById('start2V2content');
-    const team1Icon = document.getElementById('team1Icon');
-    const team2Icon = document.getElementById('team2Icon');
-    const start2V2Icon = document.getElementById('start2V2Icon');
-    const teamAPlayer1 = document.getElementById('teamAPlayer1');
-    const teamAPlayer2 = document.getElementById('teamAPlayer2');
-    const teamBPlayer1 = document.getElementById('teamBPlayer1');
-    const teamBPlayer2 = document.getElementById('teamBPlayer2');
-    const start2v2GameBtn = document.getElementById('start2v2GameBtn');
-
-    //activate 2v2 modal
-    document.getElementById('twoVsTwoBtn').addEventListener('click', function () {
-      console.log('2 v2 clicked!');
-      document.getElementById('gameModeSelection').classList.add('hidden');
-      document.getElementById('twoVersusTwoStepper').classList.remove('hidden');
-    })
-    //back button for 2v2 modal
-    document.getElementById('backToModesFrom2v2').addEventListener('click', function () {
-      console.log('backToModesFrom2v2 clicked');
-      document.getElementById('twoVersusTwoStepper').classList.add('hidden');
-      document.getElementById('gameModeSelection').classList.remove('hidden');
-    })
-
-    //validate team A
-    function validTeamA() {
-      const p1 = player1Input.value.trim();
-      const p2 = player2Input.value.trim();
-
-      const isValid = p1.length > 0 && p2.length > 0 && p1 !== p2;
-      registerTeamAbtn.disabled = !isValid;
-    }
-    //validate team B and everybody else
-    function validTeamB() {
-      const p1 = player1Input.value.trim();
-      const p2 = player2Input.value.trim();
-      const p3 = player3Input.value.trim();
-      const p4 = player4Input.value.trim();
-
-      const isValid = p3.length > 0 && p4.length > 0 && p3 !== p4 && p3 !== p1 && p3 !== p2 && p4 !== p1 && p4 !== p2;
-
-      registerTeamBbtn.disabled = !isValid;
-    }
-    // Listen to Team A input and Team B input changes
-    player1Input.addEventListener('input', validTeamA);
-    player2Input.addEventListener('input', validTeamA);
-    player3Input.addEventListener('input', validTeamB);
-    player4Input.addEventListener('input', validTeamB);
-
-    registerTeamAbtn.addEventListener('click', function () {
-      console.log('Team A registered:', player1Input.value, player2Input.value);
-      // Update step 1 to completed (green with checkmark)
-      team1Icon.classList.remove('bg-yellow-500', 'text-black');
-      team1Icon.classList.add('bg-green-500', 'text-white');
-      team1Icon.innerHTML = '✓';
-      // Update step 2 to active (yellow)
-      team2Icon.classList.remove('bg-gray-300', 'text-gray-600');
-      team2Icon.classList.add('bg-yellow-500', 'text-black');
-      team2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
-
-      teamAcontent.classList.add('hidden');
-      teamBcontent.classList.remove('hidden');
-    });
-
-    registerTeamBbtn.addEventListener('click', function () {
-      console.log('Team B registered:', player3Input.value, player4Input.value);
-      team2Icon.classList.remove('bg-yellow-500', 'text-black');
-      team2Icon.classList.add('bg-green-500', 'text-white');
-      team2Icon.innerHTML = '✓';
-
-      start2V2Icon.classList.remove('bg-gray-300', 'text-gray-600');
-      start2V2Icon.classList.add('bg-yellow-500', 'text-black');
-      start2V2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
-
-      teamBcontent.classList.add('hidden');
-      start2V2content.classList.remove('hidden');
-
-      teamAPlayer1.textContent = player1Input.value;
-      teamAPlayer2.textContent = player2Input.value;
-      teamBPlayer1.textContent = player3Input.value;
-      teamBPlayer2.textContent = player4Input.value;
-    });
-    start2v2GameBtn.addEventListener('click', function () {
-      console.log('Starting 2v2 game!');
-      console.log('Team A:', teamAPlayer1.textContent, teamAPlayer2.textContent);
-      console.log('Team B:', teamBPlayer1.textContent, teamBPlayer2.textContent);
-
-      // Hide stepper, show canvas
-      document.getElementById('twoVersusTwoStepper').classList.add('hidden');
-      gameCanvas.classList.remove('hidden');
-    });
-    //tournament script
-    const tournamentPlayer1Input = document.getElementById('tournamentPlayer1Input');
-    const tournamentPlayer2Input = document.getElementById('tournamentPlayer2Input');
-    const tournamentPlayer3Input = document.getElementById('tournamentPlayer3Input');
-    const tournamentPlayer4Input = document.getElementById('tournamentPlayer4Input');
-    const registerTournamentPlayer1Btn = document.getElementById('registerTournamentPlayer1Btn');
-    const registerTournamentPlayer2Btn = document.getElementById('registerTournamentPlayer2Btn');
-    const registerTournamentPlayer3Btn = document.getElementById('registerTournamentPlayer3Btn');
-    const registerTournamentPlayer4Btn = document.getElementById('registerTournamentPlayer4Btn');
-    const tournamentStep1Input = document.getElementById('tournamentStep1Input');
-    const tournamentStep2Input = document.getElementById('tournamentStep2Input');
-    const tournamentStep3Input = document.getElementById('tournamentStep3Input');
-    const tournamentStep4Input = document.getElementById('tournamentStep4Input');
-
-    const tournamentStep1Content = document.getElementById('tournamentStep1Content');
-    const tournamentStep2Content = document.getElementById('tournamentStep2Content');;
-    const tournamentStep3Content = document.getElementById('tournamentStep3Content');;
-    const tournamentStep4Content = document.getElementById('tournamentStep4Content');;
-    const tournamentStep5Content = document.getElementById('tournamentStep5Content');
-    
-    const tournament1Icon = document.getElementById('tournament1Icon');
-    const tournament2Icon = document.getElementById('tournament2Icon');
-    const tournament3Icon = document.getElementById('tournament3Icon');
-    const tournament4Icon = document.getElementById('tournament4Icon');
-    const startTournamentIcon = document.getElementById('startTournamentIcon');
-    
-    const tournamentShowPlayer1 = document.getElementById('tournamentShowPlayer1');
-    const tournamentShowPlayer2 = document.getElementById('tournamentShowPlayer2');
-    const tournamentShowPlayer3 = document.getElementById('tournamentShowPlayer3');
-    const tournamentShowPlayer4 = document.getElementById('tournamentShowPlayer4');
-    const startTournamentGameBtn = document.getElementById('startTournamentGameBtn');
-
-    document.getElementById('backToModesFromTournament').addEventListener('click', function(){
-      console.log('Back from tournanert clicked');
-      document.getElementById('gameModeSelection').classList.remove('hidden');
-      document.getElementById('tournamentStepper').classList.add('hidden');
-    });
-
-  document.getElementById('tournamentBtn').addEventListener('click', function(){
-    console.log('tournament btn clicked');
-    document.getElementById('gameModeSelection').classList.add('hidden');
-    document.getElementById('tournamentStepper').classList.remove('hidden');
-  });
-
-  function validateTournamentPlayer1(){
-    const p1 = tournamentPlayer1Input.value.trim();
-    const isValid = p1.length > 0;
-    registerTournamentPlayer1Btn.disabled = !isValid;
-  }
-
-  function validateTournamentPlayer2(){
-    const p1 = tournamentPlayer1Input.value.trim();
-    const p2 = tournamentPlayer2Input.value.trim();
-    const isValid = p2.length > 0 && p1 !== p2;
-    registerTournamentPlayer2Btn.disabled = !isValid;
-  }
-
-  function validateTournamentPlayer3(){
-    const p1 = tournamentPlayer1Input.value.trim();
-    const p2 = tournamentPlayer2Input.value.trim();
-    const p3 = tournamentPlayer3Input.value.trim();
-
-    const isValid = p3.length > 0 && p3 !== p2 && p3 !== p1;
-    registerTournamentPlayer3Btn.disabled = !isValid;
-  }
-  
-  function validateTournamentPlayer4(){
-    const p1 = tournamentPlayer1Input.value.trim();
-    const p2 = tournamentPlayer2Input.value.trim();
-    const p3 = tournamentPlayer3Input.value.trim();
-    const p4 = tournamentPlayer4Input.value.trim();
-
-    const isValid = p4.length > 0 && p4 !== p3 && p4 !== p2 && p4 !== p1;
-    registerTournamentPlayer4Btn.disabled = !isValid;
-  }
-  
-  tournamentPlayer1Input.addEventListener('input', validateTournamentPlayer1);
-  tournamentPlayer2Input.addEventListener('input', validateTournamentPlayer2);
-  tournamentPlayer3Input.addEventListener('input', validateTournamentPlayer3);
-  tournamentPlayer4Input.addEventListener('input', validateTournamentPlayer4);
-
-
-  registerTournamentPlayer1Btn.addEventListener('click', function(){
-    console.log('Player 1 registered:', tournamentPlayer1Input.value);
-    tournamentStep1Content.classList.add('hidden');
-    tournamentStep2Content.classList.remove('hidden');
-
-    tournament1Icon.classList.remove('bg-yellow-500', 'text-black');
-    tournament1Icon.classList.add('bg-green-500', 'text-white');
-    tournament1Icon.innerHTML = '✓';
-
-    tournament2Icon.classList.remove('bg-gray-300', 'text-gray-600');
-    tournament2Icon.classList.add('bg-yellow-500', 'text-black');
-    tournament2Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
-  });
-
-    registerTournamentPlayer2Btn.addEventListener('click', function(){
-    console.log('Player 2 registered:', tournamentPlayer2Input.value);
-    tournamentStep2Content.classList.add('hidden');
-    tournamentStep3Content.classList.remove('hidden');
-
-    tournament2Icon.classList.remove('bg-yellow-500', 'text-black');
-    tournament2Icon.classList.add('bg-green-500', 'text-white');
-    tournament2Icon.innerHTML = '✓';
-
-    tournament3Icon.classList.remove('bg-gray-300', 'text-gray-600');
-    tournament3Icon.classList.add('bg-yellow-500', 'text-black');
-    tournament3Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
-  });
-
-    registerTournamentPlayer3Btn.addEventListener('click', function(){
-    console.log('Player 3 registered:', tournamentPlayer3Input.value);
-    tournamentStep3Content.classList.add('hidden');
-    tournamentStep4Content.classList.remove('hidden');
-
-    tournament3Icon.classList.remove('bg-yellow-500', 'text-black');
-    tournament3Icon.classList.add('bg-green-500', 'text-white');
-    tournament3Icon.innerHTML = '✓';
-
-    tournament4Icon.classList.remove('bg-gray-300', 'text-gray-600');
-    tournament4Icon.classList.add('bg-yellow-500', 'text-black');
-    tournament4Icon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
-  });
-
-    registerTournamentPlayer4Btn.addEventListener('click', function(){
-    console.log('Player 4 registered:', tournamentPlayer4Input.value);
-    tournamentStep4Content.classList.add('hidden');
-    tournamentStep5Content.classList.remove('hidden');
-
-    tournament4Icon.classList.remove('bg-yellow-500', 'text-black');
-    tournament4Icon.classList.add('bg-green-500', 'text-white');
-    tournament4Icon.innerHTML = '✓';
-
-    startTournamentIcon.classList.remove('bg-gray-300', 'text-gray-600');
-    startTournamentIcon.classList.add('bg-yellow-500', 'text-black');
-    startTournamentIcon.parentElement.querySelector('span:last-child').classList.remove('text-gray-400');
-
-    tournamentShowPlayer1.textContent = tournamentPlayer1Input.value;
-    tournamentShowPlayer2.textContent = tournamentPlayer2Input.value;
-    tournamentShowPlayer3.textContent = tournamentPlayer3Input.value;
-    tournamentShowPlayer4.textContent = tournamentPlayer4Input.value;
-  });
-
-    startTournamentGameBtn.addEventListener('click', function(){
-    console.log('Starting tournament!');
-    console.log('Players:', 
-      tournamentShowPlayer1.textContent, 
-      tournamentShowPlayer2.textContent, 
-      tournamentShowPlayer3.textContent, 
-      tournamentShowPlayer4.textContent
-    );
-    
-    document.getElementById('tournamentStepper').classList.add('hidden');
-    gameCanvas.classList.remove('hidden');
-  });
-  </script> -->
   <script type="module" src="./dist/stepper.js"></script>
 </body>
 </html>

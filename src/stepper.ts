@@ -23,7 +23,7 @@ function getElementById<T extends HTMLElement>(id: string): T {
   }
   return element;
 }
-
+// PONG GAME MANAGER
 class SinglePlayerManager {
   private playerNameInput: HTMLInputElement;
   private registerBtn: HTMLButtonElement;
@@ -446,8 +446,171 @@ class TournamentManager {
   }
 }
 
+
+//SNAKE GAME MANAGER
+class SnakeTournamentManager {
+  private snakeTournamentInputs: HTMLInputElement[];
+  private snakeRegisterButtons: HTMLButtonElement[];
+  private snakeStepsContents: HTMLElement[];
+  private snakeStepIcons: HTMLElement[];
+  private snakeShowPlayerElements: HTMLElement[];
+  private snakeStartTournamentGameBtn: HTMLButtonElement;
+
+  constructor() {
+    // ✅ Fixed all IDs to match Snake HTML
+    this.snakeTournamentInputs = [
+      getElementById<HTMLInputElement>("snakeTournamentPlayer1Input"),
+      getElementById<HTMLInputElement>("snakeTournamentPlayer2Input"),
+      getElementById<HTMLInputElement>("snakeTournamentPlayer3Input"),
+      getElementById<HTMLInputElement>("snakeTournamentPlayer4Input"),
+    ];
+    this.snakeRegisterButtons = [
+      getElementById<HTMLButtonElement>("snakeRegisterTournamentPlayer1Btn"),
+      getElementById<HTMLButtonElement>("snakeRegisterTournamentPlayer2Btn"),
+      getElementById<HTMLButtonElement>("snakeRegisterTournamentPlayer3Btn"),
+      getElementById<HTMLButtonElement>("snakeRegisterTournamentPlayer4Btn"),
+    ];
+    this.snakeStepsContents = [
+      getElementById<HTMLElement>("snakeTournamentStep1Content"),
+      getElementById<HTMLElement>("snakeTournamentStep2Content"),
+      getElementById<HTMLElement>("snakeTournamentStep3Content"),
+      getElementById<HTMLElement>("snakeTournamentStep4Content"),
+      getElementById<HTMLElement>("snakeTournamentStep5Content"),
+    ];
+    this.snakeStepIcons = [
+      getElementById<HTMLElement>("snakeTournament1Icon"),
+      getElementById<HTMLElement>("snakeTournament2Icon"),
+      getElementById<HTMLElement>("snakeTournament3Icon"),
+      getElementById<HTMLElement>("snakeTournament4Icon"),
+      getElementById<HTMLElement>("snakeStartTournamentIcon"),
+    ];
+    this.snakeShowPlayerElements = [
+      getElementById<HTMLElement>("snakeTournamentShowPlayer1"),
+      getElementById<HTMLElement>("snakeTournamentShowPlayer2"),
+      getElementById<HTMLElement>("snakeTournamentShowPlayer3"),
+      getElementById<HTMLElement>("snakeTournamentShowPlayer4"),
+    ];
+    this.snakeStartTournamentGameBtn = getElementById<HTMLButtonElement>(
+      "snakeStartTournamentGameBtn"
+    );
+    this.initializeEventListeners();
+  }
+
+  private initializeEventListeners(): void {
+    // ✅ Fixed back button to use Snake IDs
+    getElementById<HTMLButtonElement>(
+      "snakeBackToModesFromTournament"
+    ).addEventListener("click", () => {
+      console.log("back from snake tournament clicked!");
+      getElementById<HTMLElement>("snakeGameModeSelection").classList.remove(
+        "hidden"
+      );
+      getElementById<HTMLElement>("snakeTournamentStepper").classList.add("hidden");
+    });
+
+    // ✅ Fixed tournament button to use Snake IDs
+    getElementById<HTMLButtonElement>("snakeTournamentBtn").addEventListener(
+      "click",
+      () => {
+        console.log("snake tournament button clicked!");
+        getElementById<HTMLElement>("snakeGameModeSelection").classList.add(
+          "hidden"
+        );
+        getElementById<HTMLElement>("snakeTournamentStepper").classList.remove(
+          "hidden"
+        );
+      }
+    );
+
+    // ✅ Fixed to use Snake class properties
+    this.snakeTournamentInputs.forEach((input, index) => {
+      input.addEventListener("input", () =>
+        this.validateTournamentPlayer(index)
+      );
+    });
+    this.snakeRegisterButtons.forEach((button, index) => {
+      button.addEventListener("click", () =>
+        this.registerTournamentPlayer(index)
+      );
+    });
+
+    // ✅ Fixed start game button with Snake canvas and game call
+    this.snakeStartTournamentGameBtn.addEventListener("click", async () => {
+      console.log("Starting snake tournament!");
+      console.log("Players:", 
+        this.snakeShowPlayerElements[0].textContent, 
+        this.snakeShowPlayerElements[1].textContent, 
+        this.snakeShowPlayerElements[2].textContent, 
+        this.snakeShowPlayerElements[3].textContent
+      );
+      getElementById<HTMLElement>('snakeTournamentStepper').classList.add('hidden');
+      getElementById<HTMLElement>('snakeCanvas').classList.remove('hidden');
+
+      const players = [
+        this.snakeShowPlayerElements[0].textContent || "Player 1",
+        this.snakeShowPlayerElements[1].textContent || "Player 2",
+        this.snakeShowPlayerElements[2].textContent || "Player 3",
+        this.snakeShowPlayerElements[3].textContent || "Player 4",
+      ];
+      await selectGame('snake', 'tournament', players);
+    });
+  }
+
+  private validateTournamentPlayer(playerIndex: number): void {
+    const currentPlayerName: string =
+      this.snakeTournamentInputs[playerIndex].value.trim();
+    const previousPlayerNames: string[] = [];
+    for (let i = 0; i < playerIndex; i++) {
+      previousPlayerNames.push(this.snakeTournamentInputs[i].value.trim());
+    }
+    const isValid: boolean =
+      currentPlayerName.length > 0 &&
+      !previousPlayerNames.includes(currentPlayerName);
+    this.snakeRegisterButtons[playerIndex].disabled = !isValid;
+  }
+
+  private registerTournamentPlayer(playerIndex: number): void {
+    const playerName: string = this.snakeTournamentInputs[playerIndex].value;
+    console.log(`snake player ${playerIndex + 1} registered:`, playerName);
+
+    this.updateStepToCompleted(this.snakeStepIcons[playerIndex]);
+
+    this.snakeStepsContents[playerIndex].classList.add("hidden");
+
+    if (playerIndex < 3) {
+      this.updateStepToActive(this.snakeStepIcons[playerIndex + 1]);
+      this.snakeStepsContents[playerIndex + 1].classList.remove("hidden");
+    } else {
+      this.updateStepToActive(this.snakeStepIcons[4]);
+      this.snakeStepsContents[4].classList.remove("hidden");
+
+      this.snakeTournamentInputs.forEach((input, index) => {
+        this.snakeShowPlayerElements[index].textContent = input.value;
+      });
+    }
+  }
+
+  private updateStepToCompleted(icon: HTMLElement): void {
+    icon.classList.remove("bg-yellow-500", "text-black");
+    icon.classList.add("bg-green-500", "text-white");
+    icon.innerHTML = "✓";
+  }
+
+  private updateStepToActive(icon: HTMLElement): void {
+    icon.classList.remove("bg-gray-300", "text-gray-600");
+    icon.classList.add("bg-yellow-500", "text-black");
+    const parentElement = icon.parentElement;
+    if (parentElement) {
+      const lastSpan = parentElement.querySelector("span:last-child");
+      if (lastSpan) {
+        lastSpan.classList.remove("text-gray-400");
+      }
+    }
+  }
+}
 document.addEventListener("DOMContentLoaded", () => {
   new SinglePlayerManager();
   new TwoVsTwoManager();
   new TournamentManager();
+  new SnakeTournamentManager();
 });
