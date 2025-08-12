@@ -457,7 +457,6 @@ class SnakeTournamentManager {
   private snakeStartTournamentGameBtn: HTMLButtonElement;
 
   constructor() {
-    // ✅ Fixed all IDs to match Snake HTML
     this.snakeTournamentInputs = [
       getElementById<HTMLInputElement>("snakeTournamentPlayer1Input"),
       getElementById<HTMLInputElement>("snakeTournamentPlayer2Input"),
@@ -497,7 +496,6 @@ class SnakeTournamentManager {
   }
 
   private initializeEventListeners(): void {
-    // ✅ Fixed back button to use Snake IDs
     getElementById<HTMLButtonElement>(
       "snakeBackToModesFromTournament"
     ).addEventListener("click", () => {
@@ -508,7 +506,6 @@ class SnakeTournamentManager {
       getElementById<HTMLElement>("snakeTournamentStepper").classList.add("hidden");
     });
 
-    // ✅ Fixed tournament button to use Snake IDs
     getElementById<HTMLButtonElement>("snakeTournamentBtn").addEventListener(
       "click",
       () => {
@@ -522,7 +519,6 @@ class SnakeTournamentManager {
       }
     );
 
-    // ✅ Fixed to use Snake class properties
     this.snakeTournamentInputs.forEach((input, index) => {
       input.addEventListener("input", () =>
         this.validateTournamentPlayer(index)
@@ -534,7 +530,6 @@ class SnakeTournamentManager {
       );
     });
 
-    // ✅ Fixed start game button with Snake canvas and game call
     this.snakeStartTournamentGameBtn.addEventListener("click", async () => {
       console.log("Starting snake tournament!");
       console.log("Players:", 
@@ -614,3 +609,4 @@ document.addEventListener("DOMContentLoaded", () => {
   new TournamentManager();
   new SnakeTournamentManager();
 });
+  
