@@ -1,13 +1,20 @@
 export const en = {
+
+  transcendance: "FT_TRANSCENDANCE┊·𓆙", //
+
   // Main page
-  chooseGame: "🔥 Choose your game",
-  snake: "Snake 🐍",
-  pong: "Pong 🏓",
+  chooseGame: "🔥 Choose your game", // 
+  snake: "Snake 🐍", //
+  pong: "Pong 🏓", // 
   
   // Game modes
   tournament: "🏟 Tournament",
   singlePlayer: "🎮 Single Player", 
   twoVsTwo: "🕹 2 vs 2",
+
+    // Stepper content for snake
+  stepperStart: "Start",
+  
   
   // Stepper content
   register: "Register",
@@ -18,7 +25,7 @@ export const en = {
   welcome: "Welcome",
   areYouReady: "Are you ready?",
   start: "🎮 Start",
-  back: "← Back",
+  back: "Back",
   
   // Tournament
   player1: "Player 1",

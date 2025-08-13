@@ -37,14 +37,14 @@
     <div class="flex items-center">
       <a href="" class="text-black hover:text-yellow-600 px-3 py-2 text-lg font-medium transition-colors duration-200"
         style="font-family: 'Press Start 2P', cursive;">
-        FT_TRANSCENDENCE┊·𓆙
+        <span id="transcendance">FT_TRANSCENDENCE┊·𓆙</span>
       </a>
     </div>
     <!-- Right Section - Language Selector -->
     <div class="flex items-center space-x-4">
       <!-- Language Buttons (Always visible) -->
       <div class="flex border-[2px] border-black rounded-lg overflow-hidden">
-        <button id="lang-en" class="px-3 py-1 bg-yellow-500 text-black font-medium hover:bg-yellow-400 transition-colors duration-200 border-r-[1px] border-black text-xs">
+        <button id="lang-en" class="px-3 py-1 bg-white text-black font-medium hover:bg-yellow-400 transition-colors duration-200 border-r-[1px] border-black text-xs">
           Eng
         </button>
         <button id="lang-zh" class="px-3 py-1 bg-white text-black font-medium hover:bg-yellow-400 transition-colors duration-200 border-r-[1px] border-black text-xs">
@@ -160,17 +160,17 @@
       <div id="gameModeSelection" class="flex justify-center items-center gap-4 flex-wrap ">
         <button id="tournamentBtn"
           class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
-          🏟 Tournament
+           <span id="tournament-btn-text">🏟 Tournament</span>
         </button>
 
         <button id="singlePlayerBtn"
           class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
-          🎮 Single Player
+          <span id="single-player-btn-text">🎮 Single Player</span>
         </button>
 
         <button id="twoVsTwoBtn"
           class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
-          🕹 2 vs 2
+          <span id="two-vs-two-btn-text">🕹 2 vs 2</spanspan>
         </button>
       </div>
 
@@ -463,7 +463,7 @@
           </div>
           <button id="startTournamentGameBtn"
             class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
-            🏟 Start Tournament
+            <span id="tournament-btn-text">🏟 Start Tournament</span>
           </button>
         </div>
       </div>
@@ -480,19 +480,19 @@
         class="relative bg-white p-5 border-[3px] border-black rounded w-[90%] max-w-[900px] text-center max-h-[90vh] overflow-auto">
         <button id="closeSnakeModal"
           class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600 z-10">&times;</button>
-        <h2 class="text-xl mb-4">SNAKE GAME 🐍</h2>
+        <h2 class="text-xl mb-4" id="snake-modal-title-text">SNAKE GAME 🐍</h2>
         <!-- Game Mode Selection Buttons -->
         <div id="snakeGameModeSelection" class="flex justify-center items-center gap-4 flex-wrap ">
           <button id="snakeTournamentBtn"
             class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
-            🏟 Tournament
+            <span id="snake-tournament-btn-text">🏟 Tournament</span>
           </button>
         </div>
         <!-- Snake tournamnet stepper -->
         <div id="snakeTournamentStepper" class="hidden">
           <button id="snakeBackToModesFromTournament"
             class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">←
-            Back
+            <span id="snake-back-button-text">Back</span>
           </button>
           <div class="relative m-0 flex w-full justify-between overflow-hidden p-0 mb-8">
             <!-- Step 1 register player 1 -->
@@ -503,7 +503,7 @@
                   class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-yellow-500 text-black font-bold border-black border-[5px]">
                   1
                 </span>
-                <span class="font-semibold">Player 1</span>
+                <span class="font-semibold" id="snake-player1-stepper-text">Player 1</span>
               </div>
             </div>
 
@@ -516,7 +516,7 @@
                   class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
                   2
                 </span>
-                <span class="font-semibold text-gray-400">Player 2</span>
+                <span class="font-semibold text-gray-400" id="snake-player2-stepper-text">Player 2</span>
               </div>
             </div>
 
@@ -529,7 +529,7 @@
                   class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
                   3
                 </span>
-                <span class="font-semibold text-gray-400">Player 3</span>
+                <span class="font-semibold text-gray-400" id="snake-player3-stepper-text">Player 3</span>
               </div>
             </div>
             <!-- Step 4 register player 4 -->
@@ -541,7 +541,7 @@
                   class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
                   4
                 </span>
-                <span class="font-semibold text-gray-400">Player 4</span>
+                <span class="font-semibold text-gray-400" id="snake-player4-stepper-text">Player 4</span>
               </div>
             </div>
             <!-- Step 5 -->
@@ -553,13 +553,13 @@
                   class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
                   5
                 </span>
-                <span class="font-semibold text-gray-400">Start Game</span>
+                <span class="font-semibold text-gray-400" id="snake-start-game-text"Pla>Start Game</span>
               </div>
             </div>
           </div>
           <!-- tournament Step 1 Content: Player 1 Registration -->
           <div id="snakeTournamentStep1Content" class="w-full p-4">
-            <h3 class="text-lg font-bold mb-4">Register Player 1</h3>
+            <h3 class="text-lg font-bold mb-4" id="snake-player1-text">Register Player 1</h3>
             <input id="snakeTournamentPlayer1Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
               placeholder="Enter your name" maxlength="20">
             <br>
@@ -571,7 +571,7 @@
           </div>
           <!-- tournament Step 2 Content: Player 2 Registration -->
           <div id="snakeTournamentStep2Content" class="hidden w-full p-4">
-            <h3 class="text-lg font-bold mb-4">Register Player 2</h3>
+            <h3 class="text-lg font-bold mb-4" id="snake-player2-text">Register Player 2</h3>
             <input id="snakeTournamentPlayer2Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
               placeholder="Enter your name" maxlength="20">
             <br>
@@ -583,7 +583,7 @@
           </div>
           <!-- tournament Step 3 Content: Player 3 Registration -->
           <div id="snakeTournamentStep3Content" class="hidden w-full p-4">
-            <h3 class="text-lg font-bold mb-4">Register Player 3</h3>
+            <h3 class="text-lg font-bold mb-4" id="snake-player3-text">Register Player 3</h3>
             <input id="snakeTournamentPlayer3Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
               placeholder="Enter your name" maxlength="20">
             <br>
@@ -595,7 +595,7 @@
           </div>
           <!-- tournament Step 4 Content: Player 4 Registration -->
           <div id="snakeTournamentStep4Content" class="hidden w-full p-4">
-            <h3 class="text-lg font-bold mb-4">Register Player 4</h3>
+            <h3 class="text-lg font-bold mb-4" id="snake-player4-text">Register Player 4</h3>
             <input id="snakeTournamentPlayer4Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
               placeholder="Enter your name" maxlength="20">
             <br>
@@ -607,28 +607,28 @@
           </div>
           <!-- tournament Step 5 Content: Tournament Ready -->
           <div id="snakeTournamentStep5Content" class="hidden w-full p-4">
-            <h1 class="text-3xl font-bold mb-4">Tournament Ready!</h1>
+            <h1 class="text-3xl font-bold mb-4" id="snake-tournament-ready-text">Tournament Ready!</h1>
             <div class="grid grid-cols-2 gap-4 mb-6 max-w-md mx-auto">
               <div class="text-center p-3 bg-blue-100 rounded">
-                <h4 class="font-bold text-blue-600 mb-1">Player 1</h4>
+                <h4 class="font-bold text-blue-600 mb-1" id="snakeTournamentShowPlayer1text">Player 1</h4>
                 <p><span id="snakeTournamentShowPlayer1"></span></p>
               </div>
               <div class="text-center p-3 bg-green-100 rounded">
-                <h4 class="font-bold text-green-600 mb-1">Player 2</h4>
+                <h4 class="font-bold text-green-600 mb-1"id="snakeTournamentShowPlayer2text">Player 2</h4>
                 <p><span id="snakeTournamentShowPlayer2"></span></p>
               </div>
               <div class="text-center p-3 bg-red-100 rounded">
-                <h4 class="font-bold text-red-600 mb-1">Player 3</h4>
+                <h4 class="font-bold text-red-600 mb-1" id="snakeTournamentShowPlayer3text">Player 3</h4>
                 <p><span id="snakeTournamentShowPlayer3"></span></p>
               </div>
               <div class="text-center p-3 bg-purple-100 rounded">
-                <h4 class="font-bold text-purple-600 mb-1">Player 4</h4>
+                <h4 class="font-bold text-purple-600 mb-1" id="snakeTournamentShowPlayer4text">Player 4</h4>
                 <p><span id="snakeTournamentShowPlayer4"></span></p>
               </div>
             </div>
             <button id="snakeStartTournamentGameBtn"
               class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
-              🏟 Start Tournament
+             <span id="tournament-btn-text"> Start Tournament</span>
             </button>
           </div>
         </div>

@@ -1,16 +1,21 @@
-// Create file: src/languages/zh.ts  
 export const zh = {
+  //title
+  transcendance: "四十二 • 超凡脱俗啦┊·𓆙",//
+
   // Main page
-  chooseGame: "🔥 选择游戏",
-  snake: "贪吃蛇 🐍",
-  pong: "乒乓球 🏓",
+  chooseGame: "🔥 选择游戏", //
+  snake: "贪吃蛇 🐍", // 
+  pong: "乒乓球 🏓", // 
   
   // Game modes
   tournament: "🏟 锦标赛",
   singlePlayer: "🎮 单人游戏",
   twoVsTwo: "🕹 二对二",
   
-  // Stepper content
+  // Stepper content for snake
+  stepperStart: "开始",
+
+  
   register: "注册",
   startGame: "游戏开始",
   enterName: "输入姓名",
@@ -19,7 +24,7 @@ export const zh = {
   welcome: "欢迎",
   areYouReady: "准备好了吗？",
   start: "🎮 开始",
-  back: "← 返回",
+  back: "返回",
   
   // Tournament
   player1: "玩家一",

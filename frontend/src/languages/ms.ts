@@ -1,7 +1,7 @@
-
-
-// Create file: src/languages/ms.ts
 export const ms = {
+
+  transcendance: "FT_TRANSCENDANCE SIA┊·𓆙", //FT_TRANSCENDENCE┊·𓆙
+
   // Main page
   chooseGame: "🔥 Pilih permainan",
   snake: "Ular 🐍", 
@@ -12,6 +12,11 @@ export const ms = {
   singlePlayer: "🎮 Pemain Tunggal",
   twoVsTwo: "🕹 2 lawan 2",
   
+  
+    // Stepper content for snake
+  stepperStart: "Mulakan",
+
+
   // Stepper content
   register: "Daftar",
   startGame: "Mula Permainan", 
@@ -21,7 +26,7 @@ export const ms = {
   welcome: "Selamat Datang",
   areYouReady: "Adakah anda bersedia?",
   start: "🎮 Mula",
-  back: "← Kembali",
+  back: "Kembali",
   
   // Tournament
   player1: "Pemain 1",
