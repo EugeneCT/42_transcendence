@@ -31,7 +31,7 @@ export default async function routes(fastify: FastifyInstance) {
   });
   // Get top X users by wins
 
-fastify.get("/top/:x", async (request, reply) => {
+fastify.get("/topWinners/:x", async (request, reply) => {
   const xParam = request.params as { x: string };
   const x = parseInt(xParam.x, 10);
 

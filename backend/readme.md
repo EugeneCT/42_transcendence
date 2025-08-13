@@ -10,6 +10,8 @@ curl -X POST http://localhost:PORT/win \
 To retrieve score -
 curl http://localhost:7779/wins/Alice
 
+To get top x user with highest win counts
+curl http://localhost:PORT/topWinners/x
 
 
 To start a local eth chain
