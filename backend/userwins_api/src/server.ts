@@ -1,5 +1,6 @@
 import Fastify from "fastify";
 import routes from "./routes";
+import cors from '@fastify/cors';
 
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -7,6 +8,7 @@ dotenv.config();
 const { HOST_PORT} = process.env;
 
 const fastify = Fastify({ logger: true });
+fastify.register(cors);
 
 // Register routes
 fastify.register(routes);

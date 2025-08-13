@@ -72,15 +72,63 @@ export abstract class BaseGameEngine {
 		})
 	}
 	
-	protected async printWinner(text: string) {
+protected async getWins(name: string): Promise<number> {
+  const res = await fetch(`http://localhost:7774/wins/${encodeURIComponent(name)}`);
+  console.log(`Response status: ${res.status}`);
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch wins for ${name}: ${res.statusText}`);
+  }
+
+  const text = await res.text(); // Read raw text
+  console.log('Raw response text:', text);
+
+  try {
+    const data: { username: string; wins: number } = JSON.parse(text);
+    return data.wins;
+  } catch (e) {
+    console.error('JSON parse error:', e);
+    throw new Error('Failed to parse JSON from getWins response');
+  }
+}
+// POST win for a user
+protected async  postWin(name: string, port: number): Promise<void> {
+	const res = await fetch(`http://localhost:${port}/win`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ username: name }),
+	});
+	if (!res.ok) {
+		throw new Error(`Failed to post win for ${name}: ${res.statusText}`);
+	}
+}
+
+
+	protected async printWinner(name: string) {
 		this.refresh();
 		this.ctx.font = `100px ${FONT}`;
 		this.ctx.fillStyle = 'yellow';
 		this.ctx.shadowColor = 'black';
 		this.ctx.shadowBlur = 5;
 		this.ctx.textAlign = 'center';
-		this.ctx.fillText(`${text}`, BOARD_WIDTH/2, BOARD_HEIGHT/2 - 150);
+		this.ctx.fillText(`${name}`, BOARD_WIDTH/2, BOARD_HEIGHT/2 - 150);
 		this.ctx.fillText('WIN 🎉', BOARD_WIDTH/2, BOARD_HEIGHT/2 - 50);
+
+		this.ctx.shadowBlur = 0;
+		this.ctx.shadowColor = 'transparent';
+	}
+	protected async printTotalWin(totalWin:number) {
+		this.ctx.font = `50px ${FONT}`;
+		this.ctx.fillStyle = 'yellow';
+		this.ctx.shadowColor = 'black';
+		this.ctx.shadowBlur = 5;
+		this.ctx.textAlign = 'center';
+	
+		this.ctx.fillText('Total WIN : ', BOARD_WIDTH/2, BOARD_HEIGHT/2 +50);
+		this.ctx.fillText(`${String(totalWin)}`, BOARD_WIDTH/2, BOARD_HEIGHT/2 + 150);
+
 		this.ctx.shadowBlur = 0;
 		this.ctx.shadowColor = 'transparent';
 	}
@@ -121,19 +169,66 @@ export abstract class BaseGameEngine {
 			loop();
 		})
 	}
-	
+	// Timeout helper for a single Promise
+	timeoutPromise<T>(promise: Promise<T>, ms: number): Promise<T | null> {
+	return new Promise((resolve) => {
+		const timer = setTimeout(() => resolve(null), ms);
+		promise
+		.then((res) => {
+			clearTimeout(timer);
+			resolve(res);
+		})
+		.catch(() => {
+			clearTimeout(timer);
+			resolve(null);
+		});
+	});
+	}
+
 	async start(leftName: string, rightName: string): Promise<string> {
 		console.log("start scores:", this.board.leftScore, this.board.rightScore);
 		await this.countDown(leftName, rightName);
 		
 		const resolve = await this.gameLoop();
+		let winCount: number;
+		let postResult: void | null;
+
 		switch (resolve) {
 			case 'left':
 				await this.printWinner(leftName);
+
+
+				postResult = await this.timeoutPromise(this.postWin(leftName, 7774), 2000);
+
+				if (postResult !== null) {
+				// Only run these if postWin succeeded within 2 seconds
+					const winCount = await this.getWins(leftName);
+					await this.printTotalWin(winCount);
+				} else {
+				// Skip silently or add fallback here
+				console.warn('postWin timed out or failed, skipping win count update');
+				}
+
 				await this.sleep(3000);
+
 				return leftName;
 			case 'right':
+
 				await this.printWinner(rightName);
+
+		
+
+				postResult = await this.timeoutPromise(this.postWin(rightName, 7774), 2000);
+
+				if (postResult !== null) {
+				// Only run these if postWin succeeded within 2 seconds
+					const winCount = await this.getWins(rightName);
+					await this.printTotalWin(winCount);
+				} else {
+				// Skip silently or add fallback here
+				console.warn('postWin timed out or failed, skipping win count update');
+				}
+
 				await this.sleep(3000);
 				return rightName;
 			default:

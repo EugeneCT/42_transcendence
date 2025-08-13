@@ -21,7 +21,6 @@ echo "API server started with PID $API_PID"
 
 # Give the API server time to start
 sleep 5
-HOST_PORT
 # Read the port from your env or default
 
 set -o allexport
