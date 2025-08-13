@@ -15,7 +15,7 @@ curl http://localhost:7779/wins/Alice
 To start a local eth chain
 To start the local chain chain:
 1. cd solidity
-2. npx ganache --db ./ganache-data --mnemonic "run brown pause spatial balcony caught devote kite bread snow magnet notice
+2. npx ganache --db ./ganache-data --mnemonic "run brown pause spatial balcony caught devote kite bread snow magnet notice"
 
 To start the api to save to the local eth chain:
 3. cd ../userwins_api
@@ -23,7 +23,7 @@ To start the api to save to the local eth chain:
 
 
 To setup for the first time (Just for notes, done already):
-1. npx ganache --db ./ganache-data --mnemonic "run brown pause spatial balcony caught devote kite bread snow magnet notice”
+1. npx ganache --db ./ganache-data --mnemonic "run brown pause spatial balcony caught devote kite bread snow magnet notice"
 2. npx hardhat run scripts/deploy.ts --network ganache_cli
 3. Copy the contract address to userwins_api/.env
 4. Copy the first private key to userwins_api/.env

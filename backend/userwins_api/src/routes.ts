@@ -29,4 +29,42 @@ export default async function routes(fastify: FastifyInstance) {
       return reply.status(500).send({ error: err.message });
     }
   });
+  // Get top X users by wins
+
+fastify.get("/top/:x", async (request, reply) => {
+  const xParam = request.params as { x: string };
+  const x = parseInt(xParam.x, 10);
+
+  if (isNaN(x) || x <= 0) {
+    return reply.status(400).send({ error: "Parameter x must be a positive integer" });
+  }
+
+  try {
+    // Get total number of users
+    const totalUsers: number = await contract.getUsernamesCount();
+
+    // Fetch all usernames and their wins
+    const users: { username: string; wins: number }[] = [];
+
+    for (let i = 0; i < totalUsers; i++) {
+      const username: string = await contract.getUsernameAt(i);
+      const winsBigNumber = await contract.getWinsForUser(username);
+      const wins = winsBigNumber.toNumber ? winsBigNumber.toNumber() : Number(winsBigNumber);
+      users.push({ username, wins });
+    }
+
+    // Sort descending by wins
+    users.sort((a, b) => b.wins - a.wins);
+
+    // Take top x users
+    const topUsers = users.slice(0, x);
+
+    return { topUsers };
+  } catch (err: any) {
+    return reply.status(500).send({ error: err.message });
+  }
+});
+
+
 }
+
