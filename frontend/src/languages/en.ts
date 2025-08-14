@@ -32,6 +32,12 @@ export const en = {
   player2: "Player 2", 
   player3: "Player 3",
   player4: "Player 4",
+
+  registerPlayer1: "Register Player 1",
+  registerPlayer2: "Register Player 2",
+  registerPlayer3: "Register Player 3", 
+  registerPlayer4: "Register Player 4",
+
   tournamentReady: "Tournament Ready!",
   startTournament: "🏟 Start Tournament",
   

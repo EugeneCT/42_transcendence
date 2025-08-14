@@ -33,6 +33,12 @@ export const ms = {
   player2: "Pemain 2",
   player3: "Pemain 3",
   player4: "Pemain 4", 
+
+  registerPlayer1: "Daftar Pemain 1",
+  registerPlayer2: "Daftar Pemain 2",
+  registerPlayer3: "Daftar Pemain 3", 
+  registerPlayer4: "Daftar Pemain 4",
+
   tournamentReady: "Kejohanan Sedia!",
   startTournament: "🏟 Mula Kejohanan",
   

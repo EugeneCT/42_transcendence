@@ -31,10 +31,16 @@ export const zh = {
   player2: "玩家二",
   player3: "玩家三", 
   player4: "玩家四",
+
+  registerPlayer1: "注册玩家一",
+  registerPlayer2: "注册玩家二",
+  registerPlayer3: "注册玩家三", 
+  registerPlayer4: "注册玩家四",
+
   tournamentReady: "锦标赛准备就绪！",
   startTournament: "🏟 锦标赛开始",
   
-  // Team registration
+  // Team registration for 2 v2
   registerTeamA: "注册A队",
   registerTeamB: "注册B队",
   teamA: "A队",

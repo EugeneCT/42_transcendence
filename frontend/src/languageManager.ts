@@ -110,6 +110,13 @@ class LanguageManager{
     this.updateElementText('snake-player3-stepper-text', t.player3);   
     this.updateElementText('snake-player4-stepper-text', t.player4);   
     this.updateElementText('snake-start-game-text', t.stepperStart);
+
+    
+    this.updateElementText('snakeRegisterTournamentPlayer1Btn', t.registerPlayer1);
+    this.updateElementText('snakeRegisterTournamentPlayer2Btn', t.registerPlayer2);
+    this.updateElementText('snakeRegisterTournamentPlayer3Btn', t.registerPlayer3);
+    this.updateElementText('snakeRegisterTournamentPlayer4Btn', t.registerPlayer4);
+    
     
     this.updateElementText('snakeTournamentShowPlayer1text', t.player1);
     this.updateElementText('snakeTournamentShowPlayer2text', t.player2);
@@ -119,12 +126,16 @@ class LanguageManager{
     this.updateElementText('snake-tournament-ready-text', t.tournamentReady);
     this.updateElementText('snake-start-tournament-text', t.startTournament);
     
-    // Team registration (2v2)
+    // Pong Team registration (2v2)
     this.updateElementText('register-team-a-text', t.registerTeamA);
     this.updateElementText('register-team-b-text', t.registerTeamB);
     this.updateElementText('team-a-text', t.teamA);
     this.updateElementText('team-b-text', t.teamB);
     this.updateElementText('teams-ready-text', t.teamsReady);
+
+    this.updateElementText('2v2-register-team-a-text', t.registerTeamA);
+    this.updateElementText('2v2-register-team-b-text', t.registerTeamB);
+    this.updateElementText('2v2-start-game-btn', t.startGame);
     
     // Developer cards
     this.updateElementText('backend-developer-text', t.backendDeveloper);
