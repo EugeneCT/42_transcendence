@@ -1,0 +1,23 @@
+{
+  "name": "sqlite_database",
+  "version": "1.0.0",
+  "description": "Fastify + SQLite service for storing usernames and JWTs",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev src/server.ts"
+  },
+  "dependencies": {
+    "fastify": "^5.0.0",
+    "@fastify/cors": "^8.0.0",
+    "sqlite": "^4.0.25",
+    "sqlite3": "^5.1.6",
+    "dotenv": "^16.0.0",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "ts-node-dev": "^2.0.0"
+  }
+}
