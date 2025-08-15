@@ -154,7 +154,7 @@
       <button id="closePongModal"
         class="absolute top-[10px] right-[20px] text-[30px] bg-none border-none cursor-pointer hover:text-red-600">&times;</button>
 
-      <h2 class="text-xl mb-8">PONG GAME 🏓</h2>
+      <h2 class="text-xl mb-8" id="pong-modal-title-text">PONG GAME 🏓</h2>
 
       <!-- Game Mode Selection Buttons -->
       <div id="gameModeSelection" class="flex justify-center items-center gap-4 flex-wrap ">
@@ -273,7 +273,7 @@
         </div>
         <!-- 2v2 Step 1 Content -->
         <div id="teamAcontent" class="w-full p-4">
-          <h3 class="text-lg font-bold mb-4">Register Team A</h3>
+          <h3 class="text-lg font-bold mb-4" id="team-a-text">Register Team A</h3>
           <input id="player1Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
             placeholder="Player 1 name" maxlength="20">
           <br>
@@ -283,12 +283,12 @@
           <button id="registerTeamAbtn"
             class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white"
             disabled>
-            Register Team A
+            <span id="2v2-register-team-a-btn">Register Team A</span>
           </button>
         </div>
         <!-- 2v2 Step 2 Content -->
         <div id="teamBcontent" class="w-full p-4 hidden">
-          <h3 class="text-lg font-bold mb-4">Register Team B</h3>
+          <h3 class="text-lg font-bold mb-4" id="team-b-text">Register Team B</h3>
           <input id="player3Input" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
             placeholder="Player 3 name" maxlength="20">
           <br>
@@ -297,21 +297,21 @@
           <br>
           <button id="registerTeamBbtn"
             class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white"
-            disabled>
-            Register Team B
+            disabled id="2v2-register-team-b-head">
+            <span id="2v2-register-team-b-btn">Register Team B</span>
           </button>
         </div>
         <!-- 2v2 Step 3 Content (Hidden Initially) -->
         <div id="start2V2content" class=" w-full p-4 hidden">
-          <h1 class="text-3xl font-bold mb-4">Teams Ready!</h1>
+          <h1 class="text-3xl font-bold mb-4" id="2v2-teams-ready-text">Teams Ready!</h1>
           <div class="flex justify-center gap-8 mb-6">
             <div class="text-center">
-              <h4 class="font-bold text-blue-600 mb-2">Team A</h4>
+              <h4 class="font-bold text-blue-600 mb-2" id="teamA">Team A</h4>
               <p><span id="teamAPlayer1"></span></p>
               <p><span id="teamAPlayer2"></span></p>
             </div>
             <div class="text-center">
-              <h4 class="font-bold text-red-600 mb-2">Team B</h4>
+              <h4 class="font-bold text-red-600 mb-2" id="teamB">Team B</h4>
               <p><span id="teamBPlayer1"></span></p>
               <p><span id="teamBPlayer2"></span></p>
             </div>
@@ -491,8 +491,8 @@
         <!-- Snake tournamnet stepper -->
         <div id="snakeTournamentStepper" class="hidden">
           <button id="snakeBackToModesFromTournament"
-            class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">←
-            <span id="snake-back-button-text">Back</span>
+            class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">
+            <span id="snake-back-button-text">← Back</span>
           </button>
           <div class="relative m-0 flex w-full justify-between overflow-hidden p-0 mb-8">
             <!-- Step 1 register player 1 -->
@@ -628,7 +628,7 @@
             </div>
             <button id="snakeStartTournamentGameBtn"
               class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
-             <span id="tournament-btn-text"> Start Tournament</span>
+             <span id="snake-tournament-btn-text-2"> Start Tournament</span>
             </button>
           </div>
         </div>

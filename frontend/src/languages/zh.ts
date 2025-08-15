@@ -24,7 +24,7 @@ export const zh = {
   welcome: "欢迎",
   areYouReady: "准备好了吗？",
   start: "🎮 开始",
-  back: "返回",
+  back: "← 返回",
   
   // Tournament
   player1: "玩家一",

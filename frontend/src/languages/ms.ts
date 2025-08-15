@@ -26,7 +26,7 @@ export const ms = {
   welcome: "Selamat Datang",
   areYouReady: "Adakah anda bersedia?",
   start: "🎮 Mula",
-  back: "Kembali",
+  back: "← Kembali",
   
   // Tournament
   player1: "Pemain 1",

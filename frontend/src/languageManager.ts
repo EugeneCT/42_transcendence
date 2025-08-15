@@ -64,6 +64,10 @@ class LanguageManager{
         const t = this.translations[this.currentLanguage];
     
     this.updateElementText('transcendance', t.transcendance);
+    this.updateElementText('snake-modal-title-text', t.snake);
+    this.updateElementText('pong-modal-title-text', t.pong);
+
+
     // Main page content
     this.updateElementText('choose-game-text', t.chooseGame);
     this.updateElementText('snake-button-text', t.snake);
@@ -125,6 +129,7 @@ class LanguageManager{
 
     this.updateElementText('snake-tournament-ready-text', t.tournamentReady);
     this.updateElementText('snake-start-tournament-text', t.startTournament);
+    this.updateElementText('snake-tournament-btn-text-2', t.tournament);
     
     // Pong Team registration (2v2)
     this.updateElementText('register-team-a-text', t.registerTeamA);
@@ -135,7 +140,17 @@ class LanguageManager{
 
     this.updateElementText('2v2-register-team-a-text', t.registerTeamA);
     this.updateElementText('2v2-register-team-b-text', t.registerTeamB);
+
+    this.updateElementText('2v2-register-team-a-btn', t.registerTeamA);
+    this.updateElementText('2v2-register-team-b-btn', t.registerTeamB);
+    this.updateElementText('2v2-teams-ready-text', t.teamsReady);
+
+    this.updateElementText('backToModesFrom2v2', t.back);
+
     this.updateElementText('2v2-start-game-btn', t.startGame);
+    this.updateElementText('teamA', t.teamA);
+    this.updateElementText('teamB', t.teamB);
+    this.updateElementText('start2v2GameBtn', t.start);
     
     // Developer cards
     this.updateElementText('backend-developer-text', t.backendDeveloper);

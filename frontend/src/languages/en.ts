@@ -25,7 +25,7 @@ export const en = {
   welcome: "Welcome",
   areYouReady: "Are you ready?",
   start: "🎮 Start",
-  back: "Back",
+  back: "← Back",
   
   // Tournament
   player1: "Player 1",
