@@ -177,8 +177,8 @@
       <!-- Single player stepper -->
       <div id="singlePlayerStepper" class="hidden">
         <button id="backToModes"
-          class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold">←
-          Back
+          class="absolute top-[10px] left-[20px] text-[20px] bg-none border-none cursor-pointer hover:text-red-600 font-bold"><span id="pong-single-player-back">←
+          Back</span>
         </button>
         <div class="relative m-0 flex w-full justify-between overflow-hidden p-0 mb-8">
           <!-- Step 1 -->
@@ -189,7 +189,7 @@
                 class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-yellow-500 text-black font-bold border-black border-[5px]">
                 1
               </span>
-              <span class="font-semibold">Register</span>
+              <span class="font-semibold" id="pong-single-player-register-text">Register</span>
             </div>
           </div>
 
@@ -201,27 +201,27 @@
                 class="my-6 me-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full text-sm bg-gray-300 text-gray-600 font-bold border-black border-[5px]">
                 2
               </span>
-              <span class="font-semibold text-gray-400">Start Game</span>
+              <span class="font-semibold text-gray-400" id="pong-single-player-start-text">Start Game</span>
             </div>
           </div>
         </div>
         <!-- single player Step 1 Content -->
         <div id="step1Content" class="w-full p-4">
-          <h3 class="text-lg font-bold mb-4">Enter Your Name</h3>
+          <h3 class="text-lg font-bold mb-4" id="pong-single-player-placeholder">Enter Your Name</h3>
           <input id="playerNameInput" type="text" class="border-2 border-gray-300 rounded px-4 py-2 mb-4"
             placeholder="Enter your name" maxlength="20">
           <br>
           <button id="registerBtn"
             class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:transform-none disabled:cursor-not-allowed disabled:border-white disabled:text-white active:bg-yellow-500"
             disabled>
-            Register Player
+            <span id="pong-single-player-register-player-text">Register Player</span>
           </button>
         </div>
         <!-- single player Step 2 Content (Hidden Initially) -->
         <div id="step2Content" class="hidden w-full p-4">
-          <h1 class="text-5xl font-bold mb-4">Welcome, <span id="welcomePlayerName"
-              class="font-bold text-blue-600"></span>!</h1>
-          <h3 class="text-lg font-bold mb-4">Are you ready?</h3>
+          <h4 class="text-4xl mb-4" id="pong-single-player-welcome-text">Welcome, </h4>
+          <h1 class = "text-5xl font-bold mb-4" ><span id="welcomePlayerName" class="font-bold text-blue-600"></span>!</h1>
+          <h4 class="text-4xl mb-4" id="pong-single-player-are-you-ready-text">Are you ready?</h4>
           <button id="startGameBtn"
             class="bg-white border-[5px] border-black rounded-xl px-14 py-1 transition-all duration-200 shadow-none hover:shadow-[0.4rem_0.4rem_0_black] hover:-translate-x-1.5 hover:-translate-y-1.5 active:shadow-none active:translate-x-0 active:translate-y-0 active:bg-yellow-500">
             🎮 Start

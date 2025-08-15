@@ -131,6 +131,17 @@ class LanguageManager{
     this.updateElementText('snake-start-tournament-text', t.startTournament);
     this.updateElementText('snake-tournament-btn-text-2', t.tournament);
     
+    //Pong Team registration (single)
+    this.updateElementText('pong-single-player-back', t.back);
+    this.updateElementText('pong-single-player-register-text', t.register);
+    this.updateElementText('pong-single-player-start-text', t.stepperStart);
+    this.updateElementPlaceholder('playerNameInput', t.enterNamePlaceholder);
+    this.updateElementText('pong-single-player-placeholder', t.enterNamePlaceholder);
+    this.updateElementText('pong-single-player-welcome-text', t.welcome);
+    this.updateElementText('pong-single-player-register-player-text', t.registerPlayer);
+    this.updateElementText('pong-single-player-are-you-ready-text', t.areYouReady);
+
+
     // Pong Team registration (2v2)
     this.updateElementText('register-team-a-text', t.registerTeamA);
     this.updateElementText('register-team-b-text', t.registerTeamB);

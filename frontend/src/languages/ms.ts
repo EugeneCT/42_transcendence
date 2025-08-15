@@ -5,7 +5,7 @@ export const ms = {
   // Main page
   chooseGame: "🔥 Pilih permainan",
   snake: "Ular 🐍", 
-  pong: "Pong 🏓",
+  pong: "Pong is pong in melayu lah sia🏓",
   
   // Game modes
   tournament: "🏟 Kejohanan",
