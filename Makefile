@@ -41,7 +41,5 @@ re: clean build
 rebuild-restart: stop-server re start-server
 
 
-backend:
-	npm i -D typescript @types/node
-	npx tsc
-	node dist/backend_test/backend.js
+# 	npx tsc
+# 	node dist/2fa/test.js
